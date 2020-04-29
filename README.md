@@ -1,8 +1,9 @@
 TODO
 
-- glare in transition
 - move on mouse
-- animation in js only
+- animation in js
+
+- glare in transition
 - add content programatically
 - disable videos when not in view
 

@@ -9,6 +9,7 @@
 body {
 	box-sizing: border-box;
 	position: relative;
+	overflow: hidden;
 }
 
 // ------------------ Scale --------------------
@@ -51,8 +52,11 @@ $sqrt3: 1.73205080757; // square root of 3
 $roof-height: $wall-side * $sqrt3 / 6; // delta y between top and bottom points
 $roof-length: $roof-height * 2; // roof surface height
 
+// set with JS
 :root {
 	--scale: 1;
+	--x: 0;
+	--y: 0;
 }
 
 .house {
@@ -67,7 +71,7 @@ $roof-length: $roof-height * 2; // roof surface height
 	height: 100%;
 	width: 100%;
 	transform-style: preserve-3d;
-	transform: translateZ($wall-side / -2) rotate3d(0.1, 1, 0, -40deg);
+	transform: translateZ($wall-side / -2) rotateY(var(--y)) rotateX(var(--x));
 }
 
 .house__face {

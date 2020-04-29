@@ -1,49 +1,103 @@
 (function () {
-	const ZOOM_SENSITIVITY = -0.0005;
+	const ZOOM_SENSITIVITY = 0.0005;
+	const ZOOM_MIN = 0.01;
+	const ROTATE_SENSITIVITY = 0.25;
 
 	const root = document.documentElement;
+	const container = root.querySelector(".house__container");
 
+	// CSS transform vars
+	let rotateX = -2;
+	let rotateY = -40;
 	let scale = 1;
 
-	function zoomHouse(e) {
-		scale += e.deltaY * ZOOM_SENSITIVITY;
-		if (scale < 0.1) scale = 0.1;
-		root.style.setProperty(`--scale`, scale);
+	// aux
+	let oldRotateX;
+	let oldRotateY;
+
+	// mouseMove vars
+	let canRotate = false;
+	let refX, refY, curX, curY, deltaX, deltaY, vector;
+
+	// -------------------- VIEW --------------------------
+
+	// Update view
+	function rotateHouse(x, y) {
+		root.style.setProperty("--x", x + "deg");
+		root.style.setProperty("--y", y + "deg");
 	}
 
-	window.addEventListener("wheel", zoomHouse);
+	function zoomHouse(scale) {
+		root.style.setProperty("--scale", scale);
+	}
 
-	// -------------------------------------------------------
+	// ---------------------- MODEL -------------------------
 
-	// let canPropUpdate = false;
+	// Get mouse/touch coords relative to doc
+	function getCoords(e) {
+		return [
+			e.pageX || (e.touches ? Math.floor(e.changedTouches[0].pageX) : 0),
+			e.pageY || (e.touches ? Math.floor(e.changedTouches[0].pageY) : 0),
+		];
+	}
 
-	// function toggleCanPropUpdate(e) {
-	// 	canPropUpdate = e.type == "mousedown" ? true : false;
-	// }
+	function handleMouseDown(e) {
+		e.preventDefault();
 
-	// function updatePropValue(e, inputEl) {
-	// 	if (
-	// 		(e && e.type == "mousemove" && canPropUpdate) ||
-	// 		(e && e.type == "touchmove") ||
-	// 		(e && e.type == "change") || // picker tool & keyboard
-	// 		!e // setting initial values
-	// 	) {
-	// 		if (!inputEl) inputEl = this;
-	// 		const suffix = inputEl.dataset.sizing || "";
-	// 		document.documentElement.style.setProperty(
-	// 			`--${inputEl.name}`,
-	// 			inputEl.value + suffix
-	// 		);
-	// 	}
-	// }
+		canRotate = true; // Enable input
+		[refX, refY] = getCoords(e); // Set mouse reference point
 
-	// const inputEls = document.querySelectorAll(".controls input");
-	// inputEls.forEach((inputEl) => {
-	// 	updatePropValue(null, inputEl);
-	// 	inputEl.addEventListener("mousedown", toggleCanPropUpdate);
-	// 	inputEl.addEventListener("mouseup", toggleCanPropUpdate);
-	// 	inputEl.addEventListener("mousemove", updatePropValue);
-	// 	inputEl.addEventListener("touchmove", updatePropValue);
-	// 	inputEl.addEventListener("change", updatePropValue);
-	// });
+		// Save angle values before rotation
+		oldRotateX = rotateX;
+		oldRotateY = rotateY;
+	}
+
+	function handleMouseUp(e) {
+		canRotate = false; // Disable input
+	}
+
+	// Rotate on mouseMove
+	function handleMove(e) {
+		if (
+			(e && e.type == "mousemove" && canRotate) ||
+			(e && e.type == "touchmove")
+		) {
+			// mouse / touch coords
+			[curX, curY] = getCoords(e);
+			[deltaX, deltaY] = [curX - refX, curY - refY];
+
+			// CSS rotate vars
+			rotateX = oldRotateX - deltaY * ROTATE_SENSITIVITY;
+			rotateY = oldRotateY + deltaX * ROTATE_SENSITIVITY;
+
+			rotateHouse(rotateX, rotateY);
+		}
+	}
+
+	// Zoom on scroll
+	function handleWheel(e) {
+		scale = scale + e.deltaY * -1 * ZOOM_SENSITIVITY;
+		if (scale < ZOOM_MIN) scale = ZOOM_MIN; // minimum
+
+		zoomHouse(scale);
+	}
+
+	// ----------------- CONTROLLER ----------------------
+
+	container.addEventListener("mousedown", handleMouseDown);
+	container.addEventListener("touchstart", handleMouseDown);
+	container.addEventListener("mouseup", handleMouseUp);
+	container.addEventListener("mouseleave", handleMouseUp);
+	container.addEventListener("touchend", handleMouseUp);
+	container.addEventListener("touchcancel", handleMouseUp);
+	container.addEventListener("mousemove", handleMove);
+	container.addEventListener("touchmove", handleMove);
+	container.addEventListener("wheel", handleWheel);
+
+	zoomHouse(1);
+	rotateHouse(rotateX, rotateY);
 })();
+
+// setTimeout(()=>{
+// 	if (!canRotate)	animateHouse()
+// }, 10)

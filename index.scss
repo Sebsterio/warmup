@@ -1,0 +1,129 @@
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	box-sizing: border-box;
+	position: relative;
+}
+
+.house__container {
+	background: linear-gradient(to right bottom, #272829, #37383b, #272829);
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* The house ==================================================*/
+
+$wall-side: 20rem; // edge length
+$roof-height: 5rem; // delta y between top and bottom points
+
+@media only screen and (max-width: 22.5em) {
+	// $wall-side: 60vw;
+	// $roof-height: 15vw;
+}
+
+/* Outer container */
+.house {
+	height: $wall-side;
+	width: $wall-side;
+	perspective: $wall-side * 3;
+
+	/* Inner container */
+	.house__faces {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		transform-style: preserve-3d;
+		transform: translateZ($wall-side / -2) rotate3d(1, 0, 0, -25deg);
+		// final:
+		// transform: translateZ($wall-side / -2) rotate3d(0.2, 1, 0, -40deg);
+	}
+}
+
+.house__face {
+	position: absolute;
+	width: $wall-side;
+	height: $wall-side;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	&.house__face--front,
+	&.house__face--back {
+		clip-path: polygon(
+			50% 0,
+			100% $roof-height,
+			100% 100%,
+			0 100%,
+			0 $roof-height
+		);
+	}
+
+	.media__container {
+		height: $wall-side;
+		width: $wall-side;
+		// temp <<<
+		background: linear-gradient(grey, black);
+	}
+
+	&.house__face--left,
+	&.house__face--right {
+		.media__container {
+			height: $wall-side - $roof-height;
+			margin-top: $roof-height;
+			width: $wall-side;
+		}
+	}
+
+	$roof-length: 11rem; // roof surface height
+	$roof-angle: 26deg; // between roof surface and horizontal
+
+	&.house__face--top-left,
+	&.house__face--top-right {
+		.media__container {
+			height: $roof-length;
+			margin-top: $wall-side - $roof-length;
+			width: $wall-side;
+		}
+	}
+
+	// Transformation
+
+	&.house__face--front {
+		transform: rotateY(0deg) translateZ($wall-side / 2);
+	}
+
+	&.house__face--back {
+		transform: rotateY(180deg) translateZ($wall-side / 2);
+	}
+
+	&.house__face--left {
+		transform: rotateY(-90deg) translateZ($wall-side / 2);
+	}
+	&.house__face--right {
+		transform: rotateY(90deg) translateZ($wall-side / 2);
+	}
+	&.house__face--bottom {
+		transform: rotateX(-90deg) translateZ($wall-side / 2);
+	}
+	&.house__face--top-left {
+		transform-origin: bottom center;
+		transform: rotateY(-90deg) translateZ($wall-side / 2)
+			translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
+	}
+	&.house__face--top-right {
+		transform-origin: bottom center;
+		transform: rotateY(90deg) translateZ($wall-side / 2)
+			translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
+	}
+}

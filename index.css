@@ -1,0 +1,131 @@
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+}
+
+.house__container {
+  background: -webkit-gradient(linear, left top, right bottom, from(#272829), color-stop(#37383b), to(#272829));
+  background: linear-gradient(to right bottom, #272829, #37383b, #272829);
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* The house ==================================================*/
+/* Outer container */
+.house {
+  height: 20rem;
+  width: 20rem;
+  -webkit-perspective: 60rem;
+          perspective: 60rem;
+  /* Inner container */
+}
+
+.house .house__faces {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translateZ(-10rem) rotate3d(1, 0, 0, -25deg);
+          transform: translateZ(-10rem) rotate3d(1, 0, 0, -25deg);
+}
+
+.house__face {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.house__face.house__face--front, .house__face.house__face--back {
+  -webkit-clip-path: polygon(50% 0, 100% 5rem, 100% 100%, 0 100%, 0 5rem);
+          clip-path: polygon(50% 0, 100% 5rem, 100% 100%, 0 100%, 0 5rem);
+}
+
+.house__face .media__container {
+  height: 20rem;
+  width: 20rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(grey), to(black));
+  background: linear-gradient(grey, black);
+}
+
+.house__face.house__face--left .media__container, .house__face.house__face--right .media__container {
+  height: 15rem;
+  margin-top: 5rem;
+  width: 20rem;
+}
+
+.house__face.house__face--top-left .media__container, .house__face.house__face--top-right .media__container {
+  height: 11rem;
+  margin-top: 9rem;
+  width: 20rem;
+}
+
+.house__face.house__face--front {
+  -webkit-transform: rotateY(0deg) translateZ(10rem);
+          transform: rotateY(0deg) translateZ(10rem);
+}
+
+.house__face.house__face--back {
+  -webkit-transform: rotateY(180deg) translateZ(10rem);
+          transform: rotateY(180deg) translateZ(10rem);
+}
+
+.house__face.house__face--left {
+  -webkit-transform: rotateY(-90deg) translateZ(10rem);
+          transform: rotateY(-90deg) translateZ(10rem);
+}
+
+.house__face.house__face--right {
+  -webkit-transform: rotateY(90deg) translateZ(10rem);
+          transform: rotateY(90deg) translateZ(10rem);
+}
+
+.house__face.house__face--bottom {
+  -webkit-transform: rotateX(-90deg) translateZ(10rem);
+          transform: rotateX(-90deg) translateZ(10rem);
+}
+
+.house__face.house__face--top-left {
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+  -webkit-transform: rotateY(-90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
+          transform: rotateY(-90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
+}
+
+.house__face.house__face--top-right {
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+  -webkit-transform: rotateY(90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
+          transform: rotateY(90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
+}
+/*# sourceMappingURL=index.css.map */

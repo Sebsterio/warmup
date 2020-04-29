@@ -57,8 +57,8 @@ html {
   width: 100%;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-transform: translateZ(-0.5rem) rotateX(var(--x)) rotateY(var(--y));
-          transform: translateZ(-0.5rem) rotateX(var(--x)) rotateY(var(--y));
+  -webkit-transform: translateZ(-0.5rem) rotateX(calc(var(--x) * 1deg)) rotateY(calc(var(--y) * 1deg));
+          transform: translateZ(-0.5rem) rotateX(calc(var(--x) * 1deg)) rotateY(calc(var(--y) * 1deg));
 }
 
 .house__face {
@@ -87,8 +87,8 @@ html {
   position: relative;
   width: 1rem;
   height: 1rem;
-  background: -webkit-gradient(linear, left top, left bottom, from(grey), to(black));
-  background: linear-gradient(grey, black);
+  background: -webkit-gradient(linear, left top, left bottom, from(#4e4e4e), to(#2b2b2b));
+  background: linear-gradient(#4e4e4e, #2b2b2b);
 }
 
 .house__face--left .media__container,
@@ -160,5 +160,20 @@ html {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+}
+
+:root {
+  --index: 0;
+}
+
+.media__filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(60deg, transparent 45%, white 50%, white 55%, transparent 60%);
+  background-size: 150% 100%;
+  background-repeat: repeat-x;
+  background-position: calc( (var(--index) * 100 / 7 + 2 * var(--x) + 2 * var(--y)) * 1%);
+  opacity: 0.2;
 }
 /*# sourceMappingURL=index.css.map */

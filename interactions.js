@@ -27,8 +27,8 @@
 
 	// Update view
 	function rotateHouse(x, y) {
-		if (x !== null) root.style.setProperty("--x", x + "deg");
-		if (y !== null) root.style.setProperty("--y", y + "deg");
+		if (x !== null) root.style.setProperty("--x", x); // unit added in css
+		if (y !== null) root.style.setProperty("--y", y); // unit added in css
 	}
 
 	function zoomHouse(scale) {

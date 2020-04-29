@@ -58,7 +58,8 @@ $roof-length: $roof-height * 2; // roof surface height
 	height: 100%;
 	width: 100%;
 	transform-style: preserve-3d;
-	transform: translateZ($wall-side / -2) rotateX(var(--x)) rotateY(var(--y));
+	transform: translateZ($wall-side / -2) rotateX(calc(var(--x) * 1deg))
+		rotateY(calc(var(--y) * 1deg));
 }
 
 .house__face {
@@ -87,7 +88,7 @@ $roof-length: $roof-height * 2; // roof surface height
 	width: $wall-side;
 	height: $wall-side;
 	// temp <<<
-	background: linear-gradient(grey, black);
+	background: linear-gradient(rgb(78, 78, 78), rgb(43, 43, 43));
 }
 
 .house__face--left,
@@ -154,4 +155,29 @@ $roof-length: $roof-height * 2; // roof surface height
 	min-height: 100%;
 	object-fit: cover;
 	width: 100%;
+}
+
+// ------------------ Effects --------------------
+
+:root {
+	--index: 0;
+}
+
+.media__filter {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(
+		60deg,
+		transparent 45%,
+		white 50%,
+		white 55%,
+		transparent 60%
+	);
+	background-size: 150% 100%;
+	background-repeat: repeat-x;
+	background-position: calc(
+		(var(--index) * 100 / 7 + 2 * var(--x) + 2 * var(--y)) * 1%
+	);
+	opacity: 0.2;
 }

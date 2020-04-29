@@ -1,12 +1,11 @@
 TODO
 
-- load pics on mobile and vids on PC
+- disable videos when not in view
 
-* glare in transition
-* disable videos when not in view
+* load pics on mobile and vids on PC
 
-* input media (incl bg)
-* localStorage
+- input media (incl bg)
+- localStorage
 
-* space bg
-* content
+- space bg
+- content

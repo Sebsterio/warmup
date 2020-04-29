@@ -4,26 +4,31 @@ const media = [
 		type: "image",
 		link: "pic.jpg",
 	},
-	// {
-	// 	type: "video/mp4",
-	// 	link: "vid.mp4",
-	// },
-	// {
-	// 	type: "video/mp4",
-	// 	link: "vid.mp4",
-	// },
-	// {
-	// 	type: "video/mp4",
-	// 	link: "vid.mp4",
-	// },
-	// {
-	// 	type: "video/mp4",
-	// 	link: "vid.mp4",
-	// },
-	// {
-	// 	type: "video/mp4",
-	// 	link: "vid.mp4",
-	// },
+	{
+		type: "image",
+		link: "pic.jpg",
+	},
+	{
+		type: "image",
+		link: "pic.jpg",
+	},
+	{
+		type: "image",
+		link: "pic.jpg",
+	},
+	{
+		type: "image",
+		link: "pic.jpg",
+	},
+	{
+		type: "image",
+		link: "pic.jpg",
+	},
+	{
+		type: "image",
+		link: "pic.jpg",
+	},
+
 	// {
 	// 	type: "video/mp4",
 	// 	link: "vid.mp4",
@@ -33,7 +38,7 @@ const media = [
 const containers = document.querySelectorAll(".media__container");
 
 // Insert media into each container
-containers.forEach((el, i) => {
+containers.forEach((container, i) => {
 	if (!media[i]) return;
 
 	const { type, link } = media[i];
@@ -54,5 +59,7 @@ containers.forEach((el, i) => {
 		`;
 	}
 
-	el.innerHTML = innerHtml;
+	innerHtml += `<div class="media__filter" style="--index: ${i}"></div>`;
+
+	container.innerHTML = innerHtml;
 });

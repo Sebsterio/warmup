@@ -58,16 +58,20 @@ html {
           align-items: center;
 }
 
-/* Outer container */
+:root {
+  --scale: 1;
+}
+
 .house {
   height: 1rem;
   width: 1rem;
   -webkit-perspective: 3rem;
           perspective: 3rem;
-  /* Inner container */
+  -webkit-transform: scale(var(--scale));
+          transform: scale(var(--scale));
 }
 
-.house .house__faces {
+.house__faces {
   position: relative;
   height: 100%;
   width: 100%;
@@ -93,63 +97,66 @@ html {
   overflow: hidden;
 }
 
-.house__face.house__face--front, .house__face.house__face--back {
+.house__face--front,
+.house__face--back {
   -webkit-clip-path: polygon(50% 0, 100% 0.28868rem, 100% 100%, 0 100%, 0 0.28868rem);
           clip-path: polygon(50% 0, 100% 0.28868rem, 100% 100%, 0 100%, 0 0.28868rem);
 }
 
-.house__face .media__container {
+.media__container {
   height: 1rem;
   width: 1rem;
   background: -webkit-gradient(linear, left top, left bottom, from(grey), to(black));
   background: linear-gradient(grey, black);
 }
 
-.house__face.house__face--left .media__container, .house__face.house__face--right .media__container {
+.house__face--left .media__container,
+.house__face--right .media__container {
   height: 0.71132rem;
   margin-top: 0.28868rem;
   width: 1rem;
 }
 
-.house__face.house__face--top-left .media__container, .house__face.house__face--top-right .media__container {
+.house__face--top-left .media__container,
+.house__face--top-right .media__container {
   height: 0.57735rem;
   margin-top: 0.42265rem;
   width: 1rem;
 }
 
-.house__face.house__face--front {
+.house__face--front {
   -webkit-transform: rotateY(0deg) translateZ(0.5rem);
           transform: rotateY(0deg) translateZ(0.5rem);
 }
 
-.house__face.house__face--back {
+.house__face--back {
   -webkit-transform: rotateY(180deg) translateZ(0.5rem);
           transform: rotateY(180deg) translateZ(0.5rem);
 }
 
-.house__face.house__face--left {
+.house__face--left {
   -webkit-transform: rotateY(-90deg) translateZ(0.5rem);
           transform: rotateY(-90deg) translateZ(0.5rem);
 }
 
-.house__face.house__face--right {
+.house__face--right {
   -webkit-transform: rotateY(90deg) translateZ(0.5rem);
           transform: rotateY(90deg) translateZ(0.5rem);
 }
 
-.house__face.house__face--bottom {
+.house__face--bottom {
   -webkit-transform: rotateX(-90deg) translateZ(0.5rem);
           transform: rotateX(-90deg) translateZ(0.5rem);
 }
 
-.house__face.house__face--top-left {
+.house__face--top-left {
   -webkit-transform-origin: bottom center;
           transform-origin: bottom center;
   -webkit-transform: rotateY(-90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
           transform: rotateY(-90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
 }
 
-.house__face.house__face--top-right {
+.house__face--top-right {
   -webkit-transform-origin: bottom center;
           transform-origin: bottom center;
   -webkit-transform: rotateY(90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);

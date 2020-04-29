@@ -51,20 +51,23 @@ $sqrt3: 1.73205080757; // square root of 3
 $roof-height: $wall-side * $sqrt3 / 6; // delta y between top and bottom points
 $roof-length: $roof-height * 2; // roof surface height
 
-/* Outer container */
+:root {
+	--scale: 1;
+}
+
 .house {
 	height: $wall-side;
 	width: $wall-side;
 	perspective: $wall-side * 3;
+	transform: scale(var(--scale));
+}
 
-	/* Inner container */
-	.house__faces {
-		position: relative;
-		height: 100%;
-		width: 100%;
-		transform-style: preserve-3d;
-		transform: translateZ($wall-side / -2) rotate3d(0.1, 1, 0, -40deg);
-	}
+.house__faces {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	transform-style: preserve-3d;
+	transform: translateZ($wall-side / -2) rotate3d(0.1, 1, 0, -40deg);
 }
 
 .house__face {
@@ -75,70 +78,70 @@ $roof-length: $roof-height * 2; // roof surface height
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+}
 
-	&.house__face--front,
-	&.house__face--back {
-		clip-path: polygon(
-			50% 0,
-			100% $roof-height,
-			100% 100%,
-			0 100%,
-			0 $roof-height
-		);
-	}
+.house__face--front,
+.house__face--back {
+	clip-path: polygon(
+		50% 0,
+		100% $roof-height,
+		100% 100%,
+		0 100%,
+		0 $roof-height
+	);
+}
 
+.media__container {
+	height: $wall-side;
+	width: $wall-side;
+	// temp <<<
+	background: linear-gradient(grey, black);
+}
+
+.house__face--left,
+.house__face--right {
 	.media__container {
-		height: $wall-side;
+		height: $wall-side - $roof-height;
+		margin-top: $roof-height;
 		width: $wall-side;
-		// temp <<<
-		background: linear-gradient(grey, black);
 	}
+}
 
-	&.house__face--left,
-	&.house__face--right {
-		.media__container {
-			height: $wall-side - $roof-height;
-			margin-top: $roof-height;
-			width: $wall-side;
-		}
+.house__face--top-left,
+.house__face--top-right {
+	.media__container {
+		height: $roof-length;
+		margin-top: $wall-side - $roof-length;
+		width: $wall-side;
 	}
+}
 
-	&.house__face--top-left,
-	&.house__face--top-right {
-		.media__container {
-			height: $roof-length;
-			margin-top: $wall-side - $roof-length;
-			width: $wall-side;
-		}
-	}
+// Transformation
 
-	// Transformation
+.house__face--front {
+	transform: rotateY(0deg) translateZ($wall-side / 2);
+}
 
-	&.house__face--front {
-		transform: rotateY(0deg) translateZ($wall-side / 2);
-	}
+.house__face--back {
+	transform: rotateY(180deg) translateZ($wall-side / 2);
+}
 
-	&.house__face--back {
-		transform: rotateY(180deg) translateZ($wall-side / 2);
-	}
-
-	&.house__face--left {
-		transform: rotateY(-90deg) translateZ($wall-side / 2);
-	}
-	&.house__face--right {
-		transform: rotateY(90deg) translateZ($wall-side / 2);
-	}
-	&.house__face--bottom {
-		transform: rotateX(-90deg) translateZ($wall-side / 2);
-	}
-	&.house__face--top-left {
-		transform-origin: bottom center;
-		transform: rotateY(-90deg) translateZ($wall-side / 2)
-			translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
-	}
-	&.house__face--top-right {
-		transform-origin: bottom center;
-		transform: rotateY(90deg) translateZ($wall-side / 2)
-			translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
-	}
+.house__face--left {
+	transform: rotateY(-90deg) translateZ($wall-side / 2);
+}
+.house__face--right {
+	transform: rotateY(90deg) translateZ($wall-side / 2);
+}
+.house__face--bottom {
+	transform: rotateX(-90deg) translateZ($wall-side / 2);
+}
+.house__face--top-left {
+	transform-origin: bottom center;
+	transform: rotateY(-90deg) translateZ($wall-side / 2)
+		translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
+}
+.house__face--top-right {
+	transform-origin: bottom center;
+	transform: rotateY(90deg) translateZ($wall-side / 2)
+		translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
 }

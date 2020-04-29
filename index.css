@@ -16,31 +16,7 @@ body {
 }
 
 html {
-  font-size: 70px;
-}
-
-@media only screen and (min-width: 15rem) {
-  html {
-    font-size: 120px;
-  }
-}
-
-@media only screen and (min-width: 20rem) {
-  html {
-    font-size: 180px;
-  }
-}
-
-@media only screen and (min-width: 25rem) {
-  html {
-    font-size: 250px;
-  }
-}
-
-@media only screen and (min-width: 30rem) {
-  html {
-    font-size: 300px;
-  }
+  font-size: 60vmin;
 }
 
 .house__container {
@@ -81,8 +57,8 @@ html {
   width: 100%;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-transform: translateZ(-0.5rem) rotateY(var(--y)) rotateX(var(--x));
-          transform: translateZ(-0.5rem) rotateY(var(--y)) rotateX(var(--x));
+  -webkit-transform: translateZ(-0.5rem) rotateX(var(--x)) rotateY(var(--y));
+          transform: translateZ(-0.5rem) rotateX(var(--x)) rotateY(var(--y));
 }
 
 .house__face {

@@ -1,11 +1,12 @@
 TODO
 
-- add content programatically
-- localStorage
-- responsive
+- load pics on mobile and vids on PC
 
-- glare in transition
-- disable videos when not in view
+* glare in transition
+* disable videos when not in view
 
-- space bg
-- vids
+* input media (incl bg)
+* localStorage
+
+* space bg
+* content

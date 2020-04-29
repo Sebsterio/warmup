@@ -15,22 +15,8 @@ body {
 
 // ------------------ Scale --------------------
 
-// TODO: move to JS
 html {
-	font-size: 70px;
-
-	@media only screen and (min-width: 15rem) {
-		font-size: 120px;
-	}
-	@media only screen and (min-width: 20rem) {
-		font-size: 180px;
-	}
-	@media only screen and (min-width: 25rem) {
-		font-size: 250px;
-	}
-	@media only screen and (min-width: 30rem) {
-		font-size: 300px;
-	}
+	font-size: 60vmin;
 }
 
 // ------------------ Container --------------------
@@ -72,7 +58,7 @@ $roof-length: $roof-height * 2; // roof surface height
 	height: 100%;
 	width: 100%;
 	transform-style: preserve-3d;
-	transform: translateZ($wall-side / -2) rotateY(var(--y)) rotateX(var(--x));
+	transform: translateZ($wall-side / -2) rotateX(var(--x)) rotateY(var(--y));
 }
 
 .house__face {

@@ -10,6 +10,7 @@ body {
 	box-sizing: border-box;
 	position: relative;
 	overflow: hidden;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 // ------------------ Scale --------------------
@@ -55,8 +56,8 @@ $roof-length: $roof-height * 2; // roof surface height
 // set with JS
 :root {
 	--scale: 1;
-	--x: 0;
-	--y: 0;
+	--x: -2deg;
+	--y: -40deg;
 }
 
 .house {
@@ -96,8 +97,9 @@ $roof-length: $roof-height * 2; // roof surface height
 }
 
 .media__container {
-	height: $wall-side;
+	position: relative;
 	width: $wall-side;
+	height: $wall-side;
 	// temp <<<
 	background: linear-gradient(grey, black);
 }
@@ -105,18 +107,18 @@ $roof-length: $roof-height * 2; // roof surface height
 .house__face--left,
 .house__face--right {
 	.media__container {
+		width: $wall-side;
 		height: $wall-side - $roof-height;
 		margin-top: $roof-height;
-		width: $wall-side;
 	}
 }
 
 .house__face--top-left,
 .house__face--top-right {
 	.media__container {
+		width: $wall-side;
 		height: $roof-length;
 		margin-top: $wall-side - $roof-length;
-		width: $wall-side;
 	}
 }
 
@@ -148,4 +150,22 @@ $roof-length: $roof-height * 2; // roof surface height
 	transform-origin: bottom center;
 	transform: rotateY(90deg) translateZ($wall-side / 2)
 		translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
+}
+
+// ------------------ Media --------------------
+
+.image {
+	position: absolute;
+	height: auto;
+	min-height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.video {
+	position: absolute;
+	height: auto;
+	min-height: 100%;
+	object-fit: cover;
+	width: 100%;
 }

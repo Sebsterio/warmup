@@ -1,9 +1,12 @@
 (function () {
+	// config
+	let canAnimate = false;
 	const ZOOM_SENSITIVITY = 0.0005;
 	const ZOOM_MIN = 0.01;
 	const ROTATE_SENSITIVITY = 0.25;
 	const FPS = 60;
 
+	// elements
 	const root = document.documentElement;
 	const container = root.querySelector(".house__container");
 
@@ -16,12 +19,9 @@
 	let newRotateX;
 	let newRotateY;
 
-	// mouseMove vars
-	let refX, refY, curX, curY, deltaX, deltaY, vector;
+	// input vars
+	let refX, refY, curX, curY, deltaX, deltaY;
 	let canRotate = false;
-
-	// config
-	let canAnimate = false;
 
 	// -------------------- VIEW --------------------------
 

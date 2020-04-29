@@ -12,6 +12,7 @@ body {
           box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 html {
@@ -61,8 +62,8 @@ html {
 
 :root {
   --scale: 1;
-  --x: 0;
-  --y: 0;
+  --x: -2deg;
+  --y: -40deg;
 }
 
 .house {
@@ -107,24 +108,25 @@ html {
 }
 
 .media__container {
-  height: 1rem;
+  position: relative;
   width: 1rem;
+  height: 1rem;
   background: -webkit-gradient(linear, left top, left bottom, from(grey), to(black));
   background: linear-gradient(grey, black);
 }
 
 .house__face--left .media__container,
 .house__face--right .media__container {
+  width: 1rem;
   height: 0.71132rem;
   margin-top: 0.28868rem;
-  width: 1rem;
 }
 
 .house__face--top-left .media__container,
 .house__face--top-right .media__container {
+  width: 1rem;
   height: 0.57735rem;
   margin-top: 0.42265rem;
-  width: 1rem;
 }
 
 .house__face--front {
@@ -164,5 +166,23 @@ html {
           transform-origin: bottom center;
   -webkit-transform: rotateY(90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
           transform: rotateY(90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
+}
+
+.image {
+  position: absolute;
+  height: auto;
+  min-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
+.video {
+  position: absolute;
+  height: auto;
+  min-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
 }
 /*# sourceMappingURL=index.css.map */

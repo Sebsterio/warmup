@@ -1,7 +1,10 @@
 TODO
 
-- glare in transition
 - add content programatically
+- localStorage
+- responsive
+
+- glare in transition
 - disable videos when not in view
 
 - space bg

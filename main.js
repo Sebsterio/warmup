@@ -2,6 +2,7 @@
 	const ZOOM_SENSITIVITY = 0.0005;
 	const ZOOM_MIN = 0.01;
 	const ROTATE_SENSITIVITY = 0.25;
+	const FPS = 60;
 
 	const root = document.documentElement;
 	const container = root.querySelector(".house__container");
@@ -12,19 +13,22 @@
 	let scale = 1;
 
 	// aux
-	let oldRotateX;
-	let oldRotateY;
+	let newRotateX;
+	let newRotateY;
 
 	// mouseMove vars
-	let canRotate = false;
 	let refX, refY, curX, curY, deltaX, deltaY, vector;
+	let canRotate = false;
+
+	// config
+	let canAnimate = false;
 
 	// -------------------- VIEW --------------------------
 
 	// Update view
 	function rotateHouse(x, y) {
-		root.style.setProperty("--x", x + "deg");
-		root.style.setProperty("--y", y + "deg");
+		if (x !== null) root.style.setProperty("--x", x + "deg");
+		if (y !== null) root.style.setProperty("--y", y + "deg");
 	}
 
 	function zoomHouse(scale) {
@@ -46,14 +50,15 @@
 
 		canRotate = true; // Enable input
 		[refX, refY] = getCoords(e); // Set mouse reference point
-
-		// Save angle values before rotation
-		oldRotateX = rotateX;
-		oldRotateY = rotateY;
 	}
 
 	function handleMouseUp(e) {
+		if (!canRotate) return;
 		canRotate = false; // Disable input
+
+		// Set new angle as current
+		rotateX = newRotateX;
+		rotateY = newRotateY;
 	}
 
 	// Rotate on mouseMove
@@ -67,10 +72,10 @@
 			[deltaX, deltaY] = [curX - refX, curY - refY];
 
 			// CSS rotate vars
-			rotateX = oldRotateX - deltaY * ROTATE_SENSITIVITY;
-			rotateY = oldRotateY + deltaX * ROTATE_SENSITIVITY;
+			newRotateX = rotateX - deltaY * ROTATE_SENSITIVITY;
+			newRotateY = rotateY + deltaX * ROTATE_SENSITIVITY;
 
-			rotateHouse(rotateX, rotateY);
+			rotateHouse(newRotateX, newRotateY);
 		}
 	}
 
@@ -80,6 +85,15 @@
 		if (scale < ZOOM_MIN) scale = ZOOM_MIN; // minimum
 
 		zoomHouse(scale);
+	}
+
+	function initAnimation() {
+		setInterval(() => {
+			if (canAnimate && !canRotate) {
+				rotateY -= 0.03;
+				rotateHouse(null, rotateY);
+			}
+		}, 1000 / FPS);
 	}
 
 	// ----------------- CONTROLLER ----------------------
@@ -96,8 +110,5 @@
 
 	zoomHouse(1);
 	rotateHouse(rotateX, rotateY);
+	initAnimation();
 })();
-
-// setTimeout(()=>{
-// 	if (!canRotate)	animateHouse()
-// }, 10)

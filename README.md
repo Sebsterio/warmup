@@ -1,11 +1,12 @@
-TODO
+# CSS 3D model
 
-- disable videos when not in view
+Rotating and interactive
 
-* load pics on mobile and vids on PC
+## TODO
 
 - input media (incl bg)
 - localStorage
 
-- space bg
-- content
+## How to use
+
+add your image/video links in `media.js`

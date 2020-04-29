@@ -13,6 +13,34 @@ body {
   position: relative;
 }
 
+html {
+  font-size: 70px;
+}
+
+@media only screen and (min-width: 15rem) {
+  html {
+    font-size: 120px;
+  }
+}
+
+@media only screen and (min-width: 20rem) {
+  html {
+    font-size: 180px;
+  }
+}
+
+@media only screen and (min-width: 25rem) {
+  html {
+    font-size: 250px;
+  }
+}
+
+@media only screen and (min-width: 30rem) {
+  html {
+    font-size: 300px;
+  }
+}
+
 .house__container {
   background: -webkit-gradient(linear, left top, right bottom, from(#272829), color-stop(#37383b), to(#272829));
   background: linear-gradient(to right bottom, #272829, #37383b, #272829);
@@ -30,13 +58,12 @@ body {
           align-items: center;
 }
 
-/* The house ==================================================*/
 /* Outer container */
 .house {
-  height: 20rem;
-  width: 20rem;
-  -webkit-perspective: 60rem;
-          perspective: 60rem;
+  height: 1rem;
+  width: 1rem;
+  -webkit-perspective: 3rem;
+          perspective: 3rem;
   /* Inner container */
 }
 
@@ -46,14 +73,14 @@ body {
   width: 100%;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-transform: translateZ(-10rem) rotate3d(1, 0, 0, -25deg);
-          transform: translateZ(-10rem) rotate3d(1, 0, 0, -25deg);
+  -webkit-transform: translateZ(-0.5rem) rotate3d(0.1, 1, 0, -40deg);
+          transform: translateZ(-0.5rem) rotate3d(0.1, 1, 0, -40deg);
 }
 
 .house__face {
   position: absolute;
-  width: 20rem;
-  height: 20rem;
+  width: 1rem;
+  height: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,65 +94,65 @@ body {
 }
 
 .house__face.house__face--front, .house__face.house__face--back {
-  -webkit-clip-path: polygon(50% 0, 100% 5rem, 100% 100%, 0 100%, 0 5rem);
-          clip-path: polygon(50% 0, 100% 5rem, 100% 100%, 0 100%, 0 5rem);
+  -webkit-clip-path: polygon(50% 0, 100% 0.28868rem, 100% 100%, 0 100%, 0 0.28868rem);
+          clip-path: polygon(50% 0, 100% 0.28868rem, 100% 100%, 0 100%, 0 0.28868rem);
 }
 
 .house__face .media__container {
-  height: 20rem;
-  width: 20rem;
+  height: 1rem;
+  width: 1rem;
   background: -webkit-gradient(linear, left top, left bottom, from(grey), to(black));
   background: linear-gradient(grey, black);
 }
 
 .house__face.house__face--left .media__container, .house__face.house__face--right .media__container {
-  height: 15rem;
-  margin-top: 5rem;
-  width: 20rem;
+  height: 0.71132rem;
+  margin-top: 0.28868rem;
+  width: 1rem;
 }
 
 .house__face.house__face--top-left .media__container, .house__face.house__face--top-right .media__container {
-  height: 11rem;
-  margin-top: 9rem;
-  width: 20rem;
+  height: 0.57735rem;
+  margin-top: 0.42265rem;
+  width: 1rem;
 }
 
 .house__face.house__face--front {
-  -webkit-transform: rotateY(0deg) translateZ(10rem);
-          transform: rotateY(0deg) translateZ(10rem);
+  -webkit-transform: rotateY(0deg) translateZ(0.5rem);
+          transform: rotateY(0deg) translateZ(0.5rem);
 }
 
 .house__face.house__face--back {
-  -webkit-transform: rotateY(180deg) translateZ(10rem);
-          transform: rotateY(180deg) translateZ(10rem);
+  -webkit-transform: rotateY(180deg) translateZ(0.5rem);
+          transform: rotateY(180deg) translateZ(0.5rem);
 }
 
 .house__face.house__face--left {
-  -webkit-transform: rotateY(-90deg) translateZ(10rem);
-          transform: rotateY(-90deg) translateZ(10rem);
+  -webkit-transform: rotateY(-90deg) translateZ(0.5rem);
+          transform: rotateY(-90deg) translateZ(0.5rem);
 }
 
 .house__face.house__face--right {
-  -webkit-transform: rotateY(90deg) translateZ(10rem);
-          transform: rotateY(90deg) translateZ(10rem);
+  -webkit-transform: rotateY(90deg) translateZ(0.5rem);
+          transform: rotateY(90deg) translateZ(0.5rem);
 }
 
 .house__face.house__face--bottom {
-  -webkit-transform: rotateX(-90deg) translateZ(10rem);
-          transform: rotateX(-90deg) translateZ(10rem);
+  -webkit-transform: rotateX(-90deg) translateZ(0.5rem);
+          transform: rotateX(-90deg) translateZ(0.5rem);
 }
 
 .house__face.house__face--top-left {
   -webkit-transform-origin: bottom center;
           transform-origin: bottom center;
-  -webkit-transform: rotateY(-90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
-          transform: rotateY(-90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
+  -webkit-transform: rotateY(-90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
+          transform: rotateY(-90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
 }
 
 .house__face.house__face--top-right {
   -webkit-transform-origin: bottom center;
           transform-origin: bottom center;
-  -webkit-transform: rotateY(90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
-          transform: rotateY(90deg) translateZ(10rem) translateY(-15rem) rotateX(64deg);
+  -webkit-transform: rotateY(90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
+          transform: rotateY(90deg) translateZ(0.5rem) translateY(-0.71132rem) rotateX(60deg);
 }
 /*# sourceMappingURL=index.css.map */

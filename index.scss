@@ -1,3 +1,4 @@
+// -------------------- Reset --------------------
 *,
 *::after,
 *::before {
@@ -5,11 +6,32 @@
 	margin: 0;
 	padding: 0;
 }
-
 body {
 	box-sizing: border-box;
 	position: relative;
 }
+
+// ------------------ Scale --------------------
+
+// TODO: move to JS
+html {
+	font-size: 70px;
+
+	@media only screen and (min-width: 15rem) {
+		font-size: 120px;
+	}
+	@media only screen and (min-width: 20rem) {
+		font-size: 180px;
+	}
+	@media only screen and (min-width: 25rem) {
+		font-size: 250px;
+	}
+	@media only screen and (min-width: 30rem) {
+		font-size: 300px;
+	}
+}
+
+// ------------------ Container --------------------
 
 .house__container {
 	background: linear-gradient(to right bottom, #272829, #37383b, #272829);
@@ -21,15 +43,13 @@ body {
 	align-items: center;
 }
 
-/* The house ==================================================*/
+// ------------------ The house --------------------
 
-$wall-side: 20rem; // edge length
-$roof-height: 5rem; // delta y between top and bottom points
-
-@media only screen and (max-width: 22.5em) {
-	// $wall-side: 60vw;
-	// $roof-height: 15vw;
-}
+$wall-side: 1rem; // edge length
+$roof-angle: 30deg; // between roof surface and horizontal plane
+$sqrt3: 1.73205080757; // square root of 3
+$roof-height: $wall-side * $sqrt3 / 6; // delta y between top and bottom points
+$roof-length: $roof-height * 2; // roof surface height
 
 /* Outer container */
 .house {
@@ -43,9 +63,7 @@ $roof-height: 5rem; // delta y between top and bottom points
 		height: 100%;
 		width: 100%;
 		transform-style: preserve-3d;
-		transform: translateZ($wall-side / -2) rotate3d(1, 0, 0, -25deg);
-		// final:
-		// transform: translateZ($wall-side / -2) rotate3d(0.2, 1, 0, -40deg);
+		transform: translateZ($wall-side / -2) rotate3d(0.1, 1, 0, -40deg);
 	}
 }
 
@@ -84,9 +102,6 @@ $roof-height: 5rem; // delta y between top and bottom points
 			width: $wall-side;
 		}
 	}
-
-	$roof-length: 11rem; // roof surface height
-	$roof-angle: 26deg; // between roof surface and horizontal
 
 	&.house__face--top-left,
 	&.house__face--top-right {

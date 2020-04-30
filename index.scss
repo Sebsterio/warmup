@@ -188,6 +188,9 @@ $roof-length: $roof-height * 2; // roof surface height
 		(var(--index) * 100 / 7 + 2 * var(--x) + 2 * var(--y)) * 1%
 	);
 	opacity: 0.2;
-	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< temp
-	// pointer-events: none;
+
+	@media screen and (max-width: 1100px) {
+		// make video clickable on mobile as autoplay doesn't work
+		pointer-events: none;
+	}
 }

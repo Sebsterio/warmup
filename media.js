@@ -68,11 +68,10 @@
 	// -----------------------------------------------------------------
 
 	const house = document.querySelector(".house");
+	const containers = house.querySelectorAll(".media__container");
 
 	// Insert media into each media container
 	function insertMediaHtml() {
-		const containers = house.querySelectorAll(".media__container");
-
 		containers.forEach((container, i) => {
 			if (!media[i]) return;
 
@@ -92,13 +91,22 @@
 			// iframe
 			if (type === "YT embed") {
 				const height = container.getBoundingClientRect().height;
+				if (!ratio) ratio = 1.5;
 
 				const splitLink = link.split("?");
 				const params =
-					"?controls=0&autoplay=1&mute=1&disablekb=1&fs=0&loop=1&rel=0&origin=https://warmup.netlify.app";
+					"?mute=1" +
+					"&autoplay=1" +
+					"&controls=0" +
+					"&disablekb=1" +
+					"&fs=0" +
+					"&loop=1" +
+					"&rel=0" +
+					"&origin=https://warmup.netlify.app";
 				const url = splitLink[0] + params;
 
-				innerHtml = `<div class="embed"><iframe 
+				innerHtml = `<div class="embed"><iframe
+				data-ratio="${ratio}"
 				width="${height * ratio}px"
 				height="${height}px"
 					src="${url}"
@@ -115,6 +123,19 @@
 		});
 	}
 
+	function updateIframeSizes() {
+		containers.forEach((container) => {
+			const iframe = container.querySelector("iframe");
+			if (!iframe) return;
+
+			const height = container.getBoundingClientRect().height;
+			const ratio = iframe.dataset.ratio;
+
+			iframe.width = height * ratio;
+			iframe.height = height;
+		});
+	}
+
 	// desynchronize videos
 	function mixUpVideoTime() {
 		const vids = house.querySelectorAll("video");
@@ -128,4 +149,5 @@
 
 	insertMediaHtml();
 	mixUpVideoTime();
+	window.addEventListener("resize", updateIframeSizes);
 })();

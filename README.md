@@ -6,11 +6,15 @@ Animated and interactive
 
 ## TODO
 
-- animation jitter on click
 - input media (incl bg)
 - update database
-- randomize displayed media
-- audio
+
+- randomize displayed media or FILO
+
+- backup media file in case firestore doesnt respond
+- animation jitter on click
+
+- audio + input & save audio urls
 
 ## How to use
 

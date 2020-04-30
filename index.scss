@@ -1,3 +1,12 @@
+// -------------------- Vars --------------------
+
+$color-primary: rgb(112, 80, 170);
+$color-primary-translucent: rgba(112, 80, 170, 0.5);
+$color-primary-active: rgb(146, 114, 206);
+$color-primary-translucent-active: rgba(146, 114, 206, 0.7);
+$color-secondary: rgb(138, 138, 138);
+$color-secondary-translucent: rgba(138, 138, 138, 0.3);
+
 // -------------------- Reset --------------------
 *,
 *::after,
@@ -19,7 +28,7 @@ html {
 	font-size: 60vmin;
 }
 
-// ------------------ Container --------------------
+// --------------- Main Container ------------------
 
 .house__container {
 	background: linear-gradient(to right bottom, #272829, #37383b, #272829);
@@ -29,6 +38,7 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	user-select: none;
 }
 
 // ------------------ The house --------------------
@@ -83,7 +93,7 @@ $roof-length: $roof-height * 2; // roof surface height
 	);
 }
 
-.media__container {
+.house__media-container {
 	position: relative;
 	width: $wall-side;
 	height: $wall-side;
@@ -96,7 +106,7 @@ $roof-length: $roof-height * 2; // roof surface height
 
 .house__face--left,
 .house__face--right {
-	.media__container {
+	.house__media-container {
 		width: $wall-side;
 		height: $wall-side - $roof-height;
 		margin-top: $roof-height;
@@ -105,7 +115,7 @@ $roof-length: $roof-height * 2; // roof surface height
 
 .house__face--top-left,
 .house__face--top-right {
-	.media__container {
+	.house__media-container {
 		width: $wall-side;
 		height: $roof-length;
 		margin-top: $wall-side - $roof-length;
@@ -193,4 +203,88 @@ $roof-length: $roof-height * 2; // roof surface height
 	// 	// make video clickable on mobile as autoplay doesn't work
 	// 	pointer-events: none;
 	// }
+}
+
+// -------------------- Controls --------------------
+
+.house__controls {
+	position: absolute;
+	top: 5vh;
+	left: 0;
+	width: 150px;
+	height: 50px;
+	font-size: 16px;
+}
+
+// === Config panel & Add link panel ===
+
+.house__panel,
+.house__new-link {
+	background-image: linear-gradient(45deg, #3f4042, #303133);
+	border-radius: 5px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1),
+		inset 0 0 2px 0 rgba(255, 255, 255, 0.2);
+	transition: transform 400ms ease;
+}
+
+.house__panel {
+	width: 100%;
+	height: 100%;
+	padding-left: 5px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	transform: translateX(-5px);
+
+	&.house__panel--hiding,
+	&.house__panel--hidden {
+		transform: translateX(-90%);
+	}
+}
+
+.house__new-link {
+	position: absolute;
+	top: 50px;
+	padding: 20px;
+	transform: translateX(-5px);
+
+	&.house__new-link--hidden {
+		transform: translateX(-100%);
+	}
+
+	form {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 15px;
+	}
+}
+
+// === Button ===
+
+.house__btn {
+	font-size: 60px;
+	color: $color-primary;
+	text-shadow: 0 0 3px $color-primary-translucent;
+	cursor: pointer;
+}
+
+.house__btn:hover,
+.house__btn.house__btn--active {
+	color: $color-primary-active;
+	text-shadow: 0 0 3px $color-primary-translucent-active;
+}
+
+// === Input ===
+
+.house__input {
+	width: 160px;
+}
+
+.house__label {
+	color: $color-secondary;
+	text-shadow: 0 0 3px $color-secondary-translucent;
+}
+
+.house__input--submit {
+	grid-column: 1 / -1;
 }

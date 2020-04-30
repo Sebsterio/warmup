@@ -13,34 +13,67 @@
 		<div class="house">
 			<div class="house__faces">
 				<div class="house__face house__face--front">
-					<div class="media__container">
+					<div class="house__media-container">
 					</div>
 				</div>
 				<div class="house__face house__face--back">
-					<div class="media__container">
+					<div class="house__media-container">
 					</div>
 				</div>
 				<div class="house__face house__face--left">
-					<div class="media__container">
+					<div class="house__media-container">
 					</div>
 				</div>
 				<div class="house__face house__face--right">
-					<div class="media__container">
+					<div class="house__media-container">
 					</div>
 				</div>
 				<div class="house__face house__face--top-left">
-					<div class="media__container">
+					<div class="house__media-container">
 					</div>
 				</div>
 				<div class="house__face house__face--top-right">
-					<div class="media__container">
+					<div class="house__media-container">
 					</div>
 				</div>
 				<div class="house__face house__face--bottom">
-					<div class="media__container">
+					<div class="house__media-container">
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="house__controls">
+			<div class="house__panel house__panel--active">
+				<div class="house__btn house__btn--add">&plus;</div>
+				<div class="house__btn house__btn--remove">&minus;</div>
+				<div class="house__btn house__btn--close">&Cross;</div>
+			</div>
+			<div class="house__new-link house__new-link--hidden">
+				<form action="#">
+					<!-- Type -->
+					<label for="house__input--type" class="house__label">Type</label>
+					<select id="house__input--type" class="house__input" name="type">
+						<option value="image">image</option>
+						<option value="video">video</option>
+						<option value="YT embed">YT embed</option>
+					</select>
+
+					<!-- Ratio -->
+					<label for="house__input--range" class="house__label">Video ratio</label>
+					<input id="house__input--range" class="house__input" name="name" type="number">
+
+					<!-- Name -->
+					<label for="house__input--name" class="house__label">Description</label>
+					<input id="house__input--name" class="house__input" name="name" type="text">
+
+					<!-- URL -->
+					<label for="house__input--url" class="house__label">Link</label>
+					<input id="house__input--url" class="house__input" name="name" type="text">
+
+					<input class="house__input--submit" type="submit" name="submit" value="Add Love">
+				</form>
+			</div>
+			<div class="house__remove-link"></div>
 		</div>
 	</div>
 
@@ -48,9 +81,12 @@
 	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+
+	<script src="config.js"></script>
 	<script src='firebase.js'></script>
 	<script src='media.js'></script>
 	<script src='interactions.js'></script>
+	<script src='controls.js'></script>
 </body>
 
 </html>

@@ -1,43 +1,30 @@
-// Youtube iframe URL params
-const YT_PARAMS =
-	"?mute=1" +
-	"&enablejsapi=1" +
-	"&autoplay=1" +
-	"&controls=0" +
-	"&disablekb=1" + // disable keyboard actions
-	"&fs=0" + // full screen button
-	"&loop=1" +
-	"&rel=0" + // display related videos
-	"&iv_load_policy=3" + // annotations off
-	"&origin=https://warmup.netlify.app"; // <- TODO check if can remove
-
-// Initialize local state
-let currentMedia;
-
-// updateCollection(currentMedia);
-
 (function () {
 	const house = document.querySelector(".house");
-	const containers = house.querySelectorAll(".media__container");
+	const containers = house.querySelectorAll(".house__media-container");
+
+	const {
+		disableYTEmbeds,
+		disableVideo,
+		disableImages,
+		YT_PARAMS,
+	} = houseConfig;
+
+	let windowWidth = window.innerWidth;
 
 	// Create html from a media element
-	function buildElement(type, link, ratio, container, windowWidth) {
+	function buildElement(type, link, ratio, container) {
 		// video
-		if (type === "video")
+		if (type === "video" && !disableVideo)
 			return `<video class="video" autoplay muted loop src="${link}"></video>`;
 
 		// image
-		if (type === "image") return `<img class="image" src="${link}" alt=":)">`;
-
-		// temp <<<<<<<<<<<<<
-		// return "";
+		if (type === "image" && !disableImages)
+			return `<img class="image" src="${link}" alt=":)">`;
 
 		// iframe (desktop only due to lack of autoplay on mobile)
-		if (type === "YT embed" && windowWidth > 800) {
+		if (type === "YT embed" && !disableYTEmbeds && windowWidth > 800) {
 			const height = container.getBoundingClientRect().height;
 			if (!ratio) ratio = 1.5;
-
-			// https://www.youtube.com/embed/EzRfZok4tsE // current vid
 
 			const linkMain = link.split("?");
 			const videoId = linkMain[0] // neded for loop to work
@@ -61,7 +48,7 @@ let currentMedia;
 
 	// Insert elements into each media container
 	function insertMediaHtml(media) {
-		const windowWidth = window.innerWidth;
+		if (!media.length) return;
 
 		// iterate over containers separately from media items
 		let item = 0;
@@ -73,7 +60,7 @@ let currentMedia;
 			while (innerHtml === "") {
 				if (!media[item]) return;
 				const { type, link, ratio } = media[item];
-				innerHtml = buildElement(type, link, ratio, container, windowWidth);
+				innerHtml = buildElement(type, link, ratio, container);
 				item++;
 			}
 
@@ -107,13 +94,18 @@ let currentMedia;
 	}
 
 	function addCollection(data) {
-		currentMedia = data;
+		houseState.currentMedia = data;
 		insertMediaHtml(data);
 		mixUpVideoTime();
 	}
 
+	function handleResize() {
+		windowWidth = window.innerWidth;
+		updateIframeSizes();
+	}
+
 	// --------------------- init -----------------------------
 
-	getCollection(addCollection);
-	window.addEventListener("resize", updateIframeSizes);
+	window.houseFirestore.fetch(addCollection);
+	window.addEventListener("resize", handleResize);
 })();

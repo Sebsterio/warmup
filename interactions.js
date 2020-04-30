@@ -1,15 +1,15 @@
-let canAnimate = false;
-
 (function () {
-	// config
-	const ZOOM_SENSITIVITY = 0.0005;
-	const ZOOM_MIN = 0.01;
-	const ROTATE_SENSITIVITY = 0.25;
-	const FPS = 60;
-
 	// elements
 	const root = document.documentElement;
 	const container = root.querySelector(".house__container");
+
+	const {
+		ZOOM_SENSITIVITY,
+		ZOOM_MIN,
+		ROTATE_SENSITIVITY,
+		FPS,
+		canAnimate,
+	} = houseConfig;
 
 	// CSS transform vars
 	let rotateX = -2;
@@ -47,6 +47,8 @@ let canAnimate = false;
 	}
 
 	function handleMouseDown(e) {
+		console.log(e.target);
+		if (e.target.closest(".house__controls")) return; // ignore if clicked on controls
 		e.preventDefault();
 
 		canRotate = true; // Enable input

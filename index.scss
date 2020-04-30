@@ -189,8 +189,8 @@ $roof-length: $roof-height * 2; // roof surface height
 	);
 	opacity: 0.2;
 
-	@media screen and (max-width: 1100px) {
-		// make video clickable on mobile as autoplay doesn't work
-		pointer-events: none;
-	}
+	// @media screen and (max-width: 800px) {
+	// 	// make video clickable on mobile as autoplay doesn't work
+	// 	pointer-events: none;
+	// }
 }

@@ -1,11 +1,14 @@
 # CSS 3D model
 
-Rotating and interactive
+Animated and interactive
+
+[warmup.netlify.app](https://warmup.netlify.app/)
 
 ## TODO
 
 - input media (incl bg)
-- localStorage
+- database
+- audio
 
 ## How to use
 

@@ -87,7 +87,10 @@ $roof-length: $roof-height * 2; // roof surface height
 	position: relative;
 	width: $wall-side;
 	height: $wall-side;
-	// temp <<<
+	display: flex;
+	justify-items: center;
+	justify-content: center;
+	align-items: center;
 	background: linear-gradient(rgb(78, 78, 78), rgb(43, 43, 43));
 }
 
@@ -141,20 +144,24 @@ $roof-length: $roof-height * 2; // roof surface height
 
 // ------------------ Media --------------------
 
-.image {
-	position: absolute;
-	height: auto;
-	min-height: 100%;
-	object-fit: cover;
-	width: 100%;
-}
-
+.image,
 .video {
 	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 	height: auto;
 	min-height: 100%;
 	object-fit: cover;
-	width: 100%;
+}
+
+.embed {
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	display: flex;
+	justify-items: center;
+	align-items: center;
 }
 
 // ------------------ Effects --------------------
@@ -165,6 +172,7 @@ $roof-length: $roof-height * 2; // roof surface height
 
 .media__filter {
 	position: absolute;
+	top: 0;
 	width: 100%;
 	height: 100%;
 	background-image: linear-gradient(
@@ -180,4 +188,6 @@ $roof-length: $roof-height * 2; // roof surface height
 		(var(--index) * 100 / 7 + 2 * var(--x) + 2 * var(--y)) * 1%
 	);
 	opacity: 0.2;
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< temp
+	// pointer-events: none;
 }

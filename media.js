@@ -1,18 +1,33 @@
+// (<iframe
+// 	width="560"
+// 	height="315"
+// 	src="https://www.youtube.com/embed/EzRfZok4tsE?controls=0"
+// 	frameborder="0"
+// 	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+// 	allowfullscreen
+// ></iframe>)
+
 (function () {
 	// type: 'image' | 'video'
 	const media = [
+		{
+			// People of Warm Up
+			type: "YT embed",
+			ratio: 1.5,
+			link: "https://www.youtube.com/embed/EzRfZok4tsE",
+		},
 		{
 			// Jenia
 			type: "image",
 			link:
 				"https://scontent-waw1-1.xx.fbcdn.net/v/t31.0-8/23550092_1971103892916091_695435221354448941_o.jpg?_nc_cat=107&_nc_sid=e007fa&_nc_ohc=8_Y-L0RzQroAX8ztTd5&_nc_ht=scontent-waw1-1.xx&oh=c01992c1bf6b6a2bd754d7b7a8d05643&oe=5ECEE7DD",
 		},
-		{
-			// Sophie
-			type: "image",
-			link:
-				"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-0/p640x640/69887776_10162214723660427_869712215807098880_o.jpg?_nc_cat=103&_nc_sid=07e735&_nc_ohc=D2lz8GnnvMUAX_ePdaU&_nc_ht=scontent-waw1-1.xx&_nc_tp=6&oh=d9918817a88e2dcf6462649cab79fb7f&oe=5ED0368C",
-		},
+		// {
+		// 	// Sophie
+		// 	type: "image",
+		// 	link:
+		// 		"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-0/p640x640/69887776_10162214723660427_869712215807098880_o.jpg?_nc_cat=103&_nc_sid=07e735&_nc_ohc=D2lz8GnnvMUAX_ePdaU&_nc_ht=scontent-waw1-1.xx&_nc_tp=6&oh=d9918817a88e2dcf6462649cab79fb7f&oe=5ED0368C",
+		// },
 		{
 			// Tripti
 			type: "image",
@@ -61,17 +76,39 @@
 		containers.forEach((container, i) => {
 			if (!media[i]) return;
 
-			const { type, link } = media[i];
+			const { type, link, ratio } = media[i];
 			let innerHtml = "";
 
+			// video
 			if (type === "video") {
 				innerHtml = `<video class="video" autoplay muted loop src="${link}"></video>`;
 			}
 
+			// image
 			if (type === "image") {
 				innerHtml = `<img class="image" src="${link}" alt=":)">`;
 			}
 
+			// iframe
+			if (type === "YT embed") {
+				const height = container.getBoundingClientRect().height;
+
+				const splitLink = link.split("?");
+				const params =
+					"?controls=0&autoplay=1&mute=1&disablekb=1&fs=0&loop=1&rel=0&origin=https://warmup.netlify.app";
+				const url = splitLink[0] + params;
+
+				innerHtml = `<div class="embed"><iframe 
+				width="${height * ratio}px"
+				height="${height}px"
+					src="${url}"
+					frameborder="0"
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				></iframe></div>
+				`;
+			}
+
+			// overlay
 			innerHtml += `<div class="media__filter" style="--index: ${i}"></div>`;
 
 			container.innerHTML = innerHtml;
@@ -85,10 +122,6 @@
 		vids.forEach((vid, i) => {
 			vid.currentTime += i * 10;
 		});
-	}
-
-	function getVidSize() {
-		return 560;
 	}
 
 	// --------------------------------------------------

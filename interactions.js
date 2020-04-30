@@ -1,6 +1,7 @@
+let canAnimate = true;
+
 (function () {
 	// config
-	let canAnimate = true;
 	const ZOOM_SENSITIVITY = 0.0005;
 	const ZOOM_MIN = 0.01;
 	const ROTATE_SENSITIVITY = 0.25;

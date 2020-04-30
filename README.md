@@ -6,8 +6,10 @@ Animated and interactive
 
 ## TODO
 
+- animation jitter on click
 - input media (incl bg)
-- database
+- update database
+- randomize displayed media
 - audio
 
 ## How to use

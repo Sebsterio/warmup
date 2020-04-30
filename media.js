@@ -10,24 +10,24 @@
 (function () {
 	// type: 'image' | 'video'
 	const media = [
-		{
-			// People of Warm Up
-			type: "YT embed",
-			ratio: 1.5,
-			link: "https://www.youtube.com/embed/EzRfZok4tsE",
-		},
+		// {
+		// 	// People of Warm Up
+		// 	type: "YT embed",
+		// 	ratio: 1.5,
+		// 	link: "https://www.youtube.com/embed/EzRfZok4tsE",
+		// },
 		{
 			// Jenia
 			type: "image",
 			link:
 				"https://scontent-waw1-1.xx.fbcdn.net/v/t31.0-8/23550092_1971103892916091_695435221354448941_o.jpg?_nc_cat=107&_nc_sid=e007fa&_nc_ohc=8_Y-L0RzQroAX8ztTd5&_nc_ht=scontent-waw1-1.xx&oh=c01992c1bf6b6a2bd754d7b7a8d05643&oe=5ECEE7DD",
 		},
-		// {
-		// 	// Sophie
-		// 	type: "image",
-		// 	link:
-		// 		"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-0/p640x640/69887776_10162214723660427_869712215807098880_o.jpg?_nc_cat=103&_nc_sid=07e735&_nc_ohc=D2lz8GnnvMUAX_ePdaU&_nc_ht=scontent-waw1-1.xx&_nc_tp=6&oh=d9918817a88e2dcf6462649cab79fb7f&oe=5ED0368C",
-		// },
+		{
+			// Sophie
+			type: "image",
+			link:
+				"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-0/p640x640/69887776_10162214723660427_869712215807098880_o.jpg?_nc_cat=103&_nc_sid=07e735&_nc_ohc=D2lz8GnnvMUAX_ePdaU&_nc_ht=scontent-waw1-1.xx&_nc_tp=6&oh=d9918817a88e2dcf6462649cab79fb7f&oe=5ED0368C",
+		},
 		{
 			// Tripti
 			type: "image",

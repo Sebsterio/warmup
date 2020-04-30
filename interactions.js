@@ -1,4 +1,4 @@
-let canAnimate = true;
+let canAnimate = false;
 
 (function () {
 	// config

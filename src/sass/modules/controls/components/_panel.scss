@@ -1,38 +1,35 @@
 // === Config panel & Add link panel ===
 
-.house__panel,
-.house__new-link {
+.house__panel {
 	background-image: linear-gradient(45deg, #3f4042, #303133);
 	border-radius: 5px;
 	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1),
 		inset 0 0 2px 0 rgba(255, 255, 255, 0.2);
+
 	transition: transform 400ms ease;
+	transform: translateX(-100%);
+
+	&.house__panel--active {
+		transform: translateX(-5px);
+	}
 }
 
-.house__panel {
+// Main panel - with buttons
+.house__panel--main {
 	// width: 100%;
 	height: 100%;
 	padding: 0.5em;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	transform: translateX(-5px);
-
-	&.house__panel--hiding,
-	&.house__panel--hidden {
-		transform: translateX(-90%);
-	}
+	transform: translateX(-5px); // always visible
 }
 
-.house__new-link {
+// New link panel - add link
+.house__panel--new-link {
 	position: absolute;
 	top: 50px;
 	padding: 20px;
-	transform: translateX(-5px);
-
-	&.house__new-link--hidden {
-		transform: translateX(-100%);
-	}
 
 	form {
 		display: grid;
@@ -58,7 +55,9 @@
 	text-shadow: 0 0 3px $color-primary-translucent-active;
 }
 
+.house__btn--disabled,
 .house__btn--disabled:hover {
-	color: $color-secondary;
+	color: $color-disabled;
 	text-shadow: none;
+	cursor: auto;
 }

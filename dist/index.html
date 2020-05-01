@@ -80,13 +80,13 @@
 
 		<!-- Controls -->
 		<div class="house__controls">
-			<div class="house__panel house__panel--active">
-				<div class="house__btn house__btn--add">&#10010;</div>
-				<!-- <div class="house__btn house__btn--remove house__btn--disabled">&#9866;</div> -->
-				<div class="house__btn house__btn--options house__btn--disabled">&#10066;</div>
-				<div class="house__btn house__btn--close">&#10006;</div>
+			<div class="house__panel house__panel--main">
+				<div class="house__btn" data-target="new-link">&#10010;</div>
+				<div class="house__btn house__btn--disabled" data-target="remove-link">&#9866;</div>
+				<div class="house__btn house__btn--disabled" data-target="options">&#10066;</div>
+				<div class="house__btn" data-target="close">&#10006;</div>
 			</div>
-			<div class="house__new-link">
+			<div class="house__panel house__panel--new-link">
 				<form action="#">
 					<!-- Type -->
 					<label for="house__input--type" class="house__label">Type</label>
@@ -127,7 +127,12 @@
 					<input class="house__input--submit" type="submit" name="submit" value="Add Love">
 				</form>
 			</div>
-			<div class="house__remove-link"></div>
+			<div class="house__panel house__panel--remove-link">
+				Work in progress...
+			</div>
+			<div class="house__panel house__panel--options">
+				Work in progress...
+			</div>
 		</div>
 		<!-- END Controls -->
 	</div>

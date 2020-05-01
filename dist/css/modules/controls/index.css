@@ -78,8 +78,7 @@
 }
 
 /* line 3, src/sass/modules/controls/components/_panel.scss */
-.house__panel,
-.house__new-link {
+.house__panel {
   background-image: linear-gradient(45deg, #3f4042, #303133);
   border-radius: 5px;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1), inset 0 0 2px 0 rgba(255, 255, 255, 0.2);
@@ -88,10 +87,20 @@
   transition: -webkit-transform 400ms ease;
   transition: transform 400ms ease;
   transition: transform 400ms ease, -webkit-transform 400ms ease;
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%);
 }
 
 /* line 12, src/sass/modules/controls/components/_panel.scss */
-.house__panel {
+.house__panel.house__panel--active {
+  -webkit-transform: translateX(-5px);
+      -ms-transform: translateX(-5px);
+          transform: translateX(-5px);
+}
+
+/* line 18, src/sass/modules/controls/components/_panel.scss */
+.house__panel--main {
   height: 100%;
   padding: 0.5em;
   display: -webkit-box;
@@ -108,38 +117,21 @@
           transform: translateX(-5px);
 }
 
-/* line 21, src/sass/modules/controls/components/_panel.scss */
-.house__panel.house__panel--hiding, .house__panel.house__panel--hidden {
-  -webkit-transform: translateX(-90%);
-      -ms-transform: translateX(-90%);
-          transform: translateX(-90%);
-}
-
-/* line 27, src/sass/modules/controls/components/_panel.scss */
-.house__new-link {
+/* line 29, src/sass/modules/controls/components/_panel.scss */
+.house__panel--new-link {
   position: absolute;
   top: 50px;
   padding: 20px;
-  -webkit-transform: translateX(-5px);
-      -ms-transform: translateX(-5px);
-          transform: translateX(-5px);
 }
 
-/* line 33, src/sass/modules/controls/components/_panel.scss */
-.house__new-link.house__new-link--hidden {
-  -webkit-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
-          transform: translateX(-100%);
-}
-
-/* line 37, src/sass/modules/controls/components/_panel.scss */
-.house__new-link form {
+/* line 34, src/sass/modules/controls/components/_panel.scss */
+.house__panel--new-link form {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 15px;
 }
 
-/* line 46, src/sass/modules/controls/components/_panel.scss */
+/* line 43, src/sass/modules/controls/components/_panel.scss */
 .house__btn {
   font-size: 2.5em;
   line-height: 2.5em;
@@ -149,15 +141,17 @@
   cursor: pointer;
 }
 
-/* line 55, src/sass/modules/controls/components/_panel.scss */
+/* line 52, src/sass/modules/controls/components/_panel.scss */
 .house__btn:hover,
 .house__btn.house__btn--active {
   color: #9272ce;
   text-shadow: 0 0 3px rgba(146, 114, 206, 0.7);
 }
 
-/* line 61, src/sass/modules/controls/components/_panel.scss */
+/* line 58, src/sass/modules/controls/components/_panel.scss */
+.house__btn--disabled,
 .house__btn--disabled:hover {
-  color: #8a8a8a;
+  color: #515253;
   text-shadow: none;
+  cursor: auto;
 }

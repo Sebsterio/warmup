@@ -1,9 +1,9 @@
 (function(){
 	// ----------------- URL params object -----------------
 	const urlParams = window.location.search.replace('?','').split('&').reduce((obj, param) => {
-		param = param.split('=')
+		param = param.split('=');
 		if (param[0]) obj[param[0]] = param[1] ? param[1] : true;
-		return obj
+		return obj;
 	}, {});
 
 
@@ -42,11 +42,11 @@
 
 	// Get URL value OR localStorage value OR default value
 	function getSettings(param, defaultVal){
-		return urlParams[param] !== undefined 
-			? urlParams[param] 
-			: localStorage.getItem(param) !== null 
-				? localStorage.getItem(param) 
-				: defaultVal
+		return urlParams[param] !== undefined ?
+		 urlParams[param] :
+			localStorage.getItem(param) !== null ?
+			 localStorage.getItem(param) :
+			 defaultVal
 	}
 
 	window.houseConfig = {

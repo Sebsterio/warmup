@@ -83,16 +83,13 @@
 			link: form.url.value,
 			ratio: form.ratio.value,
 		};
-
 		if (form.type.value === "YT embed") {
 			newItem.link = cleanYTembedURL(form.url.value);
 		}
-
 		window.houseState.currentMedia = [
 			newItem,
 			...window.houseState.currentMedia,
 		];
-
 		window.houseFirestore.update(window.houseState.currentMedia, () => {
 			alert("Love shared succesfullly");
 		});

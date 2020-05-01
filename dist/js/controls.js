@@ -13,25 +13,26 @@
 		else controls.classList.remove("house__config--show-controls");
 	}
 
-	// Toggle a panel and corresponding button
-	function toggleMenu(btn, menu, on) {
-		if (on) {
-			if (btn) btn.classList.add("house__btn--active");
-			if (menu) menu.classList.add("house__panel--active");
-		} else if (on === false) {
-			if (btn) btn.classList.remove("house__btn--active");
-			if (menu) menu.classList.remove("house__panel--active");
-		} else {
-			if (btn) btn.classList.toggle("house__btn--active");
-			if (menu) menu.classList.toggle("house__panel--active");
-		}
+	function toggleElement(element, on, activeClass) {
+		if (!element) return;
+		if (on) element.classList.add(activeClass);
+		else if (on === false) element.classList.remove(activeClass);
+		else element.classList.toggle(activeClass);
+	}
+
+	function toggleMenu(menu, on) {
+		toggleElement(menu, on, "house__panel--active");
+	}
+
+	function toggleButton(btn, on) {
+		toggleElement(btn, on, "house__btn--active");
 	}
 
 	function handleButtonClick() {
 		const target = this.dataset.target;
 
 		if (target === "close") {
-			toggleControls(false); // hide entire controls module
+			toggleControls(false);
 			return;
 		}
 
@@ -41,14 +42,17 @@
 
 		// If nothing is open, open clicked elements immediately
 		if (!activeBtn && !activePanel) {
-			toggleMenu(this, targetPanel, true);
+			toggleButton(this, true);
+			toggleMenu(targetPanel, true);
 		}
 		// If a menu is open, hide it and open new menu if different than current
 		else {
-			toggleMenu(activeBtn, activePanel, false);
+			toggleButton(this, false);
+			toggleMenu(targetPanel, false);
 			if (this !== activeBtn) {
+				toggleButton(this, true);
 				setTimeout(() => {
-					toggleMenu(this, targetPanel, true);
+					toggleMenu(targetPanel, true);
 				}, 400);
 			}
 		}

@@ -154,4 +154,5 @@
   color: #515253;
   text-shadow: none;
   cursor: auto;
+  pointer-events: none;
 }

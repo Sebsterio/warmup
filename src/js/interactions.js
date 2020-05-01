@@ -5,12 +5,14 @@
 		ZOOM_MIN,
 		ROTATE_SENSITIVITY,
 		FPS,
+		INITIAL_TILT,
+		INITIAL_PIVOT,
 		animationSpeed,
 	} = houseConfig;
 
 	// CSS transform vars
-	let rotateX = -2;
-	let rotateY = -40;
+	let rotateX = INITIAL_TILT;
+	let rotateY = INITIAL_PIVOT;
 	let scale = 1;
 
 	// aux
@@ -91,8 +93,8 @@
 
 	function initAnimation() {
 		setInterval(() => {
-			if (animationSpeed && !canRotate) {
-				rotateY += animationSpeed;
+			if (animationSpeed !== 0 && !canRotate) {
+				rotateY += Number(animationSpeed);
 				rotateHouse(null, rotateY);
 			}
 		}, 1000 / FPS);

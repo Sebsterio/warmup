@@ -12,6 +12,27 @@
 
 	let windowWidth = window.innerWidth;
 
+	window.createYTEmbed = function (container, link, ratio) {
+		const height = container.getBoundingClientRect().height;
+		if (!ratio) ratio = 1.5;
+
+		const linkMain = link.split("?");
+		const videoId = linkMain[0] // neded for loop to work
+			.replace("https://www.youtube.com/embed/", "")
+			.match(/[^\?\/]+/);
+		const params = YT_PARAMS + "&playlist=" + videoId;
+		const url = linkMain[0] + params;
+
+		return `<div class="embed"><iframe
+			data-ratio="${ratio}"
+			width="${height * ratio}px"
+			height="${height}px"
+			src="${url}"
+			frameborder="0"
+			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+		></iframe></div>`;
+	};
+
 	// Create html from a media element
 	function buildElement(type, link, ratio, container) {
 		// video
@@ -24,24 +45,7 @@
 
 		// iframe (desktop only due to lack of autoplay on mobile)
 		if (type === "YT embed" && !disableYTEmbeds && windowWidth > 800) {
-			const height = container.getBoundingClientRect().height;
-			if (!ratio) ratio = 1.5;
-
-			const linkMain = link.split("?");
-			const videoId = linkMain[0] // neded for loop to work
-				.replace("https://www.youtube.com/embed/", "")
-				.match(/[^\?\/]+/);
-			const params = YT_PARAMS + "&playlist=" + videoId;
-			const url = linkMain[0] + params;
-
-			return `<div class="embed"><iframe
-				data-ratio="${ratio}"
-				width="${height * ratio}px"
-				height="${height}px"
-				src="${url}"
-				frameborder="0"
-				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-			></iframe></div>`;
+			return createYTEmbed(container, link, ratio);
 		}
 
 		return ""; // repeat loop for next media item

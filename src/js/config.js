@@ -22,7 +22,7 @@
 	const INITIAL_PIVOT = -40;
 	
 	// media.js 
-	const DISABLE_YT = true;
+	const DISABLE_YT = false;
 	const DISABLE_VIDEO = false;
 	const DISABLE_IMAGES = false;
 	const YT_PARAMS =	          // Youtube iframe URL params
@@ -44,7 +44,7 @@
 	function getSettings(param, defaultVal){
 		return urlParams[param] !== undefined 
 			? urlParams[param] 
-			: localStorage.getItem(param) !== undefined 
+			: localStorage.getItem(param) !== null 
 				? localStorage.getItem(param) 
 				: defaultVal
 	}

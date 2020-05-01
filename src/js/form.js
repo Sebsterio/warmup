@@ -25,16 +25,30 @@
 		else toggleRatioInput(false);
 	}
 
-	// Download hq image and run callback when done
-	function preloadImage(url, imageLoadedCallback) {
+	// Download image and run callback when done
+	function preloadImage(url, cb) {
 		var img = new Image();
 		img.src = url;
-		img.onload = imageLoadedCallback;
+		img.onload = cb;
+	}
+
+	// Download video and run callback when done
+	function preloadVideo(url, cb) {
+		const videoEl = document.createElement("video");
+		videoEl.src = url;
+		videoEl.onloadedmetadata = (e) => cb();
+	}
+
+	// Remove anything other than src string
+	function cleanYTembedURL(url) {
+		return url.replace(/[^]+src="/, "").replace(/"[^]+$/, "");
 	}
 
 	// Preload media file and, if valid, display it and enable submit button
 	function previewMedia(e) {
-		const url = e.target.value;
+		submit.setAttribute("disabled", true);
+
+		let url = e.target.value;
 
 		if (form.type.value === "image") {
 			preloadImage(url, () => {
@@ -43,8 +57,19 @@
 			});
 			return;
 		}
-		if (form.type.value === "video") return;
-		if (form.type.value === "YT embed") return;
+		if (form.type.value === "video") {
+			preloadVideo(url, () => {
+				preview.innerHTML = `<video class="video" autoplay muted loop src="${url}"></video>`;
+				submit.removeAttribute("disabled");
+			});
+			return;
+		}
+		if (form.type.value === "YT embed") {
+			const cleanURL = cleanYTembedURL(url);
+			preview.innerHTML = window.createYTEmbed(preview, cleanURL);
+			submit.removeAttribute("disabled");
+			return;
+		}
 	}
 
 	// Add new image to localState and push localState to DB
@@ -57,6 +82,10 @@
 			link: form.url.value,
 			ratio: form.ratio.value,
 		};
+
+		if (form.type.value === "YT embed") {
+			newItem.link = cleanYTembedURL(form.url.value);
+		}
 
 		window.houseState.currentMedia = [
 			newItem,

@@ -39,8 +39,8 @@
 		const activePanel = controls.querySelector(".house__panel--active");
 		const targetPanel = controls.querySelector(".house__panel--" + target);
 
-		// If nothing is open, open clicked elements immediately
-		if (!activeBtn && !activePanel) {
+		// If anything's not open, open clicked elements immediately
+		if (!activeBtn || !activePanel) {
 			toggleButton(this, true);
 			toggleMenu(targetPanel, true);
 		}

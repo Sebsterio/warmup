@@ -4,7 +4,6 @@
 	const controls = document.querySelector(".house__controls");
 	const mainPanel = controls.querySelector(".house__panel--main");
 	const buttons = controls.querySelectorAll(".house__btn");
-	const newLink = controls.querySelector(".house__new-link");
 
 	// Toggle the whole controls module
 	function toggleControls(on) {

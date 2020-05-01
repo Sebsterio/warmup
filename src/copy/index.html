@@ -86,19 +86,19 @@
 				<div class="house__btn house__btn--disabled" data-target="options">&#10066;</div>
 				<div class="house__btn" data-target="close">&#10006;</div>
 			</div>
-			<div class="house__panel house__panel--new-link">
+			<div class="house__panel house__panel--new-link house__panel--active">
 				<form action="#">
 					<!-- Type -->
 					<label for="house__input--type" class="house__label">Type</label>
 					<select id="house__input--type" class="house__input" name="type">
 						<option value="image">image</option>
-						<option value="video">video</option>
-						<option value="YT embed">YT embed</option>
+						<option disabled value="video">video</option>
+						<option disabled value="YT embed">YT embed</option>
 					</select>
 
 					<!-- Ratio -->
-					<label for="house__input--range" class="house__label">Video ratio</label>
-					<input id="house__input--range" class="house__input" name="name" type="number">
+					<label for="house__input--ratio" class="house__label">Video ratio</label>
+					<input id="house__input--ratio" class="house__input" name="ratio" type="range">
 
 					<!-- Name -->
 					<label for="house__input--name" class="house__label">Description</label>
@@ -106,25 +106,24 @@
 
 					<!-- URL -->
 					<label for="house__input--url" class="house__label">Link</label>
-					<input id="house__input--url" class="house__input" name="name" type="text">
+					<input id="house__input--url" class="house__input" name="url" type="text">
 
 					<!-- Preview -->
 					<div class="house__preview-container">
 						<div class="house__preview house__preview--placeholder">
 							If the link is correct, your file will show here.
 							<span class="house__preview-comment house__preview-comment--source">
-								Make sure to paste the link to the file source and not to a webpage where the file is placed.
+								Make sure to paste the file address and not the address of the webpage where the file is placed.
 							</span>
 							<span class="house__preview-comment house__preview-comment--embed" hidden>
 								e.g. "https://www.youtube.com/embed/etc..."
 							</span>
 						</div>
-						<div class="house__preview house__preview--media">
-						</div>
+						<div class="house__preview house__preview--media"></div>
 					</div>
 
 					<!-- Submit -->
-					<input class="house__input--submit" type="submit" name="submit" value="Add Love">
+					<input disabled class="house__input--submit" type="submit" name="submit" value="Add Love">
 				</form>
 			</div>
 			<div class="house__panel house__panel--remove-link">
@@ -149,6 +148,7 @@
 	<script src='js/media.js'></script>
 	<script src='js/interactions.js'></script>
 	<script src='js/controls.js'></script>
+	<script src='js/form.js'></script>
 
 	<!-- Production Script -->
 	<!-- <script src='js/all.js'></script> -->

@@ -18,12 +18,12 @@
 
 	// -------------------------------------------------------------------
 
-	function updateCollection(collection) {
+	function updateCollection(collection, cb) {
 		db.collection("links")
 			.doc("links")
 			.set({ collection })
 			.then((function () {
-				// TODO: update state
+				cb();
 			}))
 			.catch((function (error) {
 				alert(

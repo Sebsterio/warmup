@@ -24,8 +24,8 @@ add your image/video links in `media.js`
 
 ### ULR params
 
-edit - show controls
-speed=N - animation speed (default: -0.05)
-disableYT - skip Youtube embeds
-disableVid - skip video files
-disableImg - skip images
+`edit` - show controls
+`speed=N` - animation speed (default: -0.05)
+`disableYT` - skip Youtube embeds
+`disableVid` - skip video files
+`disableImg` - skip images

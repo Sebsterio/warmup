@@ -54,7 +54,15 @@
   overflow: hidden;
 }
 
-/* line 38, src/sass/modules/controls/components/_form.scss */
+/* line 33, src/sass/modules/controls/components/_form.scss */
+.house__preview--media img {
+  min-height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* line 39, src/sass/modules/controls/components/_form.scss */
 .house__preview--placeholder {
   padding: 1em;
   display: grid;
@@ -72,7 +80,7 @@
   text-shadow: 0 0 1px rgba(138, 138, 138, 0.3);
 }
 
-/* line 51, src/sass/modules/controls/components/_form.scss */
+/* line 52, src/sass/modules/controls/components/_form.scss */
 .house__preview-comment {
   font-size: 0.8em;
 }

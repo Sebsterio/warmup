@@ -155,3 +155,9 @@
   color: #9272ce;
   text-shadow: 0 0 3px rgba(146, 114, 206, 0.7);
 }
+
+/* line 61, src/sass/modules/controls/components/_panel.scss */
+.house__btn--disabled:hover {
+  color: #8a8a8a;
+  text-shadow: none;
+}

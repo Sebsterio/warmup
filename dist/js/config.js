@@ -1,26 +1,38 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
-let houseState = {
-	currentMedia: [],       // Media displayed on house walls
-};
+// -------- URL config ---------
+//
+// edit        - show controls
+// speed=N     - animation speed (default: -0.05)
+// disableYT   - skip Youtube embeds
+// disableVid  - skip video files
+// disableImg  - skip images
 
-let houseFirestore = {};  // Firestore interface
+(function(){
+	// Process URL params string into an object
+	const urlParams = window.location.search.replace('?','').split('&').reduce((obj, param) => {
+		console.log(param)
+		if (param[0]) obj[param[0]] = param[1] ? param[1] : true;
+		return obj
+	}, {})
 
-let houseConfig = {
-
-	// ---------- interactions.js ---------- 
-
-	ZOOM_SENSITIVITY: 0.0005,
-	ZOOM_MIN: 0.01,
-	ROTATE_SENSITIVITY: 0.25,
-	FPS: 60,
-	animationSpeed: 0, //-0.05,
-
-	// ----------  media.js ---------- 
-
-	disableYTEmbeds: true,
-	disableVideo: false,
-	disableImages: false,
-	YT_PARAMS:	            // Youtube iframe URL params
+	// Config interface
+	window.houseConfig = {
+			
+		// controls.js 
+		controlsEnabled: urlParams.edit || false,  // display controls component
+		
+		// interactions.js 
+		ZOOM_SENSITIVITY: 0.0005,
+		ZOOM_MIN: 0.01,
+		ROTATE_SENSITIVITY: 0.25,
+		FPS: 60,
+		animationSpeed: urlParams.speed || -0.05,
+		
+		// media.js 
+		disableYTEmbeds: urlParams.disableYT || true,
+		disableVideo: urlParams.disableVid || false,
+		disableImages: urlParams.disableImg || false,
+		YT_PARAMS:	          // Youtube iframe URL params
 		"?mute=1" +
 		"&enablejsapi=1" +    // control iframe video with JS
 		"&autoplay=1" +
@@ -31,8 +43,14 @@ let houseConfig = {
 		"&rel=0" +            // display related videos
 		"&iv_load_policy=3" + // annotations off
 		"&origin=https://warmup.netlify.app", // <- TODO check if can remove
+	};
+	// END Config interface
 
-	// ----------  controls.js ---------- 
+	// Firestore module interface
+	window.houseFirestore = {};  
 
-	controlsEnabled: true,  // display controls component
-};
+	// local state
+	window.houseState = {
+		currentMedia: [],     // Media displayed on house walls
+	};
+})()

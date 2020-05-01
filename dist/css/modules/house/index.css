@@ -1,0 +1,217 @@
+/*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
+/******************************************/
+/*               THE HOUSE                */
+/******************************************/
+/* line 4, src/sass/modules/house/components/_containers.scss */
+.house__app {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-family: Arial, Helvetica, sans-serif;
+  background: -webkit-gradient(linear, left top, right bottom, from(#272829), color-stop(#37383b), to(#272829));
+  background: linear-gradient(to right bottom, #272829, #37383b, #272829);
+  --scale: 1;
+  --x: -2deg;
+  --y: -40deg;
+}
+
+/* line 24, src/sass/modules/house/components/_containers.scss */
+.house__app *,
+.house__app *::after,
+.house__app *::before {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 34, src/sass/modules/house/components/_containers.scss */
+.house {
+  height: 1em;
+  width: 1em;
+  -webkit-perspective: 3em;
+          perspective: 3em;
+  font-size: 60vmin;
+  -webkit-transform: scale(var(--scale));
+      -ms-transform: scale(var(--scale));
+          transform: scale(var(--scale));
+}
+
+/* line 44, src/sass/modules/house/components/_containers.scss */
+.house__faces {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translateZ(-0.5em) rotateX(calc(var(--x) * 1deg)) rotateY(calc(var(--y) * 1deg));
+          transform: translateZ(-0.5em) rotateX(calc(var(--x) * 1deg)) rotateY(calc(var(--y) * 1deg));
+}
+
+/* line 3, src/sass/modules/house/components/_face.layout.scss */
+.house__face {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+/* line 13, src/sass/modules/house/components/_face.layout.scss */
+.house__face--front,
+.house__face--back {
+  -webkit-clip-path: polygon(50% 0, 100% 0.28868em, 100% 100%, 0 100%, 0 0.28868em);
+          clip-path: polygon(50% 0, 100% 0.28868em, 100% 100%, 0 100%, 0 0.28868em);
+}
+
+/* line 26, src/sass/modules/house/components/_face.layout.scss */
+.house__face--front {
+  -webkit-transform: rotateY(0deg) translateZ(0.5em);
+          transform: rotateY(0deg) translateZ(0.5em);
+}
+
+/* line 30, src/sass/modules/house/components/_face.layout.scss */
+.house__face--back {
+  -webkit-transform: rotateY(180deg) translateZ(0.5em);
+          transform: rotateY(180deg) translateZ(0.5em);
+}
+
+/* line 34, src/sass/modules/house/components/_face.layout.scss */
+.house__face--left {
+  -webkit-transform: rotateY(-90deg) translateZ(0.5em);
+          transform: rotateY(-90deg) translateZ(0.5em);
+}
+
+/* line 37, src/sass/modules/house/components/_face.layout.scss */
+.house__face--right {
+  -webkit-transform: rotateY(90deg) translateZ(0.5em);
+          transform: rotateY(90deg) translateZ(0.5em);
+}
+
+/* line 40, src/sass/modules/house/components/_face.layout.scss */
+.house__face--bottom {
+  -webkit-transform: rotateX(-90deg) translateZ(0.5em);
+          transform: rotateX(-90deg) translateZ(0.5em);
+}
+
+/* line 43, src/sass/modules/house/components/_face.layout.scss */
+.house__face--top-left {
+  -webkit-transform-origin: bottom center;
+      -ms-transform-origin: bottom center;
+          transform-origin: bottom center;
+  -webkit-transform: rotateY(-90deg) translateZ(0.5em) translateY(-0.71132em) rotateX(60deg);
+          transform: rotateY(-90deg) translateZ(0.5em) translateY(-0.71132em) rotateX(60deg);
+}
+
+/* line 48, src/sass/modules/house/components/_face.layout.scss */
+.house__face--top-right {
+  -webkit-transform-origin: bottom center;
+      -ms-transform-origin: bottom center;
+          transform-origin: bottom center;
+  -webkit-transform: rotateY(90deg) translateZ(0.5em) translateY(-0.71132em) rotateX(60deg);
+          transform: rotateY(90deg) translateZ(0.5em) translateY(-0.71132em) rotateX(60deg);
+}
+
+/* line 3, src/sass/modules/house/components/_face.content.scss */
+.house__media-container {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4e4e4e), to(#2b2b2b));
+  background: linear-gradient(#4e4e4e, #2b2b2b);
+}
+
+/* line 16, src/sass/modules/house/components/_face.content.scss */
+.house__face--left .house__media-container,
+.house__face--right .house__media-container {
+  width: 1em;
+  height: 0.71132em;
+  margin-top: 0.28868em;
+}
+
+/* line 25, src/sass/modules/house/components/_face.content.scss */
+.house__face--top-left .house__media-container,
+.house__face--top-right .house__media-container {
+  width: 1em;
+  height: 0.57735em;
+  margin-top: 0.42265em;
+}
+
+/* line 34, src/sass/modules/house/components/_face.content.scss */
+.image,
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* line 45, src/sass/modules/house/components/_face.content.scss */
+.embed {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 56, src/sass/modules/house/components/_face.content.scss */
+:root {
+  --index: 0;
+}
+
+/* line 60, src/sass/modules/house/components/_face.content.scss */
+.media__filter {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(60deg, transparent 45%, white 50%, white 55%, transparent 60%);
+  background-size: 150% 100%;
+  background-repeat: repeat-x;
+  background-position: calc( (var(--index) * 100 / 7 + 2 * var(--x) + 2 * var(--y)) * 1%);
+  opacity: 0.2;
+}

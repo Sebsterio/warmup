@@ -1,16 +1,3 @@
-/******************************************/
-/*               CONTROLS                 */
-/******************************************/
-
-.house__controls {
-	position: absolute;
-	top: 5vh;
-	left: 0;
-	// width: 150px;
-	height: 50px;
-	font-size: 16px;
-}
-
 // === Config panel & Add link panel ===
 
 .house__panel,
@@ -67,19 +54,4 @@
 .house__btn.house__btn--active {
 	color: $color-primary-active;
 	text-shadow: 0 0 3px $color-primary-translucent-active;
-}
-
-// === Input ===
-
-.house__input {
-	width: 160px;
-}
-
-.house__label {
-	color: $color-secondary;
-	text-shadow: 0 0 3px $color-secondary-translucent;
-}
-
-.house__input--submit {
-	grid-column: 1 / -1;
 }

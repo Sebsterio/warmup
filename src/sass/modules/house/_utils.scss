@@ -1,0 +1,6 @@
+// Sizing vars
+$wall-side: 1em; // edge length, set by acestors' font size (.house)
+$roof-angle: 30deg; // between roof surface and horizontal plane
+$sqrt3: 1.73205080757; // square root of 3
+$roof-height: $wall-side * $sqrt3 / 6; // delta y between top and bottom points (for 30 deg angle)
+$roof-length: $roof-height * 2; // roof surface height (for 30 deg angle)

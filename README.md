@@ -6,6 +6,8 @@ Animated and interactive
 
 ## TODO
 
+- config with URL
+
 - input media (incl bg)
 - update database
 

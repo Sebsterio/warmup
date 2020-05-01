@@ -26,7 +26,7 @@ var paths = {
 		output: "dist/js/",
 	},
 	styles: {
-		input: "src/sass/**/*.{scss,sass}",
+		input: "src/sass/**/**/*.{scss,sass}",
 		output: "dist/css/",
 	},
 	svgs: {

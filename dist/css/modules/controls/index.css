@@ -1,0 +1,114 @@
+/*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
+/******************************************/
+/*               CONTROLS                 */
+/******************************************/
+/* line 2, src/sass/modules/controls/components/_containers.scss */
+.house__controls {
+  position: absolute;
+  top: 5vh;
+  left: 0;
+  height: 50px;
+  font-size: 16px;
+}
+
+/* line 10, src/sass/modules/controls/components/_containers.scss */
+.house__controls input,
+.house__controls textarea,
+.house__controls select,
+.house__controls button {
+  font: inherit;
+}
+
+/* line 3, src/sass/modules/controls/components/_form.scss */
+.house__input {
+  width: 160px;
+}
+
+/* line 7, src/sass/modules/controls/components/_form.scss */
+.house__label {
+  color: #8a8a8a;
+  text-shadow: 0 0 3px rgba(138, 138, 138, 0.3);
+}
+
+/* line 12, src/sass/modules/controls/components/_form.scss */
+.house__input--submit {
+  grid-column: 1 / -1;
+}
+
+/* line 3, src/sass/modules/controls/components/_panel.scss */
+.house__panel,
+.house__new-link {
+  background-image: linear-gradient(45deg, #3f4042, #303133);
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1), inset 0 0 2px 0 rgba(255, 255, 255, 0.2);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1), inset 0 0 2px 0 rgba(255, 255, 255, 0.2);
+  -webkit-transition: -webkit-transform 400ms ease;
+  transition: -webkit-transform 400ms ease;
+  transition: transform 400ms ease;
+  transition: transform 400ms ease, -webkit-transform 400ms ease;
+}
+
+/* line 12, src/sass/modules/controls/components/_panel.scss */
+.house__panel {
+  width: 100%;
+  height: 100%;
+  padding-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: translateX(-5px);
+      -ms-transform: translateX(-5px);
+          transform: translateX(-5px);
+}
+
+/* line 21, src/sass/modules/controls/components/_panel.scss */
+.house__panel.house__panel--hiding, .house__panel.house__panel--hidden {
+  -webkit-transform: translateX(-90%);
+      -ms-transform: translateX(-90%);
+          transform: translateX(-90%);
+}
+
+/* line 27, src/sass/modules/controls/components/_panel.scss */
+.house__new-link {
+  position: absolute;
+  top: 50px;
+  padding: 20px;
+  -webkit-transform: translateX(-5px);
+      -ms-transform: translateX(-5px);
+          transform: translateX(-5px);
+}
+
+/* line 33, src/sass/modules/controls/components/_panel.scss */
+.house__new-link.house__new-link--hidden {
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+/* line 37, src/sass/modules/controls/components/_panel.scss */
+.house__new-link form {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 15px;
+}
+
+/* line 46, src/sass/modules/controls/components/_panel.scss */
+.house__btn {
+  font-size: 60px;
+  color: #7050aa;
+  text-shadow: 0 0 3px rgba(112, 80, 170, 0.5);
+  cursor: pointer;
+}
+
+/* line 53, src/sass/modules/controls/components/_panel.scss */
+.house__btn:hover,
+.house__btn.house__btn--active {
+  color: #9272ce;
+  text-shadow: 0 0 3px rgba(146, 114, 206, 0.7);
+}

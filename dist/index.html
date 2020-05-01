@@ -6,14 +6,44 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Warm Up Family</title>
-	<meta name="description" content="Warm Up familly hall of fame">
+	<meta name="description" content="Warm Up family 3D collage">
 
-	<link rel="stylesheet" href="css/index.css" type="text/css">
-	<!-- <link rel="stylesheet" href="controls.css" type="text/css"> -->
+	<!-- Dev styles -->
+	<link rel="stylesheet" href="css/modules/house/index.css" type="text/css">
+	<link rel="stylesheet" href="css/modules/controls/index.css" type="text/css">
+
+	<!-- Production styles -->
+	<!-- <link rel="stylesheet" href="css/modules/house/index.css" type="text/css">
+	<link rel="stylesheet" href="css/modules/controls/index.css" type="text/css"> -->
+
+	<style>
+		/* Normalize doc */
+		body {
+			height: 100vh;
+			width: 100vw;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		/* Conditionally hide modules */
+		.house,
+		.house__controls {
+			visibility: hidden;
+		}
+
+		.house__config--show-house .house,
+		.house__config--show-controls .house__controls {
+			visibility: visible;
+		}
+	</style>
 </head>
 
 <body>
-	<div class="house__container">
+	<!-- App -->
+	<div class="house__app house__config--show-controls house__config--show-house">
+
+		<!-- The House -->
 		<div class="house">
 			<div class="house__faces">
 				<div class="house__face house__face--front">
@@ -46,6 +76,9 @@
 				</div>
 			</div>
 		</div>
+		<!-- END The House -->
+
+		<!-- Controls -->
 		<div class="house__controls">
 			<div class="house__panel house__panel--active">
 				<div class="house__btn house__btn--add">&plus;</div>
@@ -80,7 +113,9 @@
 			</div>
 			<div class="house__remove-link"></div>
 		</div>
+		<!-- END Controls -->
 	</div>
+	<!-- End App -->
 
 	<!-- Firebase JS SDK -->
 	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>

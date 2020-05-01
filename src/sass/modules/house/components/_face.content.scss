@@ -1,0 +1,83 @@
+// ------------------ Media container --------------------
+
+.house__media-container {
+	position: relative;
+	width: $wall-side;
+	height: $wall-side;
+	display: flex;
+	justify-items: center;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(rgb(78, 78, 78), rgb(43, 43, 43));
+}
+
+.house__face--left,
+.house__face--right {
+	.house__media-container {
+		width: $wall-side;
+		height: $wall-side - $roof-height;
+		margin-top: $roof-height;
+	}
+}
+
+.house__face--top-left,
+.house__face--top-right {
+	.house__media-container {
+		width: $wall-side;
+		height: $roof-length;
+		margin-top: $wall-side - $roof-length;
+	}
+}
+
+// ------------------ Media --------------------
+
+.image,
+.video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	object-fit: cover;
+}
+
+.embed {
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+// ------------------ Effects --------------------
+
+:root {
+	--index: 0;
+}
+
+.media__filter {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(
+		60deg,
+		transparent 45%,
+		white 50%,
+		white 55%,
+		transparent 60%
+	);
+	background-size: 150% 100%;
+	background-repeat: repeat-x;
+	background-position: calc(
+		(var(--index) * 100 / 7 + 2 * var(--x) + 2 * var(--y)) * 1%
+	);
+	opacity: 0.2;
+
+	// @media screen and (max-width: 800px) {
+	// 	// make video clickable on mobile as autoplay doesn't work
+	// 	pointer-events: none;
+	// }
+}

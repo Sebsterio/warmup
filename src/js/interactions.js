@@ -1,8 +1,5 @@
 (function () {
-	// elements
-	const root = document.documentElement;
-	const container = root.querySelector(".house__container");
-
+	// props
 	const {
 		ZOOM_SENSITIVITY,
 		ZOOM_MIN,
@@ -24,16 +21,19 @@
 	let refX, refY, curX, curY, deltaX, deltaY;
 	let canRotate = false;
 
+	// elements
+	const app = document.documentElement.querySelector(".house__app");
+
 	// -------------------- VIEW --------------------------
 
 	// Update view
 	function rotateHouse(x, y) {
-		if (x !== null) root.style.setProperty("--x", x); // unit added in css
-		if (y !== null) root.style.setProperty("--y", y); // unit added in css
+		if (x !== null) app.style.setProperty("--x", x); // unit added in css
+		if (y !== null) app.style.setProperty("--y", y); // unit added in css
 	}
 
 	function zoomHouse(scale) {
-		root.style.setProperty("--scale", scale);
+		app.style.setProperty("--scale", scale);
 	}
 
 	// ---------------------- MODEL -------------------------
@@ -47,7 +47,6 @@
 	}
 
 	function handleMouseDown(e) {
-		console.log(e.target);
 		if (e.target.closest(".house__controls")) return; // ignore if clicked on controls
 		e.preventDefault();
 
@@ -101,15 +100,15 @@
 
 	// ----------------- CONTROLLER ----------------------
 
-	container.addEventListener("mousedown", handleMouseDown);
-	container.addEventListener("touchstart", handleMouseDown);
-	container.addEventListener("mouseup", handleMouseUp);
-	container.addEventListener("mouseleave", handleMouseUp);
-	container.addEventListener("touchend", handleMouseUp);
-	container.addEventListener("touchcancel", handleMouseUp);
-	container.addEventListener("mousemove", handleMove);
-	container.addEventListener("touchmove", handleMove);
-	container.addEventListener("wheel", handleWheel);
+	app.addEventListener("mousedown", handleMouseDown);
+	app.addEventListener("touchstart", handleMouseDown);
+	app.addEventListener("mouseup", handleMouseUp);
+	app.addEventListener("mouseleave", handleMouseUp);
+	app.addEventListener("touchend", handleMouseUp);
+	app.addEventListener("touchcancel", handleMouseUp);
+	app.addEventListener("mousemove", handleMove);
+	app.addEventListener("touchmove", handleMove);
+	app.addEventListener("wheel", handleWheel);
 
 	zoomHouse(1);
 	rotateHouse(rotateX, rotateY);

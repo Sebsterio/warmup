@@ -1,0 +1,52 @@
+// ------------------- House Face -------------------
+
+.house__face {
+	position: absolute;
+	width: $wall-side;
+	height: $wall-side;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.house__face--front,
+.house__face--back {
+	clip-path: polygon(
+		50% 0,
+		100% $roof-height,
+		100% 100%,
+		0 100%,
+		0 $roof-height
+	);
+}
+
+// House Face Transformations
+
+.house__face--front {
+	transform: rotateY(0deg) translateZ($wall-side / 2);
+}
+
+.house__face--back {
+	transform: rotateY(180deg) translateZ($wall-side / 2);
+}
+
+.house__face--left {
+	transform: rotateY(-90deg) translateZ($wall-side / 2);
+}
+.house__face--right {
+	transform: rotateY(90deg) translateZ($wall-side / 2);
+}
+.house__face--bottom {
+	transform: rotateX(-90deg) translateZ($wall-side / 2);
+}
+.house__face--top-left {
+	transform-origin: bottom center;
+	transform: rotateY(-90deg) translateZ($wall-side / 2)
+		translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
+}
+.house__face--top-right {
+	transform-origin: bottom center;
+	transform: rotateY(90deg) translateZ($wall-side / 2)
+		translateY(-1 * ($wall-side - $roof-height)) rotateX(90deg - $roof-angle);
+}

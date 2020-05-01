@@ -1,0 +1,14 @@
+// === Input ===
+
+.house__input {
+	width: 160px;
+}
+
+.house__label {
+	color: $color-secondary;
+	text-shadow: 0 0 3px $color-secondary-translucent;
+}
+
+.house__input--submit {
+	grid-column: 1 / -1;
+}

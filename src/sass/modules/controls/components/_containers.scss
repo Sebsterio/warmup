@@ -1,0 +1,16 @@
+// main container - position, resets
+.house__controls {
+	position: absolute;
+	top: 5vh;
+	left: 0;
+	// width: 150px;
+	height: 50px;
+	font-size: 16px;
+
+	input,
+	textarea,
+	select,
+	button {
+		font: inherit;
+	}
+}

@@ -4,8 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Warmup</title>
-	<link rel="stylesheet" href="index.css">
+
+	<title>Warm Up Family</title>
+	<meta name="description" content="Warm Up familly hall of fame">
+
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+	<!-- <link rel="stylesheet" href="controls.css" type="text/css"> -->
 </head>
 
 <body>
@@ -46,6 +50,7 @@
 			<div class="house__panel house__panel--active">
 				<div class="house__btn house__btn--add">&plus;</div>
 				<div class="house__btn house__btn--remove">&minus;</div>
+				<div class="house__btn house__btn--options">&cir;</div>
 				<div class="house__btn house__btn--close">&Cross;</div>
 			</div>
 			<div class="house__new-link house__new-link--hidden">
@@ -82,11 +87,15 @@
 	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
 
-	<script src="config.js"></script>
-	<script src='firebase.js'></script>
-	<script src='media.js'></script>
-	<script src='interactions.js'></script>
-	<script src='controls.js'></script>
+	<!-- Dev Scripts -->
+	<script src="js/config.js"></script>
+	<script src='js/firebase.js'></script>
+	<script src='js/media.js'></script>
+	<script src='js/interactions.js'></script>
+	<script src='js/controls.js'></script>
+
+	<!-- Production Script -->
+	<!-- <script src='js/all.js'></script> -->
 </body>
 
 </html>

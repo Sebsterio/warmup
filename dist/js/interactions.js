@@ -1,3 +1,4 @@
+/*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
 (function () {
 	// elements
 	const root = document.documentElement;
@@ -8,7 +9,7 @@
 		ZOOM_MIN,
 		ROTATE_SENSITIVITY,
 		FPS,
-		canAnimate,
+		animationSpeed,
 	} = houseConfig;
 
 	// CSS transform vars
@@ -92,8 +93,8 @@
 
 	function initAnimation() {
 		setInterval(() => {
-			if (canAnimate && !canRotate) {
-				rotateY -= 0.05;
+			if (animationSpeed && !canRotate) {
+				rotateY += animationSpeed;
 				rotateHouse(null, rotateY);
 			}
 		}, 1000 / FPS);

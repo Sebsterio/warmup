@@ -1,0 +1,85 @@
+/******************************************/
+/*               CONTROLS                 */
+/******************************************/
+
+.house__controls {
+	position: absolute;
+	top: 5vh;
+	left: 0;
+	// width: 150px;
+	height: 50px;
+	font-size: 16px;
+}
+
+// === Config panel & Add link panel ===
+
+.house__panel,
+.house__new-link {
+	background-image: linear-gradient(45deg, #3f4042, #303133);
+	border-radius: 5px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1),
+		inset 0 0 2px 0 rgba(255, 255, 255, 0.2);
+	transition: transform 400ms ease;
+}
+
+.house__panel {
+	width: 100%;
+	height: 100%;
+	padding-left: 5px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	transform: translateX(-5px);
+
+	&.house__panel--hiding,
+	&.house__panel--hidden {
+		transform: translateX(-90%);
+	}
+}
+
+.house__new-link {
+	position: absolute;
+	top: 50px;
+	padding: 20px;
+	transform: translateX(-5px);
+
+	&.house__new-link--hidden {
+		transform: translateX(-100%);
+	}
+
+	form {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 15px;
+	}
+}
+
+// === Button ===
+
+.house__btn {
+	font-size: 60px;
+	color: $color-primary;
+	text-shadow: 0 0 3px $color-primary-translucent;
+	cursor: pointer;
+}
+
+.house__btn:hover,
+.house__btn.house__btn--active {
+	color: $color-primary-active;
+	text-shadow: 0 0 3px $color-primary-translucent-active;
+}
+
+// === Input ===
+
+.house__input {
+	width: 160px;
+}
+
+.house__label {
+	color: $color-secondary;
+	text-shadow: 0 0 3px $color-secondary-translucent;
+}
+
+.house__input--submit {
+	grid-column: 1 / -1;
+}

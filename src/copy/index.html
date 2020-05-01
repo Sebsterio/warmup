@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Warm Up Family</title>
+	<meta name="description" content="Warm Up familly hall of fame">
+
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+	<!-- <link rel="stylesheet" href="controls.css" type="text/css"> -->
+</head>
+
+<body>
+	<div class="house__container">
+		<div class="house">
+			<div class="house__faces">
+				<div class="house__face house__face--front">
+					<div class="house__media-container">
+					</div>
+				</div>
+				<div class="house__face house__face--back">
+					<div class="house__media-container">
+					</div>
+				</div>
+				<div class="house__face house__face--left">
+					<div class="house__media-container">
+					</div>
+				</div>
+				<div class="house__face house__face--right">
+					<div class="house__media-container">
+					</div>
+				</div>
+				<div class="house__face house__face--top-left">
+					<div class="house__media-container">
+					</div>
+				</div>
+				<div class="house__face house__face--top-right">
+					<div class="house__media-container">
+					</div>
+				</div>
+				<div class="house__face house__face--bottom">
+					<div class="house__media-container">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="house__controls">
+			<div class="house__panel house__panel--active">
+				<div class="house__btn house__btn--add">&plus;</div>
+				<div class="house__btn house__btn--remove">&minus;</div>
+				<div class="house__btn house__btn--options">&cir;</div>
+				<div class="house__btn house__btn--close">&Cross;</div>
+			</div>
+			<div class="house__new-link house__new-link--hidden">
+				<form action="#">
+					<!-- Type -->
+					<label for="house__input--type" class="house__label">Type</label>
+					<select id="house__input--type" class="house__input" name="type">
+						<option value="image">image</option>
+						<option value="video">video</option>
+						<option value="YT embed">YT embed</option>
+					</select>
+
+					<!-- Ratio -->
+					<label for="house__input--range" class="house__label">Video ratio</label>
+					<input id="house__input--range" class="house__input" name="name" type="number">
+
+					<!-- Name -->
+					<label for="house__input--name" class="house__label">Description</label>
+					<input id="house__input--name" class="house__input" name="name" type="text">
+
+					<!-- URL -->
+					<label for="house__input--url" class="house__label">Link</label>
+					<input id="house__input--url" class="house__input" name="name" type="text">
+
+					<input class="house__input--submit" type="submit" name="submit" value="Add Love">
+				</form>
+			</div>
+			<div class="house__remove-link"></div>
+		</div>
+	</div>
+
+	<!-- Firebase JS SDK -->
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+
+	<!-- Dev Scripts -->
+	<script src="js/config.js"></script>
+	<script src='js/firebase.js'></script>
+	<script src='js/media.js'></script>
+	<script src='js/interactions.js'></script>
+	<script src='js/controls.js'></script>
+
+	<!-- Production Script -->
+	<!-- <script src='js/all.js'></script> -->
+</body>
+
+</html>

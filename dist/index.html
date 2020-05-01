@@ -81,12 +81,12 @@
 		<!-- Controls -->
 		<div class="house__controls">
 			<div class="house__panel house__panel--active">
-				<div class="house__btn house__btn--add">&plus;</div>
-				<div class="house__btn house__btn--remove">&minus;</div>
-				<div class="house__btn house__btn--options">&cir;</div>
-				<div class="house__btn house__btn--close">&Cross;</div>
+				<div class="house__btn house__btn--add">&#10010;</div>
+				<div class="house__btn house__btn--remove">&#9866;</div>
+				<div class="house__btn house__btn--options">&#10066;</div>
+				<div class="house__btn house__btn--close">&#10006;</div>
 			</div>
-			<div class="house__new-link house__new-link--hidden">
+			<div class="house__new-link">
 				<form action="#">
 					<!-- Type -->
 					<label for="house__input--type" class="house__label">Type</label>
@@ -108,6 +108,22 @@
 					<label for="house__input--url" class="house__label">Link</label>
 					<input id="house__input--url" class="house__input" name="name" type="text">
 
+					<!-- Preview -->
+					<div class="house__preview-container">
+						<div class="house__preview house__preview--placeholder">
+							If the link is correct, your file will show here.
+							<span class="house__preview-comment house__preview-comment--source">
+								Make sure to paste the link to the file source and not to a webpage where the file is placed.
+							</span>
+							<span class="house__preview-comment house__preview-comment--embed" hidden>
+								e.g. "https://www.youtube.com/embed/etc..."
+							</span>
+						</div>
+						<div class="house__preview house__preview--media">
+						</div>
+					</div>
+
+					<!-- Submit -->
 					<input class="house__input--submit" type="submit" name="submit" value="Add Love">
 				</form>
 			</div>

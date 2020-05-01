@@ -33,6 +33,6 @@
 	// Hide controls shortly after load
 	setTimeout(() => {
 		// return;
-		panel.classList.add("house__panel--hidden");
+		// panel.classList.add("house__panel--hidden");
 	}, 1000);
 })(houseConfig.controlsEnabled);

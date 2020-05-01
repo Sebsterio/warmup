@@ -12,3 +12,42 @@
 .house__input--submit {
 	grid-column: 1 / -1;
 }
+
+.house__preview-container {
+	grid-column: 1 / -1;
+	width: 100%;
+	min-height: 150px;
+	position: relative;
+
+	border: 1px solid $color-secondary;
+	box-shadow: 0 0 3px 0 $color-secondary-translucent;
+}
+
+.house__preview {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+// .house__preview--media {
+// 	width: 100%;
+// 	height: 100%;
+// }
+
+.house__preview--placeholder {
+	padding: 1em;
+	display: grid;
+	justify-content: center;
+	justify-items: center;
+	align-content: center;
+	align-items: center;
+	grid-gap: 1em;
+
+	color: $color-secondary;
+	text-shadow: 0 0 1px $color-secondary-translucent;
+}
+
+.house__preview-comment {
+	font-size: 0.8em;
+}

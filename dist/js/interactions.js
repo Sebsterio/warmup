@@ -55,6 +55,7 @@
 
 		canRotate = true; // Enable input
 		[refX, refY] = getCoords(e); // Set mouse reference point
+		[newRotateX, newRotateY] = [rotateX, rotateY];
 	}
 
 	function handleMouseUp(e) {

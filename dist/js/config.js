@@ -47,7 +47,7 @@
 		 urlParams[param] :
 			localStorage.getItem(param) !== null ?
 			 localStorage.getItem(param) :
-			 defaultVal
+			 defaultVal;
 	}
 
 	window.houseConfig = {
@@ -73,4 +73,4 @@
 	window.houseState = {
 		currentMedia: [],     // Media displayed on house walls
 	};
-})()
+})();

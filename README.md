@@ -7,7 +7,8 @@ UI to add images, videos, and Youtube embed links to database
 
 ## TODO
 
-- fix overlay indices (synced)
+- vid prominent (type: special)
+- option to not change videos
 - firebase fail fallback
 - Alina mobile bug
 
@@ -15,11 +16,14 @@ UI to add images, videos, and Youtube embed links to database
 
 - preload media
 - animated transition when images change
-- settings: form -> localStorage (not url settings)
+- settings panel + localStorage (don't save url settings)
 
 ## How to use
 
-add your image/video links in `media.js`
+Add parameters in the url:  
+`?` - begin query string  
+`&` - separator  
+e.g. `warmup.netlify.app?edit&speed=1`
 
 ### ULR params
 

@@ -91,14 +91,18 @@
 					<!-- Type -->
 					<label for="house__input--type" class="house__label">Type</label>
 					<select id="house__input--type" class="house__input" name="type">
-						<option value="image">image</option>
-						<option value="video">video</option>
+						<option value="image">Image</option>
+						<option value="video">Video</option>
 						<option value="YT embed">YT embed</option>
 					</select>
 
 					<!-- Ratio -->
-					<label for="house__input--ratio" class="house__label">Video ratio</label>
-					<input id="house__input--ratio" class="house__input" name="ratio" type="range">
+					<label for="house__input--ratio" class="house__label">
+						Ratio
+						<span class="house__ratio-display">1.8</span>
+					</label>
+					<input id="house__input--ratio" class="house__input" name="ratio" type="range" value="1.8" min="1" max="2"
+						step="0.1">
 
 					<!-- Name -->
 					<label for="house__input--name" class="house__label">Description</label>
@@ -116,7 +120,7 @@
 								Make sure to paste the file address and not the address of the webpage where the file is placed.
 							</span>
 							<span class="house__preview-comment house__preview-comment--embed" hidden>
-								e.g. "https://www.youtube.com/embed/etc..."
+								Paste the link as you got it; I'll extract what I need from it.
 							</span>
 						</div>
 						<div class="house__preview house__preview--media"></div>

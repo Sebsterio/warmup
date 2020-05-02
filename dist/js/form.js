@@ -4,9 +4,11 @@
 	const typeInput = form.querySelector("#house__input--type");
 	const ratioInput = form.querySelector("#house__input--ratio");
 	const ratioLabel = form.querySelector("[for=house__input--ratio]");
+	const ratioDisplay = form.querySelector(".house__ratio-display");
 	const urlInput = form.querySelector("#house__input--url");
 	const preview = form.querySelector(".house__preview--media");
 	const submit = form.querySelector(".house__input--submit");
+	comments = form.querySelectorAll(".house__preview-comment");
 
 	// -----------------------------------------------------
 
@@ -20,10 +22,27 @@
 		}
 	}
 
+	function switchComment(commentName) {
+		comments.forEach((span) => {
+			if (span.classList.contains("house__preview-comment--" + commentName))
+				span.removeAttribute("hidden");
+			else span.setAttribute("hidden", true);
+		});
+	}
+
 	// Show ratio input only if video type is selected
-	function updateRatioInput() {
-		if (form.type.value === "YT embed") toggleRatioInput(true);
-		else toggleRatioInput(false);
+	function handleTypeInput() {
+		if (form.type.value === "YT embed") {
+			toggleRatioInput(true);
+			switchComment("embed");
+		} else {
+			toggleRatioInput(false);
+			switchComment("source");
+		}
+	}
+
+	function handleRatioInput(e) {
+		ratioDisplay.innerText = e.target.value;
 	}
 
 	// Download image and run callback when done
@@ -100,9 +119,10 @@
 
 	// ----------------------- Init ---------------------------
 
-	typeInput.addEventListener("input", updateRatioInput);
+	typeInput.addEventListener("input", handleTypeInput);
+	ratioInput.addEventListener("input", handleRatioInput);
 	urlInput.addEventListener("input", previewMedia);
 	submit.addEventListener("click", handleSubmit);
 
-	updateRatioInput();
+	handleTypeInput();
 })();

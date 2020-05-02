@@ -75,8 +75,9 @@
 	background-size: 150% 100%;
 	background-repeat: repeat-x;
 	background-position: calc(
-		(var(--index) * (100 / 7) + 2 * var(--x) + 2 * var(--y)) * 1%
+		((var(--index) * 70) + (2 * var(--x)) + (2 * var(--y))) * 1%
 	);
+	// background-position: calc(var(--index) * 30 * 1%);
 	opacity: 0.2;
 
 	// @media screen and (max-width: 800px) {

@@ -72,7 +72,7 @@
 		return media.findIndex((el) => el === element);
 	}
 
-	// interate over media elements until an allowed one is found
+	// Interate over media elements until an allowed one is found
 	function buildRandomMediaElement(media, container) {
 		let html = "";
 		let randomMedia;

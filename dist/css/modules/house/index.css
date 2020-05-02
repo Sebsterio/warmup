@@ -214,6 +214,6 @@
   background-image: linear-gradient(60deg, transparent 45%, white 50%, white 55%, transparent 60%);
   background-size: 150% 100%;
   background-repeat: repeat-x;
-  background-position: calc( (var(--index) * (100 / 7) + 2 * var(--x) + 2 * var(--y)) * 1%);
+  background-position: calc( ((var(--index) * 70) + (2 * var(--x)) + (2 * var(--y))) * 1%);
   opacity: 0.2;
 }

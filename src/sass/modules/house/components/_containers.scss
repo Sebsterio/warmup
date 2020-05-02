@@ -36,7 +36,7 @@
 	width: $wall-side;
 	perspective: $wall-side * 3;
 
-	font-size: 60vmin; // Main house model yardstick
+	font-size: 70vmin; // Main house model yardstick
 	transform: scale(var(--scale)); // JS zoom
 }
 

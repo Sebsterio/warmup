@@ -116,9 +116,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transform: translateX(-5px);
-      -ms-transform: translateX(-5px);
-          transform: translateX(-5px);
+  -webkit-transform: translateX(-5px) !important;
+      -ms-transform: translateX(-5px) !important;
+          transform: translateX(-5px) !important;
 }
 
 /* line 29, src/sass/modules/controls/components/_panel.scss */

@@ -104,11 +104,12 @@
 		if (form.type.value === "YT embed") {
 			newItem.link = cleanYTembedURL(form.url.value);
 		}
-		window.houseState.currentMedia = [
-			newItem,
-			...window.houseState.currentMedia,
-		];
-		window.houseFirestore.update(window.houseState.currentMedia, () => {
+		// window.houseState.allMedia = [
+		// 	newItem,
+		// 	...window.houseState.allMedia,
+		// ];
+		window.houseState.allMedia.push(newItem);
+		window.houseFirestore.update(window.houseState.allMedia, () => {
 			alert("Love shared succesfullly");
 		});
 

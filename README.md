@@ -7,10 +7,14 @@ UI to add images, videos, and Youtube embed links to database
 
 ## TODO
 
+- fix overlay indices (synced)
 - firebase fail fallback
 - Alina mobile bug
 
-- randomize displayed media, or FILO, or enforce vid at front wall
+#### Juice
+
+- preload media
+- animated transition when images change
 - settings: form -> localStorage (not url settings)
 
 ## How to use
@@ -24,3 +28,4 @@ add your image/video links in `media.js`
 `disableYT` - skip Youtube embeds  
 `disableVid` - skip video files  
 `disableImg` - skip images
+`interval=N` - image-change interval (default: 1000)

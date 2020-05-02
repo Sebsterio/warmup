@@ -1,19 +1,26 @@
 (function () {
 	const house = document.querySelector(".house");
-	const containers = house.querySelectorAll(".house__media-container");
+	const containers = house.querySelectorAll(".house__media");
 
 	const {
 		disableYTEmbeds,
 		disableVideo,
 		disableImages,
 		YT_PARAMS,
+		interval,
 	} = houseConfig;
+
+	let unusedMedia = []; // working copy of allMedia
+	let currentMedia = []; // indices of currently displayed media
+	let unusableMedia = []; // indices of media that aren't allowed
 
 	let windowWidth = window.innerWidth;
 
+	// ---------------------------------------------------------------------
+
 	window.createYTEmbed = function (container, link, ratio) {
-		const height = container.getBoundingClientRect().height;
-		if (!ratio) ratio = 1.5;
+		const height = Math.ceil(container.offsetHeight);
+		if (!ratio) ratio = 1.8;
 
 		const linkMain = link.split("?");
 		const videoId = linkMain[0] // neded for loop to work
@@ -50,28 +57,52 @@
 		return ""; // repeat loop for next media item
 	}
 
-	// Insert elements into each media container
+	// Set all usable media as unused, except currently displayed ones
+	function resetUnusedMedia(media) {
+		unusedMedia = media.filter((item, index) => {
+			if (!currentMedia.includes(index) && !unusableMedia.includes(index))
+				return item;
+		});
+
+		// if there's not enough media, allow repeats
+		if (!unusedMedia.length) unusedMedia = [...media];
+	}
+
+	function getIndex(element, media) {
+		return media.findIndex((el) => el === element);
+	}
+
+	// interate over media elements until an allowed one is found
+	function buildRandomMediaElement(media, container) {
+		let html = "";
+		let randomMedia;
+
+		while (html === "") {
+			// If ran out of unused elements, start over
+			if (!unusedMedia.length) resetUnusedMedia(media);
+
+			// Remove a random element from unusedMedia and use it
+			const randomIndex = Math.floor(Math.random() * unusedMedia.length);
+			randomMedia = unusedMedia.splice(randomIndex, 1)[0];
+
+			// Attempt to build an element from the random media link
+			const { type, link, ratio } = randomMedia;
+			html = buildElement(type, link, ratio, container);
+
+			// Take note of the index of the media used
+			const mediaIndex = getIndex(randomMedia, media);
+			if (html === "") unusableMedia.push(mediaIndex);
+			else currentMedia.push(mediaIndex);
+		}
+
+		return html;
+	}
+
+	// Insert an element into each media container
 	function insertMediaHtml(media) {
 		if (!media.length) return;
-
-		// iterate over containers separately from media items
-		let item = 0;
-		containers.forEach((container, i) => {
-			if (!media[item]) return; // stop if ran out of media items
-
-			// interate over media elements until an allowed one is found
-			let innerHtml = "";
-			while (innerHtml === "") {
-				if (!media[item]) return;
-				const { type, link, ratio } = media[item];
-				innerHtml = buildElement(type, link, ratio, container);
-				item++;
-			}
-
-			// add overlay
-			innerHtml += `<div class="media__filter" style="--index: ${i}"></div>`;
-
-			container.innerHTML = innerHtml;
+		containers.forEach((container) => {
+			container.innerHTML = buildRandomMediaElement(media, container);
 		});
 	}
 
@@ -81,7 +112,7 @@
 			const iframe = container.querySelector("iframe");
 			if (!iframe) return;
 
-			const height = container.getBoundingClientRect().height;
+			const height = Math.ceil(container.offsetHeight);
 			const ratio = iframe.dataset.ratio;
 
 			iframe.width = height * ratio;
@@ -97,10 +128,25 @@
 		});
 	}
 
+	function initRandomizeMedia(media) {
+		// start with a random container
+		let index = Math.floor(Math.random() * containers.length);
+
+		setInterval(() => {
+			const container = containers[index];
+			container.innerHTML = buildRandomMediaElement(media, container);
+
+			index++;
+			if (index >= containers.length) index = 0;
+		}, interval);
+	}
+
 	function addCollection(data) {
-		houseState.currentMedia = data;
-		insertMediaHtml(data);
+		houseState.media = data;
+		resetUnusedMedia(houseState.media);
+		insertMediaHtml(houseState.media);
 		mixUpVideoTime();
+		initRandomizeMedia(houseState.media);
 	}
 
 	function handleResize() {

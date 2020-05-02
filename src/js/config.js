@@ -25,6 +25,7 @@
 	const DISABLE_YT = false;
 	const DISABLE_VIDEO = false;
 	const DISABLE_IMAGES = false;
+	const INTERVAL = 1000;
 	const YT_PARAMS =	          // Youtube iframe URL params
 	"?mute=1" +
 	"&enablejsapi=1" +          // control iframe video with JS
@@ -62,14 +63,15 @@
 		disableYTEmbeds: getSettings('disableYT', DISABLE_YT),
 		disableVideo: getSettings('disableVid', DISABLE_VIDEO),
 		disableImages: getSettings('disableImg', DISABLE_IMAGES),
+		interval: getSettings('interval', INTERVAL),
 	};
 	// END Config interface
 
 	// ---------- Firestore module interface ----------
 	window.houseFirestore = {};  
 
-	// ---------------- Local state -----------------
+	// ---------------- Local state -------------------
 	window.houseState = {
-		currentMedia: [],     // Media displayed on house walls
+		media: [],           // Local copy of database
 	};
 })();

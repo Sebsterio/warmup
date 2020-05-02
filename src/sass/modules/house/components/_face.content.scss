@@ -4,10 +4,6 @@
 	position: relative;
 	width: $wall-side;
 	height: $wall-side;
-	display: flex;
-	justify-items: center;
-	justify-content: center;
-	align-items: center;
 	background: linear-gradient(rgb(78, 78, 78), rgb(43, 43, 43));
 }
 
@@ -31,15 +27,24 @@
 
 // ------------------ Media --------------------
 
+.house__media {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-items: center;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
 .image,
 .video {
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 100%;
 	height: auto;
 	min-height: 100%;
 	object-fit: cover;
+	object-position: center;
 }
 
 .embed {
@@ -49,15 +54,13 @@
 	display: flex;
 	justify-items: center;
 	align-items: center;
+	overflow: hidden;
 }
 
 // ------------------ Effects --------------------
 
-:root {
-	--index: 0;
-}
-
-.media__filter {
+.house__media-filter {
+	// --index: 0;
 	position: absolute;
 	top: 0;
 	width: 100%;
@@ -72,7 +75,7 @@
 	background-size: 150% 100%;
 	background-repeat: repeat-x;
 	background-position: calc(
-		(var(--index) * 100 / 7 + 2 * var(--x) + 2 * var(--y)) * 1%
+		(var(--index) * (100 / 7) + 2 * var(--x) + 2 * var(--y)) * 1%
 	);
 	opacity: 0.2;
 

@@ -22,7 +22,7 @@
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	transform: translateX(-5px); // always visible
+	transform: translateX(-5px) !important; // always visible
 }
 
 // New link panel - add link

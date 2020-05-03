@@ -80,4 +80,20 @@
 	window.houseState = {
 		allMedia: [],           // Local copy of database
 	};
+	
+	// ---------------- Utils ------------------- <<< move to own file
+
+	houseApp.makeBackup = function(){
+		const allMedia = houseState.allMedia
+		localStorage.setItem('db-backup', JSON.stringify(allMedia))
+		return 'done'
+	}
+	houseApp.restoreBackup = function(){
+		const media = JSON.parse(localStorage.getItem('db-backup'))
+		houseState.allMedia = [...media];
+		houseApp.addCollection(houseState.allMedia)
+		return 'done'
+	}
 })();
+
+

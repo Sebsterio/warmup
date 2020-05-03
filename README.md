@@ -15,10 +15,13 @@
 
 ## TODO
 
-- save and restore DB backup (localStorage)
-- embed proportions ffs
-- conditionally enable clicks if forceYT is on
+- Save and restore DB backup (localStorage)
+- user profiles (firebase auth)
+- switch between public and private database
+
 - replace HTML entities with SVG to normalize the look across browsers
+
+- bundle JS ?
 
 #### Juice
 
@@ -35,12 +38,12 @@
 
 ## How to use
 
+### ULR params
+
 Add parameters in the url:  
 `?` - begin query string  
 `&` - separator  
 e.g. `warmup.netlify.app?edit&speed=1`
-
-### ULR params
 
 [//]: # "Remember double space at end each of line"
 
@@ -53,3 +56,12 @@ e.g. `warmup.netlify.app?edit&speed=1`
 `interval=N` - media cycling interval (default: 1000; 0 = off)  
 `ignorePinned` - don't prevent pinned files from cycling  
 `ignorePriority` - don't show priority files first
+
+### Console methods
+
+Open dev tools (`Ctr + Shif + I` or right-click and 'inspect')  
+Select 'Console' tab  
+Call a function by typing in and pressing `Enter`
+
+`houseApp.makeBackup()` - save allMedia in localStorage
+`houseApp.restoreBackup()` - retrieve and update view

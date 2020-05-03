@@ -209,14 +209,14 @@
 
 	// ----------------------------- Init -----------------------------------
 
-	function addCollection(data) {
+	window.houseApp.addCollection = function (data) {
 		allMedia.push(...data);
 		resetUnusedMedia();
 		buildAlbum();
 		initMediaCycling();
 		mixUpVideoTime();
-	}
+	};
 
-	window.houseApp.firestore.fetch(addCollection);
+	window.houseApp.firestore.fetch(houseApp.addCollection);
 	window.addEventListener("resize", updateIframeSizes);
 })();

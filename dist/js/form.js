@@ -8,7 +8,7 @@
 	const urlInput = form.querySelector("#house__input--url");
 	const preview = form.querySelector(".house__preview--media");
 	const submit = form.querySelector(".house__input--submit");
-	comments = form.querySelectorAll(".house__preview-comment");
+	const comments = form.querySelectorAll(".house__preview-comment");
 
 	// -----------------------------------------------------
 
@@ -105,10 +105,6 @@
 		if (form.type.value === "YT embed") {
 			newItem.link = cleanYTembedURL(form.url.value);
 		}
-		// window.houseState.allMedia = [
-		// 	newItem,
-		// 	...window.houseState.allMedia,
-		// ];
 		window.houseState.allMedia.push(newItem);
 		window.houseFirestore.update(window.houseState.allMedia, () => {
 			alert("Love shared succesfullly");

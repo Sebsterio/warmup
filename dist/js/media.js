@@ -4,22 +4,37 @@
 	const containers = house.querySelectorAll(".house__media");
 
 	const {
-		disableYTEmbeds,
 		disableVideo,
 		disableImages,
+		forceYTEmbeds,
 		YT_PARAMS,
 		interval,
 	} = houseConfig;
 
+	let { disableYTEmbeds } = houseConfig;
+
+	const { allMedia } = houseState;
+
 	let unusedMedia = []; // working copy of allMedia
-	let currentMedia = []; // indices of currently displayed media
+	let currentMedia = []; // indices of currently displayed media; reflects containers array
 	let unusableMedia = []; // indices of media that aren't allowed
 
-	let windowWidth = window.innerWidth;
+	// -----------------------------------------------------------------------
 
-	// ---------------------------------------------------------------------
+	// Set all usable media as unused, except currently displayed ones
+	function resetUnusedMedia() {
+		unusedMedia = allMedia.filter((item, index) => {
+			if (!currentMedia.includes(index) && !unusableMedia.includes(index))
+				return item;
+		});
 
-	window.createYTEmbed = function (container, link, ratio) {
+		// if there's not enough media, allow repeats
+		if (!unusedMedia.length) unusedMedia = [...allMedia];
+	}
+
+	// ---------------------- HTML element creators ----------------------------
+
+	window.createYTEmbed = function (link, ratio, container) {
 		const height = Math.ceil(container.offsetHeight);
 		if (!ratio) ratio = 1.8;
 
@@ -40,33 +55,25 @@
 		></iframe></div>`;
 	};
 
+	function createVideo(link) {
+		return `<video class="video" autoplay muted loop src="${link}"></video>`;
+	}
+
+	function createImage(link) {
+		return `<img class="image" src="${link}" alt=":)">`;
+	}
+
+	// --------------------------- Build Album ---------------------------------
+
 	// Create html from a media element
 	function buildElement(type, link, ratio, container) {
-		// video
-		if (type === "video" && !disableVideo)
-			return `<video class="video" autoplay muted loop src="${link}"></video>`;
-
-		// image
-		if (type === "image" && !disableImages)
-			return `<img class="image" src="${link}" alt=":)">`;
-
-		// iframe (desktop only due to lack of autoplay on mobile)
-		if (type === "YT embed" && !disableYTEmbeds && windowWidth > 800) {
-			return createYTEmbed(container, link, ratio);
+		if (type === "video" && !disableVideo) return createVideo(link);
+		if (type === "image" && !disableImages) return createImage(link);
+		if (type === "YT embed" && !disableYTEmbeds) {
+			return createYTEmbed(link, ratio, container);
 		}
 
 		return ""; // repeat loop for next media item
-	}
-
-	// Set all usable media as unused, except currently displayed ones
-	function resetUnusedMedia(media) {
-		unusedMedia = media.filter((item, index) => {
-			if (!currentMedia.includes(index) && !unusableMedia.includes(index))
-				return item;
-		});
-
-		// if there's not enough media, allow repeats
-		if (!unusedMedia.length) unusedMedia = [...media];
 	}
 
 	function getIndex(element, media) {
@@ -74,13 +81,13 @@
 	}
 
 	// Interate over media elements until an allowed one is found
-	function buildRandomMediaElement(media, container) {
+	function buildRandomMediaElement(container, containerIndex) {
 		let html = "";
 		let randomMedia;
 
 		while (html === "") {
 			// If ran out of unused elements, start over
-			if (!unusedMedia.length) resetUnusedMedia(media);
+			if (!unusedMedia.length) resetUnusedMedia();
 
 			// Remove a random element from unusedMedia and use it
 			const randomIndex = Math.floor(Math.random() * unusedMedia.length);
@@ -91,19 +98,44 @@
 			html = buildElement(type, link, ratio, container);
 
 			// Take note of the index of the media used
-			const mediaIndex = getIndex(randomMedia, media);
+			const mediaIndex = getIndex(randomMedia, allMedia);
 			if (html === "") unusableMedia.push(mediaIndex);
-			else currentMedia.push(mediaIndex);
+			else currentMedia[containerIndex] = mediaIndex;
 		}
 
 		return html;
 	}
 
 	// Insert an element into each media container
-	function insertMediaHtml(media) {
-		if (!media.length) return;
-		containers.forEach((container) => {
-			container.innerHTML = buildRandomMediaElement(media, container);
+	function insertMediaHtml() {
+		if (!allMedia.length) return;
+		containers.forEach((container, containerIndex) => {
+			container.innerHTML = buildRandomMediaElement(container, containerIndex);
+		});
+	}
+
+	// ---------------------------- Secondary -----------------------------
+
+	// Iterate through containers at an interval and change media to a random one
+	function initCycleMedia() {
+		if (Number(interval) === 0) return;
+
+		// start with a random container
+		let containerIndex = Math.floor(Math.random() * containers.length);
+
+		setInterval(() => {
+			const container = containers[containerIndex];
+			container.innerHTML = buildRandomMediaElement(container, containerIndex);
+			index++;
+			if (containerIndex >= containers.length) containerIndex = 0;
+		}, Number(interval));
+	}
+
+	// Desynchronize videos
+	function mixUpVideoTime() {
+		const vids = house.querySelectorAll("video");
+		vids.forEach((vid, i) => {
+			vid.currentTime += i * 5;
 		});
 	}
 
@@ -121,41 +153,31 @@
 		});
 	}
 
-	// Desynchronize videos
-	function mixUpVideoTime() {
-		const vids = house.querySelectorAll("video");
-		vids.forEach((vid, i) => {
-			vid.currentTime += i * 5;
-		});
+	// Disable YT embeds on mobile due to lack of autoplay (bad UX)
+	function toggleYTEmbeds() {
+		if (forceYTEmbeds) disableYTEmbeds = false;
+		else if (window.innerWidth > 800)
+			disableYTEmbeds = houseConfig.disableYTEmbeds;
+		else disableYTEmbeds = true;
 	}
 
-	function initRandomizeMedia(media) {
-		// start with a random container
-		let index = Math.floor(Math.random() * containers.length);
-
-		setInterval(() => {
-			const container = containers[index];
-			container.innerHTML = buildRandomMediaElement(media, container);
-
-			index++;
-			if (index >= containers.length) index = 0;
-		}, interval);
-	}
+	// ----------------------------- Init -----------------------------------
 
 	function addCollection(data) {
-		houseState.media = data;
-		resetUnusedMedia(houseState.media);
-		insertMediaHtml(houseState.media);
+		allMedia.push(...data);
+		currentMedia.length = containers.length;
+
+		resetUnusedMedia();
+		insertMediaHtml();
+		initCycleMedia();
 		mixUpVideoTime();
-		initRandomizeMedia(houseState.media);
+		toggleYTEmbeds();
 	}
 
 	function handleResize() {
-		windowWidth = window.innerWidth;
 		updateIframeSizes();
+		toggleYTEmbeds();
 	}
-
-	// --------------------- init -----------------------------
 
 	window.houseFirestore.fetch(addCollection);
 	window.addEventListener("resize", handleResize);

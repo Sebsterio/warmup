@@ -23,20 +23,21 @@
 	const INITIAL_PIVOT = -40;
 	
 	// media.js 
-	const DISABLE_YT = false;
+	const DISABLE_YT = false;     // disable YT embeds on PC (on mobile disabled by default)
+	const FORCE_YT = false;       // enable YT embeds regardless of screen size (priority)
 	const DISABLE_VIDEO = false;
 	const DISABLE_IMAGES = false;
 	const INTERVAL = 1000;
-	const YT_PARAMS =	          // Youtube iframe URL params
+	const YT_PARAMS =	            // Youtube iframe URL params
 	"?mute=1" +
-	"&enablejsapi=1" +          // control iframe video with JS
+	"&enablejsapi=1" +            // control iframe video with JS
 	"&autoplay=1" +
-	"&controls=0" +             // video controls
-	"&disablekb=1" +            // disable keyboard actions
-	"&fs=0" +                   // full screen button
+	"&controls=0" +               // video controls
+	"&disablekb=1" +              // disable keyboard actions
+	"&fs=0" +                     // full screen button
 	"&loop=1" +
-	"&rel=0" +                  // display related videos
-	"&iv_load_policy=3" +       // annotations off
+	"&rel=0" +                    // display related videos
+	"&iv_load_policy=3" +         // annotations off
 	"&origin=https://warmup.netlify.app"; // <- TODO check if can remove
 		
 
@@ -62,6 +63,7 @@
 		controlsEnabled: getSettings('edit', CONTROLS_ENABLED),
 		animationSpeed: getSettings('speed', ANIMMATION_SPEED),
 		disableYTEmbeds: getSettings('disableYT', DISABLE_YT),
+		forceYTEmbeds: getSettings('forceYT', FORCE_YT),
 		disableVideo: getSettings('disableVid', DISABLE_VIDEO),
 		disableImages: getSettings('disableImg', DISABLE_IMAGES),
 		interval: getSettings('interval', INTERVAL),
@@ -73,6 +75,6 @@
 
 	// ---------------- Local state -------------------
 	window.houseState = {
-		media: [],           // Local copy of database
+		allMedia: [],           // Local copy of database
 	};
 })();

@@ -78,24 +78,38 @@
 		}
 	}
 
-	// Add new image to localState and push localState to DB
+	// Add new item to local state and sync with DB
 	function handleSubmit(e) {
 		e.preventDefault();
+		const { allMedia } = window.houseState;
 
+		// avoid overwriting DB after Firestore fail
+		if (!allMedia.length) return;
+
+		// create item to add
 		const newItem = {
+			id: allMedia.length,
 			type: form.type.value,
 			name: form.name.value,
 			link: form.url.value,
-			ratio: form.ratio.value,
 		};
 		if (form.type.value === "YT embed") {
 			newItem.link = cleanYTembedURL(form.url.value);
+			newItem.ratio = form.ratio.value;
 		}
-		window.houseState.allMedia.push(newItem);
-		window.houseApp.firestore.update(window.houseState.allMedia, () => {
+
+		// Add item to local state
+		allMedia.push(newItem);
+
+		// TEMP (debugging) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+		if (allMedia.length === 1) alert("Error code 1. Please tell Seb.");
+
+		// Sync up with remote database
+		houseApp.firestore.update(allMedia, () => {
 			alert("Love shared succesfullly");
 		});
 
+		// Reset form
 		form.reset();
 		preview.innerHTML = "";
 	}

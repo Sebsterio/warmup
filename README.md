@@ -7,19 +7,21 @@ UI to add images, videos, and Youtube embed links to database
 
 ## TODO
 
-- Alina mobile bug
+- upload bug
+- flatness bug
+- embed proportions ffs
+- conditionally enable clicks if forceYT is on
 
 #### Juice
 
-- preload media
 - animated transition when images change
 
-- settings panel -> localStorage (don't save url settings)
 - firebase fail fallback (locaStorage)
+- settings panel -> localStorage (don't save url settings)
 - pin items -> localStorage
 
 - add option to disable interactivity and run CSS animation (for extended use)
-- upload audio (local only?) (play random one?)
+- upload audio (local only OR play random one)
 - change bg (local only?)
 
 ## How to use

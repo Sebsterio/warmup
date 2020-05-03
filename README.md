@@ -7,16 +7,17 @@ UI to add images, videos, and Youtube embed links to database
 
 ## TODO
 
-- TODO: containers.map(c, i => {element: c, index: i})
-- use allMedia.media.id insted of allMedia[index]
-- vid prominent? (type: special)
-- option to not cycle videos
+- option to cycle pinned
+- option to pin all videos (.pinned prop)
+
 - firebase fail fallback
 - Alina mobile bug
+
 - add option to disable interactivity and run CSS animation (for extended use)
 
 #### Juice
 
+- prioritize vids on first load
 - preload media
 - animated transition when images change
 - settings panel + localStorage (don't save url settings)

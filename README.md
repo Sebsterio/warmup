@@ -10,27 +10,24 @@
 
 ## Known bugs
 
-- no transformations (flat image) on Alina's up-to-date Chrome, Win10
 - database upload replaces entire DB with the uploaded item (fixed?)
 
 ## TODO
 
-- Save and restore DB backup (localStorage)
 - user profiles (firebase auth)
 - switch between public and private database
-
+- share private DB along with preferences (forceYT, speed, etc.)
+- automatic localStorage backup (separate key from manual backup)
+- restore locaStorage backup in case of firebase download failure
 - replace HTML entities with SVG to normalize the look across browsers
-
 - bundle JS ?
 
 #### Juice
 
 - animated transition when images change
-
-- firebase download failure fallback (locaStorage)
+- change photo when not in view
 - settings panel -> localStorage (don't save url settings)
 - pin items on click -> localStorage (don't sync pinned props)
-
 - remove-items UI panel
 - option to disable interactivity and run CSS animation (better suited for extended use)
 - upload audio (local only OR play random one)
@@ -61,7 +58,7 @@ e.g. `warmup.netlify.app?edit&speed=1`
 
 Open dev tools (`Ctr + Shif + I` or right-click and 'inspect')  
 Select 'Console' tab  
-Call a function by typing in and pressing `Enter`
+Type a function call and press `Enter`
 
-`houseApp.makeBackup()` - save allMedia in localStorage
+`houseApp.makeBackup()` - save allMedia in localStorage  
 `houseApp.restoreBackup()` - retrieve and update view

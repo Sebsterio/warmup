@@ -41,6 +41,10 @@
 		if (!unusedMedia.length) unusedMedia = [...allMedia];
 	}
 
+	function resetUnusableMedia() {
+		unusableMedia = [];
+	}
+
 	// ---------------------- HTML element creators ----------------------------
 
 	window.createYTEmbed = function (link, ratio, container) {
@@ -73,28 +77,30 @@
 		return `<img class="image" src="${link}" alt=":)">`;
 	}
 
-	// Create html from a media element
-	function buildMediaElement({ link, type, ratio }, container) {
-		switch (type) {
-			case "video":
-				return createVideo(link);
-			case "image":
-				return createImage(link);
-			case "YT embed":
-				return createYTEmbed(link, ratio, container);
-			default:
-				return "";
-		}
-	}
+	// -------------------------- Preload Media --------------------------------
+
+	// Download image and run callback when done
+	window.houseApp.preloadImage = function (url, cb) {
+		var img = new Image();
+		img.src = url;
+		img.onload = cb;
+	};
+
+	// Download video and run callback when done
+	window.houseApp.preloadVideo = function (url, cb) {
+		const videoEl = document.createElement("video");
+		videoEl.src = url;
+		videoEl.onloadedmetadata = () => cb();
+	};
 
 	// --------------------------- Build Album ---------------------------------
 
 	function isMediaValid(item, filters) {
+		// Check props against filters
 		for (let key in filters) {
 			if (filters[key] !== item[key]) return false;
 		}
-		// if (mode === "priority-only" && !priority) return false;
-
+		// Check type against user preferences
 		const { type } = item;
 		if (type === "video" && !disableVideo) return true;
 		if (type === "image" && !disableImages) return true;
@@ -122,10 +128,24 @@
 		}
 	}
 
+	// Create html element from a media item once file downloaded
+	function buildElementAsync({ link, type, ratio }, container) {
+		if (type === "image")
+			window.houseApp.preloadImage(link, () => {
+				container.innerHTML = createImage(link);
+			});
+		if (type === "video")
+			window.houseApp.preloadVideo(link, () => {
+				container.innerHTML = createVideo(link);
+			});
+		if (type === "YT embed")
+			container.innerHTML = createYTEmbed(link, ratio, container);
+	}
+
+	// Insert a suitable element into a wall
 	function insertMedia(wall, filters) {
 		wall.media = getNextMediaElement(filters);
-		if (wall.media)
-			wall.element.innerHTML = buildMediaElement(wall.media, wall.element);
+		if (wall.media) buildElementAsync(wall.media, wall.element);
 	}
 
 	// Insert an element into each wall
@@ -136,7 +156,7 @@
 		if (!ignorePriority) {
 			// Arbitrary number of filters can be added here
 			walls.forEach((wall) => insertMedia(wall, { priority: true }));
-			unusableMedia = []; // no longer relevant as validation method changed
+			resetUnusableMedia(); // no longer relevant as validation method changed
 			resetUnusedMedia(); // currently used media aren't included (unless ran out)
 		}
 
@@ -195,6 +215,6 @@
 		mixUpVideoTime();
 	}
 
-	window.houseFirestore.fetch(addCollection);
+	window.houseApp.firestore.fetch(addCollection);
 	window.addEventListener("resize", updateIframeSizes);
 })();

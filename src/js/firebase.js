@@ -44,7 +44,7 @@
 			});
 	}
 
-	window.houseFirestore = {
+	window.houseApp.firestore = {
 		update: updateCollection,
 		fetch: fetchCollection,
 	};

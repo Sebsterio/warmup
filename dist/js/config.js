@@ -74,8 +74,8 @@
 	};
 	// END Config interface
 
-	// ---------- Firestore module interface ----------
-	window.houseFirestore = {};  
+	// ---------- Exports ----------
+	window.houseApp = {}
 
 	// ---------------- Local state -------------------
 	window.houseState = {

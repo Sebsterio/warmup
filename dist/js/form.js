@@ -45,20 +45,6 @@
 		ratioDisplay.innerText = e.target.value;
 	}
 
-	// Download image and run callback when done
-	function preloadImage(url, cb) {
-		var img = new Image();
-		img.src = url;
-		img.onload = cb;
-	}
-
-	// Download video and run callback when done
-	function preloadVideo(url, cb) {
-		const videoEl = document.createElement("video");
-		videoEl.src = url;
-		videoEl.onloadedmetadata = (e) => cb();
-	}
-
 	// Remove anything other than src string
 	function cleanYTembedURL(url) {
 		return url.replace(/[^]+src="/, "").replace(/"[^]+$/, "");
@@ -71,14 +57,14 @@
 		let url = e.target.value;
 
 		if (form.type.value === "image") {
-			preloadImage(url, () => {
+			window.houseApp.preloadImage(url, () => {
 				preview.innerHTML = `<img src="${url}" alt="preview">`;
 				submit.removeAttribute("disabled");
 			});
 			return;
 		}
 		if (form.type.value === "video") {
-			preloadVideo(url, () => {
+			window.houseApp.preloadVideo(url, () => {
 				preview.innerHTML = `<video class="video" autoplay muted loop src="${url}"></video>`;
 				submit.removeAttribute("disabled");
 			});
@@ -106,7 +92,7 @@
 			newItem.link = cleanYTembedURL(form.url.value);
 		}
 		window.houseState.allMedia.push(newItem);
-		window.houseFirestore.update(window.houseState.allMedia, () => {
+		window.houseApp.firestore.update(window.houseState.allMedia, () => {
 			alert("Love shared succesfullly");
 		});
 

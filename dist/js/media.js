@@ -126,7 +126,7 @@
 		setInterval(() => {
 			const container = containers[containerIndex];
 			container.innerHTML = buildRandomMediaElement(container, containerIndex);
-			index++;
+			containerIndex++;
 			if (containerIndex >= containers.length) containerIndex = 0;
 		}, Number(interval));
 	}

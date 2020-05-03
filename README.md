@@ -7,19 +7,18 @@ UI to add images, videos, and Youtube embed links to database
 
 ## TODO
 
-- option to cycle pinned
-- option to pin all videos
-
-- firebase fail fallback
 - Alina mobile bug
-
-- add option to disable interactivity and run CSS animation (for extended use)
 
 #### Juice
 
 - preload media
 - animated transition when images change
-- settings panel + localStorage (don't save url settings)
+
+- settings panel -> localStorage (don't save url settings)
+- firebase fail fallback (locaStorage)
+- pin items -> localStorage
+
+- add option to disable interactivity and run CSS animation (for extended use)
 - upload audio (local only?) (play random one?)
 - change bg (local only?)
 
@@ -40,6 +39,6 @@ e.g. `warmup.netlify.app?edit&speed=1`
 `forceYT` - never skip Youtube embeds (priority)  
 `disableVid` - skip video files  
 `disableImg` - skip images  
-`interval=N` - media cycling interval (default: 1000; 0 = off)
-`ignorePinned` - don't prevent pinned files from cycling
+`interval=N` - media cycling interval (default: 1000; 0 = off)  
+`ignorePinned` - don't prevent pinned files from cycling  
 `ignorePriority` - don't show priority files first

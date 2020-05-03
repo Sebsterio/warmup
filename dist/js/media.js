@@ -90,9 +90,13 @@
 
 	// --------------------------- Build Album ---------------------------------
 
-	function isMediaValid({ type, priority }, mode) {
-		if (mode === "priority-only" && !priority) return false;
+	function isMediaValid(item, filters) {
+		for (let key in filters) {
+			if (filters[key] !== item[key]) return false;
+		}
+		// if (mode === "priority-only" && !priority) return false;
 
+		const { type } = item;
 		if (type === "video" && !disableVideo) return true;
 		if (type === "image" && !disableImages) return true;
 		if (type === "YT embed") {
@@ -104,7 +108,7 @@
 	}
 
 	// Interate over unused media elements until an allowed one is found
-	function getNextMediaElement(mode) {
+	function getNextMediaElement(filters) {
 		while (unusableMedia.length < allMedia.length) {
 			// If ran out of unused elements, start over
 			if (!unusedMedia.length) resetUnusedMedia();
@@ -114,13 +118,13 @@
 			const randomMedia = unusedMedia.splice(randomIndex, 1)[0];
 
 			// Break loop when a suitable element is found
-			if (isMediaValid(randomMedia, mode)) return randomMedia;
+			if (isMediaValid(randomMedia, filters)) return randomMedia;
 			unusableMedia.push(randomMedia.id);
 		}
 	}
 
-	function insertMedia(wall, mode) {
-		wall.media = getNextMediaElement(mode);
+	function insertMedia(wall, filters) {
+		wall.media = getNextMediaElement(filters);
 		if (wall.media)
 			wall.element.innerHTML = buildMediaElement(wall.media, wall.element);
 	}
@@ -131,7 +135,8 @@
 
 		// Add priority media first
 		if (!ignorePriority) {
-			walls.forEach((wall) => insertMedia(wall, "priority-only"));
+			// Arbitrary number of filters can be added here
+			walls.forEach((wall) => insertMedia(wall, { priority: true }));
 			unusableMedia = []; // no longer relevant as validation method changed
 			resetUnusedMedia(); // currently used media aren't included (unless ran out)
 		}

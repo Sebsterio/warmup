@@ -45,7 +45,7 @@
 	// ----------------- Config interface -----------------
 
 	// Get URL value OR localStorage value OR default value
-	function getSettings(param, defaultVal){
+	function getPreference(param, defaultVal){
 		return urlParams[param] !== undefined ?
 		 urlParams[param] :
 			localStorage.getItem(param) !== null ?
@@ -61,15 +61,15 @@
 		INITIAL_TILT: INITIAL_TILT,
 		INITIAL_PIVOT: INITIAL_PIVOT,
 		YT_PARAMS: YT_PARAMS,
-		controlsEnabled: getSettings('edit', CONTROLS_ENABLED),
-		animationSpeed: getSettings('speed', ANIMMATION_SPEED),
-		disableYTEmbeds: getSettings('disableYT', DISABLE_YT),
-		forceYTEmbeds: getSettings('forceYT', FORCE_YT),
-		disableVideo: getSettings('disableVid', DISABLE_VIDEO),
-		disableImages: getSettings('disableImg', DISABLE_IMAGES),
-		interval: getSettings('interval', INTERVAL),
-		ignorePriority: getSettings('ignorePriority', IGNORE_PRIORITY),
-		ignorePinned: getSettings('ignorePinned', IGNORE_PINNED),
+		controlsEnabled: getPreference('edit', CONTROLS_ENABLED),
+		animationSpeed: getPreference('speed', ANIMMATION_SPEED),
+		disableYTEmbeds: getPreference('disableYT', DISABLE_YT),
+		forceYTEmbeds: getPreference('forceYT', FORCE_YT),
+		disableVideo: getPreference('disableVid', DISABLE_VIDEO),
+		disableImages: getPreference('disableImg', DISABLE_IMAGES),
+		interval: getPreference('interval', INTERVAL),
+		ignorePriority: getPreference('ignorePriority', IGNORE_PRIORITY),
+		ignorePinned: getPreference('ignorePinned', IGNORE_PINNED),
 	};
 	// END Config interface
 

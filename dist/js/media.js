@@ -49,8 +49,9 @@
 	// ---------------------- HTML element creators ----------------------------
 
 	window.createYTEmbed = function (link, ratio, container) {
+		if (!container) throw new Error("YT embed error: invalid container");
+
 		const height = Math.ceil(container.offsetHeight);
-		if (!height) throw new Error("YT embed error: invalid container");
 		if (!ratio) ratio = 1.8;
 
 		const linkMain = link.split("?")[0];

@@ -1,26 +1,35 @@
-# CSS 3D model & shared media collection
+# Warm Up Family Memory Lane
 
 [warmup.netlify.app](https://warmup.netlify.app/)
 
-Animated and interactive 3D model  
-UI to add images, videos, and Youtube embed links to database
+## Features
+
+- Animated and interactive 3D model
+- Add images, videos, and Youtube embeds
+- Database sync
+
+## Known bugs
+
+- no transformations (flat image) on Alina's up-to-date Chrome, Win10
+- database upload replaces entire DB with the uploaded item (fixed?)
 
 ## TODO
 
-- upload bug
-- flatness bug
+- save and restore DB backup (localStorage)
 - embed proportions ffs
 - conditionally enable clicks if forceYT is on
+- replace HTML entities with SVG to normalize the look across browsers
 
 #### Juice
 
 - animated transition when images change
 
-- firebase fail fallback (locaStorage)
+- firebase download failure fallback (locaStorage)
 - settings panel -> localStorage (don't save url settings)
-- pin items -> localStorage
+- pin items on click -> localStorage (don't sync pinned props)
 
-- add option to disable interactivity and run CSS animation (for extended use)
+- remove-items UI panel
+- option to disable interactivity and run CSS animation (better suited for extended use)
 - upload audio (local only OR play random one)
 - change bg (local only?)
 

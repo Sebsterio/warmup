@@ -80,8 +80,8 @@
 	// background-position: calc(var(--index) * 30 * 1%);
 	opacity: 0.2;
 
-	// @media screen and (max-width: 800px) {
-	// 	// make video clickable on mobile as autoplay doesn't work
-	// 	pointer-events: none;
-	// }
+	// make video clickable on mobile as autoplay doesn't work
+	@media screen and (max-width: 800px) {
+		pointer-events: none;
+	}
 }

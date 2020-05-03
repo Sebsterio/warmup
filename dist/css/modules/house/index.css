@@ -217,3 +217,10 @@
   background-position: calc( ((var(--index) * 70) + (2 * var(--x)) + (2 * var(--y))) * 1%);
   opacity: 0.2;
 }
+
+@media screen and (max-width: 800px) {
+  /* line 62, src/sass/modules/house/components/_face.content.scss */
+  .house__media-filter {
+    pointer-events: none;
+  }
+}

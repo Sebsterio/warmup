@@ -72,7 +72,8 @@
 		}
 		if (form.type.value === "YT embed") {
 			const cleanURL = cleanYTembedURL(url);
-			preview.innerHTML = window.createYTEmbed(preview, cleanURL);
+			const ratio = form.ratio.value;
+			preview.innerHTML = window.createYTEmbed(cleanURL, ratio, preview);
 			submit.removeAttribute("disabled");
 			return;
 		}

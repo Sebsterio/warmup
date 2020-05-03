@@ -8,7 +8,7 @@ UI to add images, videos, and Youtube embed links to database
 ## TODO
 
 - option to cycle pinned
-- option to pin all videos (.pinned prop)
+- option to pin all videos
 
 - firebase fail fallback
 - Alina mobile bug
@@ -17,7 +17,6 @@ UI to add images, videos, and Youtube embed links to database
 
 #### Juice
 
-- prioritize vids on first load
 - preload media
 - animated transition when images change
 - settings panel + localStorage (don't save url settings)
@@ -41,4 +40,6 @@ e.g. `warmup.netlify.app?edit&speed=1`
 `forceYT` - never skip Youtube embeds (priority)  
 `disableVid` - skip video files  
 `disableImg` - skip images  
-`interval=N` - cycle media interval (default: 1000; off: 0)
+`interval=N` - media cycling interval (default: 1000; 0 = off)
+`ignorePinned` - don't prevent pinned files from cycling
+`ignorePriority` - don't show priority files first

@@ -27,6 +27,8 @@
 	const DISABLE_VIDEO = false;
 	const DISABLE_IMAGES = false;
 	const INTERVAL = 1000;
+	const IGNORE_PRIORITY = false;
+	const IGNORE_PINNED = false;
 	const YT_PARAMS =	            // Youtube iframe URL params
 	"?mute=1" +
 	"&enablejsapi=1" +            // control iframe video with JS
@@ -66,6 +68,8 @@
 		disableVideo: getSettings('disableVid', DISABLE_VIDEO),
 		disableImages: getSettings('disableImg', DISABLE_IMAGES),
 		interval: getSettings('interval', INTERVAL),
+		ignorePriority: getSettings('ignorePriority', IGNORE_PRIORITY),
+		ignorePinned: getSettings('ignorePinned', IGNORE_PINNED),
 	};
 	// END Config interface
 

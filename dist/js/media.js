@@ -10,6 +10,8 @@
 		forceYTEmbeds,
 		YT_PARAMS,
 		interval,
+		ignorePriority,
+		ignorePinned,
 	} = houseConfig;
 
 	const { allMedia } = houseState;
@@ -17,19 +19,20 @@
 	let unusedMedia = []; // working copy of allMedia
 	let unusableMedia = []; // IDs of media that aren't allowed
 
-	const walls = [...containers] // array of container elements with info on their media
-		.map((element) => ({
-			element, // html element
-			mediaId: null, // id of currently displayed media item (id = allMedia index)
-			mediaType: null,
-		}));
+	// array of container elements and their current media
+	const walls = [...containers].map((element) => ({
+		element,
+		media: undefined,
+	}));
 
 	// -----------------------------------------------------------------------
 
 	// Set all usable media as unused, except currently displayed ones
 	function resetUnusedMedia() {
 		unusedMedia = allMedia.filter((item) => {
-			const itemCurrentlyUsed = walls.find((wall) => wall.mediaId === item.id);
+			const itemCurrentlyUsed = walls.find((wall) =>
+				wall.media ? wall.media.id === item.id : false
+			);
 			const itemUnusable = unusableMedia.includes(item.id);
 
 			if (!itemCurrentlyUsed && !itemUnusable) return item;
@@ -46,12 +49,12 @@
 		if (!height) throw new Error("YT embed error: invalid container");
 		if (!ratio) ratio = 1.8;
 
-		const linkMain = link.split("?");
-		const videoId = linkMain[0] // neded for loop to work
+		const linkMain = link.split("?")[0];
+		const videoId = linkMain // neded for loop to work
 			.replace("https://www.youtube.com/embed/", "")
 			.match(/[^\?\/]+/);
 		const params = YT_PARAMS + "&playlist=" + videoId;
-		const url = linkMain[0] + params;
+		const url = linkMain + params;
 
 		return `<div class="embed"><iframe
 			data-ratio="${ratio}"
@@ -71,10 +74,8 @@
 		return `<img class="image" src="${link}" alt=":)">`;
 	}
 
-	// --------------------------- Build Album ---------------------------------
-
 	// Create html from a media element
-	function buildElement({ link, type, ratio }, container) {
+	function buildMediaElement({ link, type, ratio }, container) {
 		switch (type) {
 			case "video":
 				return createVideo(link);
@@ -87,26 +88,24 @@
 		}
 	}
 
-	function validateMedia(type) {
+	// --------------------------- Build Album ---------------------------------
+
+	function isMediaValid({ type, priority }, mode) {
+		if (mode === "priority-only" && !priority) return false;
+
 		if (type === "video" && !disableVideo) return true;
 		if (type === "image" && !disableImages) return true;
 		if (type === "YT embed") {
 			if (forceYTEmbeds) return true;
-			// disable on mobile due to lack of autoplay (bad UX)
 			if (!disableYTEmbeds && window.innerWidth > 800) return true;
+			// disabled on mobile due to lack of autoplay (bad UX)
 		}
 		return false;
 	}
 
-	// TEMP - TODO: use persistent id instead
-	function getIndex(element, media) {
-		return media.findIndex((el) => el === element);
-	}
-
 	// Interate over unused media elements until an allowed one is found
-	function buildRandomMediaElement(wall) {
-		let done = false;
-		while (!done) {
+	function getNextMediaElement(mode) {
+		while (unusableMedia.length < allMedia.length) {
 			// If ran out of unused elements, start over
 			if (!unusedMedia.length) resetUnusedMedia();
 
@@ -114,39 +113,47 @@
 			const randomIndex = Math.floor(Math.random() * unusedMedia.length);
 			const randomMedia = unusedMedia.splice(randomIndex, 1)[0];
 
-			const { type, id } = randomMedia;
-
-			// Attempt to build an element from the random media item
-			if (validateMedia(type)) {
-				const container = wall.element;
-				container.innerHTML = buildElement(randomMedia, container);
-				wall.mediaId = id;
-				wall.mediaType = type;
-				done = true; // break loop
-			}
-			// Mark item as unusable and loop
-			else unusableMedia.push(id);
+			// Break loop when a suitable element is found
+			if (isMediaValid(randomMedia, mode)) return randomMedia;
+			unusableMedia.push(randomMedia.id);
 		}
 	}
 
+	function insertMedia(wall, mode) {
+		wall.media = getNextMediaElement(mode);
+		if (wall.media)
+			wall.element.innerHTML = buildMediaElement(wall.media, wall.element);
+	}
+
 	// Insert an element into each wall
-	function insertMediaHtml() {
+	function buildAlbum() {
 		if (!allMedia.length) return;
-		walls.forEach((wall) => buildRandomMediaElement(wall));
+
+		// Add priority media first
+		if (!ignorePriority) {
+			walls.forEach((wall) => insertMedia(wall, "priority-only"));
+			unusableMedia = []; // no longer relevant as validation method changed
+			resetUnusedMedia(); // currently used media aren't included (unless ran out)
+		}
+
+		// Add remaining media to remaining walls
+		walls.forEach((wall) => {
+			if (wall.media) return;
+			insertMedia(wall);
+		});
 	}
 
 	// ---------------------------- Secondary -----------------------------
 
-	// Iterate through walls at an interval and change media to a random one
-	function initCycleMedia() {
-		if (Number(interval) === 0) return;
-
-		// start with a random wall
-		let index = Math.floor(Math.random() * walls.length);
+	// Iterate through walls at an interval and change non-pinned media to a random one
+	function initMediaCycling() {
+		if (Number(interval) === 0) return; // user preferences exception
+		let index = Math.floor(Math.random() * walls.length); // start with a random wall
 
 		setInterval(() => {
 			const wall = walls[index];
-			buildRandomMediaElement(wall);
+			if (ignorePinned || (wall.media && !wall.media.pinned)) insertMedia(wall);
+
 			index = index < walls.length - 1 ? index + 1 : 0; // increment and loop
 		}, Number(interval));
 	}
@@ -179,8 +186,8 @@
 	function addCollection(data) {
 		allMedia.push(...data);
 		resetUnusedMedia();
-		insertMediaHtml();
-		initCycleMedia();
+		buildAlbum();
+		initMediaCycling();
 		mixUpVideoTime();
 	}
 

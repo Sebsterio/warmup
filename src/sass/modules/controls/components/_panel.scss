@@ -1,5 +1,6 @@
-// === Config panel & Add link panel ===
+// === Config main menu & options panels ===
 
+.house__menu,
 .house__panel {
 	background-image: linear-gradient(45deg, #3f4042, #303133);
 	border-radius: 5px;
@@ -14,8 +15,8 @@
 	}
 }
 
-// Main panel - with buttons
-.house__panel--main {
+// Main menu - with buttons
+.house__menu {
 	// width: 100%;
 	height: 100%;
 	padding: 0.5em;
@@ -25,17 +26,11 @@
 	transform: translateX(-5px) !important; // always visible
 }
 
-// New link panel - add link
-.house__panel--new-link {
+// Panel - with input form
+.house__panel {
 	position: absolute;
 	top: 50px;
 	padding: 20px;
-
-	form {
-		display: grid;
-		grid-template-columns: auto auto;
-		grid-gap: 15px;
-	}
 }
 
 // === Button ===

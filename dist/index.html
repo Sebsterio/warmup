@@ -94,12 +94,16 @@
 
 		<!-- Controls -->
 		<div class="house__controls">
-			<div class="house__panel house__panel--main">
+			<div class="house__menu">
 				<div class="house__btn" data-target="new-link">&#10010;</div>
 				<div class="house__btn house__btn--disabled" data-target="remove-link">&#9866;</div>
 				<div class="house__btn house__btn--disabled" data-target="options">&#10066;</div>
+				<div class="house__btn house__btn--disabled" data-target="options">&#9776;</div>
+				<div class="house__btn" data-target="profile">&#9750;</div>
 				<div class="house__btn" data-target="close">&#10006;</div>
 			</div>
+
+			<!-- New link panel -->
 			<div class="house__panel house__panel--new-link">
 				<form action="#">
 					<!-- Type -->
@@ -118,9 +122,9 @@
 					<input id="house__input--ratio" class="house__input" name="ratio" type="range" value="1.8" min="1" max="2"
 						step="0.1">
 
-					<!-- Name -->
-					<label for="house__input--name" class="house__label">Description</label>
-					<input id="house__input--name" class="house__input" name="name" type="text">
+					<!-- Descritpion -->
+					<label for="house__input--description" class="house__label">Description</label>
+					<input id="house__input--description" class="house__input" name="description" type="text">
 
 					<!-- URL -->
 					<label for="house__input--url" class="house__label">Link</label>
@@ -141,14 +145,45 @@
 					</div>
 
 					<!-- Submit -->
-					<input disabled class="house__input--submit" type="submit" name="submit" value="Add Love">
+					<input disabled class="house__input house__input--submit" type="submit" name="submit" value="Add Love">
 				</form>
 			</div>
+
+			<!-- Remove links panel -->
 			<div class="house__panel house__panel--remove-link">
 				Work in progress...
 			</div>
+
+			<!-- Options panel -->
 			<div class="house__panel house__panel--options">
 				Work in progress...
+			</div>
+
+			<!-- Profile panel -->
+			<div class="house__panel house__panel--profile house__panel--active">
+				<!-- Profile form-->
+				<form action="" class="house__profile-form">
+					<fieldset>
+						<!-- Our house -->
+						<input id="house__input--our-house" class="house__input" type="radio" name="profile" value="common" checked>
+						<label for="house__input--our-house" class="house__label">Our House</label>
+
+						<!-- My house -->
+						<input id="house__input--my-house" class="house__input" type="radio" name="profile" value="personal">
+						<label for="house__input--my-house" class="house__label">My House</label>
+					</fieldset>
+				</form>
+
+				<!-- Sign-in form-->
+				<form action="" class="house__sign-in-form" style="display: none;">
+					<!-- Name -->
+					<label for="house__input--username" class="house__label">Name</label>
+					<input id="house__input--username" class="house__input" name="username" type="text">
+
+					<!-- Submit -->
+					<input disabled class="house__input house__input--sign-in" type="submit" name="sign-in" value="Sign in">
+				</form>
+
 			</div>
 		</div>
 		<!-- END Controls -->
@@ -166,8 +201,9 @@
 	<script src='js/media.js'></script>
 	<script src='js/interactions.js'></script>
 	<script src='js/controls.js'></script>
-	<script src='js/form.js'></script>
-	<!-- <script src='js/db_backup.js'></script> -->
+	<script src='js/new-link.js'></script>
+	<script src='js/profile.js'></script>
+	<script src='js/db_backup.js'></script>
 
 	<!-- Production Script -->
 	<!-- <script src='js/all.js'></script> -->

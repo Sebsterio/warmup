@@ -71,18 +71,21 @@
 		interval: getPreference('interval', INTERVAL),
 		ignorePriority: getPreference('ignorePriority', IGNORE_PRIORITY),
 		ignorePinned: getPreference('ignorePinned', IGNORE_PINNED),
+		profile: getPreference('house', '')
 	};
 	// END Config interface
 
-	// ---------- Exports ----------
+	// ------------------ Exports --------------------
 	window.houseApp = {}
 
-	// ---------------- Local state -------------------
+	// ------------------- State ---------------------
 	window.houseState = {
 		allMedia: [],           // Local copy of database
 	};
+
+	// TODO:  houseApp = {config, state, utils}
 	
-	// ---------------- Utils ------------------- <<< move to own file
+	// ---------------- Utils ------------------- <<< TODO: move to own file
 
 	houseApp.makeBackup = function(){
 		const allMedia = houseState.allMedia

@@ -19,23 +19,54 @@
   font: inherit;
 }
 
-/* line 3, src/sass/modules/controls/components/_form.scss */
+/* line 2, src/sass/modules/controls/components/_form.scss */
+.house__panel form {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1em;
+  border: none;
+}
+
+/* line 8, src/sass/modules/controls/components/_form.scss */
+.house__panel form.house__profile-form {
+  min-width: 210px;
+}
+
+/* line 12, src/sass/modules/controls/components/_form.scss */
+.house__panel form fieldset {
+  grid-column: 1 / -1;
+  display: contents;
+}
+
+/* line 19, src/sass/modules/controls/components/_form.scss */
+.house__sign-in-form {
+  margin-top: 1.6em;
+}
+
+/* line 25, src/sass/modules/controls/components/_form.scss */
 .house__input {
   width: 160px;
 }
 
-/* line 7, src/sass/modules/controls/components/_form.scss */
+/* line 28, src/sass/modules/controls/components/_form.scss */
+.house__input[type="radio"] {
+  width: auto;
+  justify-self: end;
+}
+
+/* line 34, src/sass/modules/controls/components/_form.scss */
 .house__label {
   color: #8a8a8a;
   text-shadow: 0 0 3px rgba(138, 138, 138, 0.3);
 }
 
-/* line 12, src/sass/modules/controls/components/_form.scss */
-.house__input--submit {
+/* line 39, src/sass/modules/controls/components/_form.scss */
+.house__input[type="submit"] {
   grid-column: 1 / -1;
+  width: 100%;
 }
 
-/* line 16, src/sass/modules/controls/components/_form.scss */
+/* line 44, src/sass/modules/controls/components/_form.scss */
 .house__preview-container {
   grid-column: 1 / -1;
   width: 100%;
@@ -46,7 +77,7 @@
           box-shadow: 0 0 3px 0 rgba(138, 138, 138, 0.3);
 }
 
-/* line 26, src/sass/modules/controls/components/_form.scss */
+/* line 54, src/sass/modules/controls/components/_form.scss */
 .house__preview {
   position: absolute;
   width: 100%;
@@ -54,7 +85,7 @@
   overflow: hidden;
 }
 
-/* line 33, src/sass/modules/controls/components/_form.scss */
+/* line 61, src/sass/modules/controls/components/_form.scss */
 .house__preview--media img {
   min-height: 100%;
   width: 100%;
@@ -62,7 +93,7 @@
      object-fit: cover;
 }
 
-/* line 39, src/sass/modules/controls/components/_form.scss */
+/* line 67, src/sass/modules/controls/components/_form.scss */
 .house__preview--placeholder {
   padding: 1em;
   display: grid;
@@ -76,12 +107,13 @@
   text-shadow: 0 0 1px rgba(138, 138, 138, 0.3);
 }
 
-/* line 50, src/sass/modules/controls/components/_form.scss */
+/* line 78, src/sass/modules/controls/components/_form.scss */
 .house__preview-comment {
   font-size: 0.8em;
 }
 
 /* line 3, src/sass/modules/controls/components/_panel.scss */
+.house__menu,
 .house__panel {
   background-image: linear-gradient(45deg, #3f4042, #303133);
   border-radius: 5px;
@@ -96,15 +128,16 @@
           transform: translateX(-100%);
 }
 
-/* line 12, src/sass/modules/controls/components/_panel.scss */
+/* line 13, src/sass/modules/controls/components/_panel.scss */
+.house__menu.house__panel--active,
 .house__panel.house__panel--active {
   -webkit-transform: translateX(-5px);
       -ms-transform: translateX(-5px);
           transform: translateX(-5px);
 }
 
-/* line 18, src/sass/modules/controls/components/_panel.scss */
-.house__panel--main {
+/* line 19, src/sass/modules/controls/components/_panel.scss */
+.house__menu {
   height: 100%;
   padding: 0.5em;
   display: -webkit-box;
@@ -121,21 +154,14 @@
           transform: translateX(-5px) !important;
 }
 
-/* line 29, src/sass/modules/controls/components/_panel.scss */
-.house__panel--new-link {
+/* line 30, src/sass/modules/controls/components/_panel.scss */
+.house__panel {
   position: absolute;
   top: 50px;
   padding: 20px;
 }
 
-/* line 34, src/sass/modules/controls/components/_panel.scss */
-.house__panel--new-link form {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 15px;
-}
-
-/* line 43, src/sass/modules/controls/components/_panel.scss */
+/* line 38, src/sass/modules/controls/components/_panel.scss */
 .house__btn {
   font-size: 2.5em;
   line-height: 0;
@@ -149,14 +175,14 @@
   cursor: pointer;
 }
 
-/* line 53, src/sass/modules/controls/components/_panel.scss */
+/* line 48, src/sass/modules/controls/components/_panel.scss */
 .house__btn:hover,
 .house__btn.house__btn--active {
   color: #9272ce;
   text-shadow: 0 0 3px rgba(146, 114, 206, 0.7);
 }
 
-/* line 59, src/sass/modules/controls/components/_panel.scss */
+/* line 54, src/sass/modules/controls/components/_panel.scss */
 .house__btn--disabled,
 .house__btn--disabled:hover {
   color: #515253;

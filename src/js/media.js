@@ -11,6 +11,7 @@
 		interval,
 		ignorePriority,
 		ignorePinned,
+		profile,
 	} = houseConfig;
 
 	const { allMedia } = houseState;
@@ -216,6 +217,9 @@
 		mixUpVideoTime();
 	};
 
-	window.houseApp.firestore.fetch(houseApp.addCollection);
+	// load profile media from DB
+	const profileToLoad = !profile ? "wuitw" : profile;
+	window.houseApp.firestore.fetch(profileToLoad, houseApp.addCollection);
+
 	window.addEventListener("resize", updateIframeSizes);
 })();

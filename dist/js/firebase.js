@@ -18,8 +18,8 @@
 
 	// -------------------------------------------------------------------
 
-	function updateCollection(collection, cb) {
-		db.collection("links")
+	function updateCollection(collection, profile, cb) {
+		db.collection(profile)
 			.doc("links")
 			.set({ collection })
 			.then((function () {
@@ -34,8 +34,8 @@
 			}));
 	}
 
-	function fetchCollection(cb) {
-		db.collection("links")
+	function fetchCollection(profile, cb) {
+		db.collection(profile)
 			.get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {

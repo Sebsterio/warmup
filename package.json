@@ -22,7 +22,7 @@
 	],
 	"scripts": {
 		"gulp": "gulp",
-		"watch": "gulp watch"
+		"dev": "gulp watch"
 	},
 	"main": "./dist/main.js",
 	"devDependencies": {

@@ -1,4 +1,6 @@
 (function () {
+	const currentProfile = window.houseConfig.profile;
+
 	const form = document.querySelector(".house__panel--new-link form");
 	const typeInput = form.querySelector("#house__input--type");
 	const ratioInput = form.querySelector("#house__input--ratio");
@@ -90,7 +92,7 @@
 		const newItem = {
 			id: allMedia.length,
 			type: form.type.value,
-			name: form.name.value,
+			description: form.description.value,
 			link: form.url.value,
 		};
 		if (form.type.value === "YT embed") {
@@ -104,8 +106,17 @@
 		// TEMP (debugging) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 		if (allMedia.length === 1) alert("Error code 1. Please tell Seb.");
 
+		// Authenticate user on base profile only (i.e. no profile)
+		if (!currentProfile) {
+			const pw = prompt("Warm up in the ... ?");
+			if (pw !== "woods") {
+				alert("Sorry, wrong password. Feel free to create your own profile.");
+				return;
+			}
+		}
+
 		// Sync up with remote database
-		houseApp.firestore.update(allMedia, () => {
+		houseApp.firestore.update(allMedia, currentProfile, () => {
 			alert("Love shared succesfullly");
 		});
 
@@ -119,7 +130,7 @@
 	typeInput.addEventListener("input", handleTypeInput);
 	ratioInput.addEventListener("input", handleRatioInput);
 	urlInput.addEventListener("input", previewMedia);
-	submit.addEventListener("click", handleSubmit);
+	form.addEventListener("submit", handleSubmit);
 
 	handleTypeInput();
 })();

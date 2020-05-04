@@ -1,9 +1,5 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
 const mediaBackup = [
-	// {
-	// 	type: "video/mp4",
-	// 	link: "vid.mp4",
-	// },
 	{
 		id: 0,
 		type: "YT embed",
@@ -71,6 +67,6 @@ const mediaBackup = [
 	},
 ];
 
-houseApp.firestore.update(mediaBackup, () => {
+houseApp.firestore.update(mediaBackup, "sebster", () => {
 	alert("Love shared succesfullly");
 });

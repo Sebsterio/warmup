@@ -1,7 +1,34 @@
+.house__panel {
+	form {
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 1em;
+		border: none;
+
+		&.house__profile-form {
+			min-width: 210px;
+		}
+
+		fieldset {
+			grid-column: 1 / -1;
+			display: contents;
+		}
+	}
+}
+
+.house__sign-in-form {
+	margin-top: 1.6em;
+}
+
 // === Input ===
 
 .house__input {
 	width: 160px;
+
+	&[type="radio"] {
+		width: auto;
+		justify-self: end;
+	}
 }
 
 .house__label {
@@ -9,8 +36,9 @@
 	text-shadow: 0 0 3px $color-secondary-translucent;
 }
 
-.house__input--submit {
+.house__input[type="submit"] {
 	grid-column: 1 / -1;
+	width: 100%;
 }
 
 .house__preview-container {

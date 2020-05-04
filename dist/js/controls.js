@@ -3,7 +3,7 @@
 	if (!controlsEnabled) return;
 
 	const controls = document.querySelector(".house__controls");
-	const mainPanel = controls.querySelector(".house__panel--main");
+	const mainPanel = controls.querySelector(".house__menu");
 	const buttons = controls.querySelectorAll(".house__btn");
 
 	// Toggle the whole controls module
@@ -39,15 +39,18 @@
 		const activePanel = controls.querySelector(".house__panel--active");
 		const targetPanel = controls.querySelector(".house__panel--" + target);
 
-		// If anything's not open, open clicked elements immediately
-		if (!activeBtn || !activePanel) {
+		// If anything's not (fully) open, open clicked elements immediately
+		if (!activeBtn && !activePanel) {
 			toggleButton(this, true);
 			toggleMenu(targetPanel, true);
 		}
 		// If a menu is open, hide it and open new menu if different than current
 		else {
-			toggleButton(this, false);
-			toggleMenu(targetPanel, false);
+			// close current
+			toggleButton(activeBtn, false);
+			toggleMenu(activePanel, false);
+
+			// open new one, if different than current
 			if (this !== activeBtn) {
 				toggleButton(this, true);
 				setTimeout(() => {

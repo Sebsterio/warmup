@@ -1,8 +1,4 @@
 const mediaBackup = [
-	// {
-	// 	type: "video/mp4",
-	// 	link: "vid.mp4",
-	// },
 	{
 		id: 0,
 		type: "YT embed",
@@ -70,6 +66,6 @@ const mediaBackup = [
 	},
 ];
 
-houseApp.firestore.update(mediaBackup, () => {
+houseApp.firestore.update(mediaBackup, "sebster", () => {
 	alert("Love shared succesfullly");
 });

@@ -1,6 +1,8 @@
 # Warm Up Family Memory Lane
 
-[warmup.netlify.app](https://warmup.netlify.app/)
+[warmup.netlify.app](https://warmup.netlify.app/) - presentational version
+
+[warmup.netlify.app?ui](https://warmup.netlify.app/?ui) - UI version
 
 ## Features
 

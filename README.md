@@ -12,12 +12,9 @@
 
 #### Current task
 
-- redirect URL `edit` to `ui`
-- animated transition when images change
-
 #### Next
 
-- edit-items UI panel (remove items, pin, add priority, make/restore backup)
+- edit-items UI panel (remove, pin, add priority, make/restore backup)
 
 #### Juice
 

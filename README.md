@@ -12,8 +12,6 @@
 
 #### Current task
 
-- change submit text to 'link not valid' when disabled
-
 #### Next
 
 - automatic localStorage backup of current db (separate key from manual backup)

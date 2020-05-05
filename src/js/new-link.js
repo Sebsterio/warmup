@@ -51,27 +51,37 @@
 		return url.replace(/[^]+src="/, "").replace(/"[^]+$/, "");
 	}
 
+	function toggleSubmitButton(on) {
+		if (on) {
+			submit.removeAttribute("disabled");
+			submit.value = "Add Love";
+		} else {
+			submit.setAttribute("disabled", true);
+			submit.value = "Link not valid";
+		}
+	}
+
 	// Preload media file and, if valid, display it and enable submit button
 	function previewMedia(e) {
-		submit.setAttribute("disabled", true);
+		toggleSubmitButton(false);
 
 		let url = e.target.value;
 
 		if (form.type.value === "image") {
 			window.houseApp.preloadImage(url, () => {
 				preview.innerHTML = `<img src="${url}" alt="preview">`;
-				submit.removeAttribute("disabled");
+				toggleSubmitButton(true);
 			});
 		} else if (form.type.value === "video") {
 			window.houseApp.preloadVideo(url, () => {
 				preview.innerHTML = `<video class="video" autoplay muted loop src="${url}"></video>`;
-				submit.removeAttribute("disabled");
+				toggleSubmitButton(true);
 			});
 		} else if (form.type.value === "YT embed") {
 			const cleanURL = cleanYTembedURL(url);
 			const ratio = form.ratio.value;
 			preview.innerHTML = window.createYTEmbed(cleanURL, ratio, preview);
-			submit.removeAttribute("disabled");
+			toggleSubmitButton(true);
 		}
 	}
 

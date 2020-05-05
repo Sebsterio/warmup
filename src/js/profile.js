@@ -4,7 +4,7 @@
 	const panel = document.querySelector(".house__panel--profile");
 	const profileForm = panel.querySelector(".house__profile-form");
 	const signInForm = panel.querySelector(".house__sign-in-form");
-	const signInBtn = panel.querySelector(".house__input--sign-in");
+	const signInBtn = panel.querySelector(".house__input--enter");
 
 	// -----------------------------------------------------------------------
 
@@ -35,10 +35,23 @@
 		changeProfile(signInForm.username.value);
 	}
 
-	// Enable disabled sing-in button if userName is present
-	function handleSingnInInput(e) {
-		if (e.target.value) signInBtn.removeAttribute("disabled");
-		else signInBtn.setAttribute("disabled", true);
+	// Toggle disabled sing-in button if userName is present
+	function handleSingnInInput() {
+		const name = signInForm.username.value;
+		if (name) {
+			// different profile: show enabled button
+			if (name !== currentProfile) {
+				signInBtn.removeAttribute("disabled");
+				signInBtn.removeAttribute("hidden");
+			}
+			// current profile: hide button
+			else signInBtn.setAttribute("hidden", true);
+		}
+		// input empty: show disabled button (suggest it must be clicked to sing in)
+		else {
+			signInBtn.setAttribute("disabled", true);
+			signInBtn.removeAttribute("hidden");
+		}
 	}
 
 	// Reflect current profile in the form state
@@ -47,6 +60,7 @@
 			profileForm.profile.value = "personal";
 			signInForm.style.display = null; // show (hidden attr is buggy)
 			signInForm.username.value = currentProfile;
+			handleSingnInInput(); // set signInBtn appearance according to current profile
 		} else {
 			profileForm.profile.value = "common";
 			signInForm.style.display = "none"; // hide (hidden attr is buggy)

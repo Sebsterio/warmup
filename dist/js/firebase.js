@@ -45,7 +45,7 @@
 					const links = doc.data().links;
 					cb(links);
 				} else {
-					alert("There's no such profile!");
+					alert("A new house has been built!");
 				}
 			})
 			.catch((function (error) {

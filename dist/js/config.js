@@ -1,12 +1,14 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
 (function(){
 	// ----------------- URL params object -----------------
-	const urlParams = window.location.search.replace('?','').split('&').reduce((obj, param) => {
-		param = param.split('=');
-		if (param[0]) obj[param[0]] = param[1] ? param[1] : true;
-		return obj;
-	}, {});
-
+	const urlParams = window.location.search
+		.replace('?','').split('&')
+		.reduce((obj, param) => {
+			param = param.split('=');
+			if (param[0]==='edit') param[0] = 'ui'; // TEMP
+			if (param[0]) obj[param[0]] = param[1] ? param[1] : true;
+			return obj;
+		}, {});
 
 	// ----------------- Config defaults -----------------
 		
@@ -62,7 +64,7 @@
 		INITIAL_TILT: INITIAL_TILT,
 		INITIAL_PIVOT: INITIAL_PIVOT,
 		YT_PARAMS: YT_PARAMS,
-		controlsEnabled: getPreference('edit', CONTROLS_ENABLED),
+		controlsEnabled: getPreference('ui', CONTROLS_ENABLED),
 		animationSpeed: getPreference('speed', ANIMMATION_SPEED),
 		disableYTEmbeds: getPreference('disableYT', DISABLE_YT),
 		forceYTEmbeds: getPreference('forceYT', FORCE_YT),

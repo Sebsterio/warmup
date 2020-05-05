@@ -45,7 +45,7 @@ e.g. `warmup.netlify.app?edit&speed=1`
 
 [//]: # "Remember double space at end each of line"
 
-`edit` - show controls  
+`ui` - show controls  
 `speed=_N` - animation speed (default: -0.05)  
 `disableYT` - skip Youtube embeds  
 `forceYT` - never skip Youtube embeds (priority)  

@@ -104,33 +104,25 @@
 		e.preventDefault();
 		const { allMedia } = window.houseState;
 
-		// avoid overwriting DB after Firestore fail
-		if (!allMedia.length) return;
-
 		// Add item to local state
 		const newItem = createNewItem(allMedia.length);
 		allMedia.push(newItem);
 
-		// TEMP (debugging) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-		if (allMedia.length === 1) alert("Error code 1. Please tell Seb.");
-
 		// Authenticate user on base profile only (i.e. no profile)
 		if (!currentProfile) {
-			const pw = prompt("Warm up in the ... ?");
-			if (pw !== "woods") {
+			if (prompt("Warm up in the ... ?") !== "woods") {
 				alert("Sorry, wrong password. Feel free to create your own profile.");
 				return;
 			}
 		}
 
-		// Sync up with remote database
+		// Save & sync
+		houseApp.makeBackup();
 		houseApp.firestore.update(currentProfile, allMedia, () => {
 			alert("Love shared succesfullly");
+			form.reset();
+			preview.innerHTML = "";
 		});
-
-		// Reset form
-		form.reset();
-		preview.innerHTML = "";
 	}
 
 	// ----------------------- Init ---------------------------

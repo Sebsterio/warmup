@@ -35,7 +35,7 @@
 
 	// ----------------------- get ------------------------------
 
-	function fetchCollection(profile, cb) {
+	function fetchCollection(profile, cb, errCb) {
 		db.collection("profiles")
 			.doc(profile)
 			.get()
@@ -49,10 +49,11 @@
 			})
 			.catch(function (error) {
 				alert(
-					"Database Error. " +
-						"Please try again and if the problem persists, show this to Seb:\n\n" +
+					"Database Sync Error. Showing locally saved media. Refresh page to try again." +
+						"If the problem persists, show this to Seb:\n\n" +
 						error
 				);
+				errCb();
 			});
 		// .then((querySnapshot) => {
 		// 	querySnapshot.forEach((doc) => {

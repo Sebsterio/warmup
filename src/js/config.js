@@ -75,7 +75,7 @@
 	// END Config interface
 
 	// ------------------ Exports --------------------
-	window.houseApp = {}
+	window.houseApp = {};
 
 	// ------------------- State ---------------------
 	window.houseState = {
@@ -83,25 +83,6 @@
 	};
 
 	// TODO:  houseApp = {config, state, utils}
-	
-	// ---------------- Utils ------------------- <<< TODO: move to own file
-
-	houseApp.makeBackup = function(){
-		const allMedia = houseState.allMedia
-		localStorage.setItem('db-backup', JSON.stringify(allMedia))
-		return 'done'
-	}
-	houseApp.restoreBackup = function(){
-		const media = JSON.parse(localStorage.getItem('db-backup'))
-		houseState.allMedia = [...media];
-		houseApp.addCollection(houseState.allMedia)
-		return 'done'
-	}
-	houseApp.pushMedia = function(){
-		houseApp.firestore.update(houseConfig.profile, houseState.allMedia,  () => {
-			console.log("synced");
-		});
-	}
 })();
 
 

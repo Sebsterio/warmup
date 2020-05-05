@@ -208,8 +208,9 @@
 		});
 	}
 
-	// ----------------------------- Init -----------------------------------
+	// --------------------------- Interface ---------------------------------
 
+	// Update view with new media
 	window.houseApp.addCollection = function (data) {
 		allMedia.push(...data);
 		resetUnusedMedia();
@@ -218,9 +219,25 @@
 		mixUpVideoTime();
 	};
 
+	// Save allmedia to localStorage
+	houseApp.makeBackup = function (key = "auto-backup") {
+		localStorage.setItem(key, JSON.stringify(allMedia));
+	};
+
+	// Retrieve media from localStorage and update view
+	houseApp.restoreBackup = function (key = "auto-backup") {
+		const media = JSON.parse(localStorage.getItem(key));
+		houseState.allMedia = [...media];
+		houseApp.addCollection(allMedia);
+	};
+
+	// ----------------------------- Init -----------------------------------
+
+	const { addCollection, restoreBackup } = houseApp;
+
 	// Load profile media from DB
 	const profileToLoad = !profile ? "wuitw" : profile;
-	window.houseApp.firestore.fetch(profileToLoad, houseApp.addCollection);
+	window.houseApp.firestore.fetch(profileToLoad, addCollection, restoreBackup);
 
 	window.addEventListener("resize", updateIframeSizes);
 })();

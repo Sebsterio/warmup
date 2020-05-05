@@ -12,13 +12,12 @@
 
 #### Current task
 
+- redirect URL `edit` to `ui`
+- animated transition when images change
+
 #### Next
 
-- automatic localStorage backup of current db (separate key from manual backup)
-- restore locaStorage backup in case of firebase download failure (correct db)
-
-- animated transition when images change
-- remove-items UI panel
+- edit-items UI panel (remove items, pin, add priority, make/restore backup)
 
 #### Juice
 

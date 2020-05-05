@@ -7,6 +7,8 @@
 	const signInForm = panel.querySelector(".house__sign-in-form");
 	const signInBtn = panel.querySelector(".house__input--sign-in");
 
+	// -----------------------------------------------------------------------
+
 	// Change window location to match selected profile
 	function changeProfile(profileName) {
 		// Remove profile query from URL
@@ -28,29 +30,32 @@
 		else if (e.target.value === "common") changeProfile("");
 	}
 
-	// Enable disabled sing-in button if userName is present
-	function handleSingnInInput(e) {
-		if (e.target.value) signInBtn.removeAttribute("disabled");
-		else signInBtn.setAttribute("disabled", true);
-	}
-
 	// Navigate to personal profile URL
 	function handleSignIn(e) {
 		e.preventDefault();
 		changeProfile(signInForm.username.value);
 	}
 
+	// Enable disabled sing-in button if userName is present
+	function handleSingnInInput(e) {
+		if (e.target.value) signInBtn.removeAttribute("disabled");
+		else signInBtn.setAttribute("disabled", true);
+	}
+
 	// Reflect current profile in the form state
 	function setUpForms() {
 		if (currentProfile) {
 			profileForm.profile.value = "personal";
-			signInForm.style.display = null; // show (hidden attr buggy)
+			signInForm.style.display = null; // show (hidden attr is buggy)
 			signInForm.username.value = currentProfile;
 		} else {
-			signInForm.style.display = "none"; // hide (hidden attr buggy)
 			profileForm.profile.value = "common";
+			signInForm.style.display = "none"; // hide (hidden attr is buggy)
+			signInForm.username.value = ""; // reduntant but tidier
 		}
 	}
+
+	// --------------------------------------------------------------------------
 
 	profileForm.addEventListener("input", handleProfileInput);
 	signInForm.addEventListener("input", handleSingnInInput);

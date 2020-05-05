@@ -97,6 +97,11 @@
 		houseApp.addCollection(houseState.allMedia)
 		return 'done'
 	}
+	houseApp.pushMedia = function(){
+		houseApp.firestore.update(houseConfig.profile, houseState.allMedia,  () => {
+			console.log("synced");
+		});
+	}
 })();
 
 

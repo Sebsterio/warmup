@@ -12,25 +12,26 @@
 
 #### Current task
 
+- change submit text to 'link not valid' when disabled
+
 #### Next
 
-- change submit text to 'link not valid' when disabled
 - automatic localStorage backup of current db (separate key from manual backup)
 - restore locaStorage backup in case of firebase download failure (correct db)
+
+- animated transition when images change
 - remove-items UI panel
 
 #### Juice
 
 - replace HTML entities with SVG to normalize the look across browsers
-- animated transition when images change
 - add zoom on mobile
-- add animations (with some X axis variation)
-- change photo when not in view
+- more animations (with some X axis variation)
 - settings panel -> localStorage (don't save url settings)
 - pin items on click -> localStorage (don't sync pinned props)
-- option to disable interactivity and run CSS animation (better suited for extended use)
-- upload audio (local only OR play random one)
-- change bg (local only?)
+- option to disable interactivity and use CSS animation (better suited for extended use)
+- upload audio
+- change bg
 
 ## Known bugs
 
@@ -58,7 +59,7 @@ e.g. `warmup.netlify.app?edit&speed=1`
 `ignorePriority` - don't show priority files first
 `house=_*` - user profile
 
-### Console methods
+### Console
 
 Open dev tools (`Ctr + Shif + I` or right-click and 'inspect')  
 Select 'Console' tab  
@@ -71,5 +72,5 @@ Type a function call and press `Enter`
 
 ```
 $ npm i
-$ npm run watch
+$ npm run dev
 ```

@@ -218,7 +218,7 @@
 		mixUpVideoTime();
 	};
 
-	// load profile media from DB
+	// Load profile media from DB
 	const profileToLoad = !profile ? "wuitw" : profile;
 	window.houseApp.firestore.fetch(profileToLoad, houseApp.addCollection);
 

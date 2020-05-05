@@ -16,12 +16,12 @@
 	firebase.analytics();
 	const db = firebase.firestore();
 
-	// -------------------------------------------------------------------
+	// ------------------------------- post ------------------------------------
 
-	function updateCollection(collection, profile, cb) {
-		db.collection(profile)
-			.doc("links")
-			.set({ collection })
+	function updateCollection(profile, data, cb) {
+		db.collection("profiles")
+			.doc(profile)
+			.set({ links: data }) // Note: can't update individual fields, only the whole doc
 			.then((function () {
 				cb();
 			}))
@@ -34,16 +34,35 @@
 			}));
 	}
 
+	// ----------------------- get ------------------------------
+
 	function fetchCollection(profile, cb) {
-		db.collection(profile)
+		db.collection("profiles")
+			.doc(profile)
 			.get()
-			.then((querySnapshot) => {
-				querySnapshot.forEach((doc) => {
-					const media = doc.data().collection;
-					cb(media);
-				});
-			});
+			.then((doc) => {
+				if (doc.exists) {
+					const links = doc.data().links;
+					cb(links);
+				} else {
+					alert("There's no such profile!");
+				}
+			})
+			.catch((function (error) {
+				alert(
+					"Database Error. " +
+						"Please try again and if the problem persists, show this to Seb:\n\n" +
+						error
+				);
+			}));
+		// .then((querySnapshot) => {
+		// 	querySnapshot.forEach((doc) => {
+		// 		const media = doc.data().collection;
+		// 		cb(media);
+		// 	});
+		// });
 	}
+	// -------------------------- module exports -----------------------------
 
 	window.houseApp.firestore = {
 		update: updateCollection,

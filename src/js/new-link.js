@@ -62,22 +62,31 @@
 				preview.innerHTML = `<img src="${url}" alt="preview">`;
 				submit.removeAttribute("disabled");
 			});
-			return;
-		}
-		if (form.type.value === "video") {
+		} else if (form.type.value === "video") {
 			window.houseApp.preloadVideo(url, () => {
 				preview.innerHTML = `<video class="video" autoplay muted loop src="${url}"></video>`;
 				submit.removeAttribute("disabled");
 			});
-			return;
-		}
-		if (form.type.value === "YT embed") {
+		} else if (form.type.value === "YT embed") {
 			const cleanURL = cleanYTembedURL(url);
 			const ratio = form.ratio.value;
 			preview.innerHTML = window.createYTEmbed(cleanURL, ratio, preview);
 			submit.removeAttribute("disabled");
-			return;
 		}
+	}
+
+	function createNewItem(id) {
+		const item = {
+			id,
+			type: form.type.value,
+			description: form.description.value,
+			link: form.url.value,
+		};
+		if (form.type.value === "YT embed") {
+			item.link = cleanYTembedURL(form.url.value);
+			item.ratio = form.ratio.value;
+		}
+		return item;
 	}
 
 	// Add new item to local state and sync with DB
@@ -88,19 +97,8 @@
 		// avoid overwriting DB after Firestore fail
 		if (!allMedia.length) return;
 
-		// create item to add
-		const newItem = {
-			id: allMedia.length,
-			type: form.type.value,
-			description: form.description.value,
-			link: form.url.value,
-		};
-		if (form.type.value === "YT embed") {
-			newItem.link = cleanYTembedURL(form.url.value);
-			newItem.ratio = form.ratio.value;
-		}
-
 		// Add item to local state
+		const newItem = createNewItem(allMedia.length);
 		allMedia.push(newItem);
 
 		// TEMP (debugging) <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -116,7 +114,7 @@
 		}
 
 		// Sync up with remote database
-		houseApp.firestore.update(allMedia, currentProfile, () => {
+		houseApp.firestore.update(currentProfile, allMedia, () => {
 			alert("Love shared succesfullly");
 		});
 

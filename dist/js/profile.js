@@ -9,7 +9,7 @@
 
 	// -----------------------------------------------------------------------
 
-	// Change window location to match selected profile
+	// Change window location to match selected profile & save profile in localStorage
 	function changeProfile(profileName) {
 		// Remove profile query from URL
 		let newQuery = window.location.search.replace(/[\?&](house=)[^&]*/, "");
@@ -21,6 +21,7 @@
 			newQuery += separator + urlQuery;
 		}
 
+		localStorage.setItem("house", profileName);
 		window.location = newQuery;
 	}
 

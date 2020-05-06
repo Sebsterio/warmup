@@ -1,26 +1,28 @@
 # Warm Up Family Memory Lane
 
-[warmup.netlify.app](https://warmup.netlify.app/) - presentational version
+[warmup.netlify.app](https://warmup.netlify.app/) - 3D model only
 
-[warmup.netlify.app?ui](https://warmup.netlify.app/?ui) - UI version
+[warmup.netlify.app?ui](https://warmup.netlify.app/?ui) - 3D model + UI
 
 ## Features
 
 - Animated and interactive 3D model
 - Add images, videos, and Youtube embeds
 - Database sync
+- User profiles
 
 ## TODO
 
 #### Current task
 
+- edit-items UI panel (remove, pin, add priority, make/restore backup)
+
 #### Next
 
-- edit-items UI panel (remove, pin, add priority, make/restore backup)
+- replace HTML entities with SVG to normalize the look across browsers
 
 #### Juice
 
-- replace HTML entities with SVG to normalize the look across browsers
 - add zoom on mobile
 - more animations (with some X axis variation)
 - settings panel -> localStorage (don't save url settings)

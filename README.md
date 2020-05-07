@@ -18,9 +18,6 @@
 
 #### Current task
 
-- media unique ids
-- replace HTML entities with SVG to normalize the look across browsers
-
 #### Next
 
 - options panel

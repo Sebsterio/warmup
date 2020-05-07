@@ -36,9 +36,9 @@
 // === Main Menu Button ===
 
 .house__btn {
-	font-size: 2.5em;
-	line-height: 0; // ugly otherwise
-	padding: 0.05em;
+	font-size: 2em;
+	line-height: 2em;
+	padding: 0.15em;
 	color: $color-primary;
 	text-shadow: 0 0 3px $color-primary-translucent;
 	user-select: none;

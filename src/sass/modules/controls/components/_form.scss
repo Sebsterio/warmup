@@ -33,6 +33,17 @@
 	grid-column: 1 / -1;
 	width: 100%;
 	padding: 0.5em;
+	background: none;
+	color: $color-secondary;
+	border: 1px solid $color-secondary;
+	cursor: pointer;
+
+	&:hover,
+	&:focus {
+		color: #303133;
+		border-color: none;
+		background-color: $color-secondary;
+	}
 }
 
 // ----------- New Link Panel -------------

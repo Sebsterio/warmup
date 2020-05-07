@@ -55,9 +55,20 @@
   grid-column: 1 / -1;
   width: 100%;
   padding: 0.5em;
+  background: none;
+  color: #8a8a8a;
+  border: 1px solid #8a8a8a;
+  cursor: pointer;
 }
 
-/* line 40, src/sass/modules/controls/components/_form.scss */
+/* line 41, src/sass/modules/controls/components/_form.scss */
+.house__button:hover, .house__button:focus {
+  color: #303133;
+  border-color: none;
+  background-color: #8a8a8a;
+}
+
+/* line 51, src/sass/modules/controls/components/_form.scss */
 .house__preview-container {
   grid-column: 1 / -1;
   width: 100%;
@@ -68,7 +79,7 @@
           box-shadow: 0 0 3px 0 rgba(138, 138, 138, 0.3);
 }
 
-/* line 50, src/sass/modules/controls/components/_form.scss */
+/* line 61, src/sass/modules/controls/components/_form.scss */
 .house__preview {
   position: absolute;
   width: 100%;
@@ -76,7 +87,7 @@
   overflow: hidden;
 }
 
-/* line 57, src/sass/modules/controls/components/_form.scss */
+/* line 68, src/sass/modules/controls/components/_form.scss */
 .house__preview--media img {
   height: 100%;
   width: 100%;
@@ -84,7 +95,7 @@
      object-fit: cover;
 }
 
-/* line 63, src/sass/modules/controls/components/_form.scss */
+/* line 74, src/sass/modules/controls/components/_form.scss */
 .house__preview--placeholder {
   padding: 1em;
   display: grid;
@@ -98,28 +109,28 @@
   text-shadow: 0 0 1px rgba(138, 138, 138, 0.3);
 }
 
-/* line 74, src/sass/modules/controls/components/_form.scss */
+/* line 85, src/sass/modules/controls/components/_form.scss */
 .house__preview-comment {
   font-size: 0.8em;
 }
 
-/* line 80, src/sass/modules/controls/components/_form.scss */
+/* line 91, src/sass/modules/controls/components/_form.scss */
 .house__backup-form {
   margin-bottom: 1em;
 }
 
-/* line 83, src/sass/modules/controls/components/_form.scss */
+/* line 94, src/sass/modules/controls/components/_form.scss */
 .house__backup-form .house__button {
   grid-column: initial;
 }
 
-/* line 88, src/sass/modules/controls/components/_form.scss */
+/* line 99, src/sass/modules/controls/components/_form.scss */
 .house__album {
   overflow-y: auto;
   max-height: 70vh;
 }
 
-/* line 92, src/sass/modules/controls/components/_form.scss */
+/* line 103, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-item {
   margin-bottom: 1em;
   width: 400px;
@@ -133,12 +144,12 @@
           flex-flow: row wrap;
 }
 
-/* line 99, src/sass/modules/controls/components/_form.scss */
+/* line 110, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-item:last-child {
   margin-bottom: 0;
 }
 
-/* line 104, src/sass/modules/controls/components/_form.scss */
+/* line 115, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-thumbnail {
   position: relative;
   -webkit-box-flex: 0;
@@ -148,7 +159,7 @@
   overflow: hidden;
 }
 
-/* line 110, src/sass/modules/controls/components/_form.scss */
+/* line 121, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-thumbnail img {
   height: 100%;
   width: 100%;
@@ -158,7 +169,7 @@
      object-position: center;
 }
 
-/* line 118, src/sass/modules/controls/components/_form.scss */
+/* line 129, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-info {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 40%;
@@ -173,12 +184,12 @@
   justify-items: start;
 }
 
-/* line 124, src/sass/modules/controls/components/_form.scss */
+/* line 135, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-info .house__media-info-row {
   padding: 0.4em;
 }
 
-/* line 128, src/sass/modules/controls/components/_form.scss */
+/* line 139, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-info .house__media-info-buttons {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
@@ -195,12 +206,12 @@
   text-decoration: underline;
 }
 
-/* line 136, src/sass/modules/controls/components/_form.scss */
+/* line 147, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-info .house__media-info-buttons .house__media-info-button {
   cursor: pointer;
 }
 
-/* line 142, src/sass/modules/controls/components/_form.scss */
+/* line 153, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-url-container {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
@@ -209,7 +220,7 @@
   display: none;
 }
 
-/* line 148, src/sass/modules/controls/components/_form.scss */
+/* line 159, src/sass/modules/controls/components/_form.scss */
 .house__album .house__media-url-container .house__media-url {
   height: 4em;
   background-color: white;
@@ -222,17 +233,17 @@
           user-select: all;
 }
 
-/* line 158, src/sass/modules/controls/components/_form.scss */
+/* line 169, src/sass/modules/controls/components/_form.scss */
 .house__album .house--url-expanded .house__media-url-container {
   display: initial;
 }
 
-/* line 165, src/sass/modules/controls/components/_form.scss */
+/* line 176, src/sass/modules/controls/components/_form.scss */
 .house__profile-form {
   min-width: 210px;
 }
 
-/* line 169, src/sass/modules/controls/components/_form.scss */
+/* line 180, src/sass/modules/controls/components/_form.scss */
 .house__sign-in-form {
   margin-top: 1.6em;
 }
@@ -288,9 +299,9 @@
 
 /* line 38, src/sass/modules/controls/components/_panel.scss */
 .house__btn {
-  font-size: 2.5em;
-  line-height: 0;
-  padding: 0.05em;
+  font-size: 2em;
+  line-height: 2em;
+  padding: 0.15em;
   color: #7050aa;
   text-shadow: 0 0 3px rgba(112, 80, 170, 0.5);
   -webkit-user-select: none;

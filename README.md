@@ -6,23 +6,23 @@
 
 ## Features
 
-- Animated and interactive 3D model
-- Add images, videos, and Youtube embeds
-- Database sync
+- Animated and interactive 3D model and media collection
+- Support for images, videos, and Youtube embeds
+- Items display randomly (avoiding duplicates) at a set interval, with option to prioritize or pin any item
+- UI to edit collection
+- Online storage
 - User profiles
+- Session persistence
 
 ## TODO
 
 #### Current task
 
-- edit-items UI panel (remove, pin, add priority, make/restore backup)
-- set fixed width
-
 - media unique ids
+- replace HTML entities with SVG to normalize the look across browsers
 
 #### Next
 
-- replace HTML entities with SVG to normalize the look across browsers
 - options panel
 
 #### Juice

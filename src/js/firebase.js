@@ -18,8 +18,9 @@
 	// ------------------------------- post ------------------------------------
 
 	function updateCollection(profile, data, cb) {
+		const profileToLoad = profile ? profile : "wuitw";
 		db.collection("profiles")
-			.doc(profile)
+			.doc(profileToLoad)
 			.set({ links: data }) // Note: can't update individual fields, only the whole doc
 			.then(function () {
 				localStorage.setItem("auto-backup", JSON.stringify(data));
@@ -37,8 +38,9 @@
 	// ----------------------- get ------------------------------
 
 	function fetchCollection(profile, cb) {
+		const profileToLoad = profile ? profile : "wuitw";
 		db.collection("profiles")
-			.doc(profile)
+			.doc(profileToLoad)
 			.get()
 			.then((doc) => {
 				if (doc.exists) {

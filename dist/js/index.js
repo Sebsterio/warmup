@@ -14,8 +14,7 @@
 	// -------------------- init -------------------------
 
 	// Load profile media from DB
-	const profileToLoad = profile ? profile : "wuitw";
-	window.houseApp.firestore.fetch(profileToLoad, loadNewMedia);
+	window.houseApp.firestore.fetch(profile, loadNewMedia);
 
 	// ------------------- exports ---------------------
 

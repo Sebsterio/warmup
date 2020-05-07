@@ -1,6 +1,6 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
 (function () {
-	const currentProfile = window.houseConfig.profile;
+	const { profile } = window.houseConfig;
 
 	const form = document.querySelector(".house__panel--new-link form");
 	const typeInput = form.querySelector("#house__input--type");
@@ -86,9 +86,9 @@
 		}
 	}
 
-	function createNewItem(id) {
+	function createNewItem() {
 		const item = {
-			id,
+			id: "_" + Math.random().toString(36).substr(2, 9),
 			type: form.type.value,
 			description: form.description.value,
 			link: form.url.value,
@@ -106,11 +106,11 @@
 		const { allMedia } = window.houseState;
 
 		// Add item to local state
-		const newItem = createNewItem(allMedia.length);
+		const newItem = createNewItem();
 		allMedia.push(newItem);
 
 		// Authenticate user on base profile only (i.e. no profile)
-		if (!currentProfile) {
+		if (!profile) {
 			if (prompt("Warm up in the ... ?") !== "woods") {
 				alert("Sorry, wrong password. Feel free to create your own profile.");
 				return;
@@ -118,7 +118,7 @@
 		}
 
 		// Save & sync
-		houseApp.firestore.update(currentProfile, allMedia, () => {
+		houseApp.firestore.update(profile, allMedia, () => {
 			alert("Love shared succesfullly");
 			form.reset();
 			preview.innerHTML = "";

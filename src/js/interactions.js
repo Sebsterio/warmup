@@ -24,7 +24,8 @@
 	let canRotate = false;
 
 	// elements
-	const app = document.documentElement.querySelector(".house__app");
+	const app = document.querySelector(".house__app");
+	const house = app.querySelector(".house");
 
 	// -------------------- VIEW --------------------------
 
@@ -103,15 +104,15 @@
 
 	// ----------------- CONTROLLER ----------------------
 
-	app.addEventListener("mousedown", handleMouseDown);
-	app.addEventListener("touchstart", handleMouseDown);
-	app.addEventListener("mouseup", handleMouseUp);
-	app.addEventListener("mouseleave", handleMouseUp);
-	app.addEventListener("touchend", handleMouseUp);
-	app.addEventListener("touchcancel", handleMouseUp);
-	app.addEventListener("mousemove", handleMove);
-	app.addEventListener("touchmove", handleMove);
-	app.addEventListener("wheel", handleWheel);
+	house.addEventListener("mousedown", handleMouseDown);
+	house.addEventListener("touchstart", handleMouseDown);
+	house.addEventListener("mouseup", handleMouseUp);
+	house.addEventListener("mouseleave", handleMouseUp);
+	house.addEventListener("touchend", handleMouseUp);
+	house.addEventListener("touchcancel", handleMouseUp);
+	house.addEventListener("mousemove", handleMove);
+	house.addEventListener("touchmove", handleMove);
+	house.addEventListener("wheel", handleWheel);
 
 	zoomHouse(1);
 	rotateHouse(rotateX, rotateY);

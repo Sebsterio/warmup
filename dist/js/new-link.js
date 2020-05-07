@@ -9,7 +9,7 @@
 	const ratioDisplay = form.querySelector(".house__ratio-display");
 	const urlInput = form.querySelector("#house__input--url");
 	const preview = form.querySelector(".house__preview--media");
-	const submit = form.querySelector(".house__input--submit");
+	const submit = form.querySelector(".house__button--submit");
 	const comments = form.querySelectorAll(".house__preview-comment");
 
 	// -----------------------------------------------------
@@ -118,7 +118,6 @@
 		}
 
 		// Save & sync
-		houseApp.makeBackup();
 		houseApp.firestore.update(currentProfile, allMedia, () => {
 			alert("Love shared succesfullly");
 			form.reset();

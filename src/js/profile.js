@@ -4,7 +4,7 @@
 	const panel = document.querySelector(".house__panel--profile");
 	const profileForm = panel.querySelector(".house__profile-form");
 	const signInForm = panel.querySelector(".house__sign-in-form");
-	const signInBtn = panel.querySelector(".house__input--enter");
+	const signInBtn = panel.querySelector(".house__button--enter");
 
 	// -----------------------------------------------------------------------
 

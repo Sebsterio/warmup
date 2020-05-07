@@ -4,7 +4,7 @@ const mediaBackup = [
 		id: 0,
 		type: "YT embed",
 		name: "People of Warm Up",
-		ratio: 1.5,
+		ratio: 1.8,
 		link: "https://www.youtube.com/embed/EzRfZok4tsE",
 		priority: true,
 		pinned: true,

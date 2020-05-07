@@ -12,7 +12,6 @@
 		interval,
 		ignorePriority,
 		ignorePinned,
-		profile,
 	} = houseConfig;
 
 	const { allMedia } = houseState;
@@ -48,8 +47,7 @@
 	}
 
 	// ---------------------- HTML element creators ----------------------------
-
-	window.createYTEmbed = function (link, ratio, container) {
+	function createYTEmbed(link, ratio, container) {
 		if (!container) throw new Error("YT embed error: invalid container");
 
 		const height = Math.ceil(container.offsetHeight);
@@ -70,7 +68,7 @@
 			frameborder="0"
 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 		></iframe></div>`;
-	};
+	}
 
 	function createVideo(link) {
 		return `<video class="video" autoplay muted loop src="${link}"></video>`;
@@ -83,18 +81,18 @@
 	// -------------------------- Preload Media --------------------------------
 
 	// Download image and run callback when done
-	window.houseApp.preloadImage = function (url, cb) {
+	function preloadImage(url, cb) {
 		var img = new Image();
 		img.src = url;
 		img.onload = cb;
-	};
+	}
 
 	// Download video and run callback when done
-	window.houseApp.preloadVideo = function (url, cb) {
+	function preloadVideo(url, cb) {
 		const videoEl = document.createElement("video");
 		videoEl.src = url;
 		videoEl.onloadedmetadata = () => cb();
-	};
+	}
 
 	// --------------------------- Build Album ---------------------------------
 
@@ -152,7 +150,7 @@
 	}
 
 	// Insert an element into each wall
-	function buildAlbum() {
+	function populateHouse() {
 		if (!allMedia.length) return;
 
 		// Add priority media first
@@ -208,36 +206,24 @@
 		});
 	}
 
-	// --------------------------- Interface ---------------------------------
+	// ---------------------------- init ------------------------------------
 
 	// Update view with new media
-	window.houseApp.addCollection = function (data) {
-		allMedia.push(...data);
+	function addCollection() {
 		resetUnusedMedia();
-		buildAlbum();
+		populateHouse();
 		initMediaCycling();
 		mixUpVideoTime();
-	};
-
-	// Save allmedia to localStorage
-	houseApp.makeBackup = function (key = "auto-backup") {
-		localStorage.setItem(key, JSON.stringify(allMedia));
-	};
-
-	// Retrieve media from localStorage and update view
-	houseApp.restoreBackup = function (key = "auto-backup") {
-		const media = JSON.parse(localStorage.getItem(key));
-		houseState.allMedia = [...media];
-		houseApp.addCollection(allMedia);
-	};
-
-	// ----------------------------- Init -----------------------------------
-
-	const { addCollection, restoreBackup } = houseApp;
-
-	// Load profile media from DB
-	const profileToLoad = !profile ? "wuitw" : profile;
-	window.houseApp.firestore.fetch(profileToLoad, addCollection, restoreBackup);
+	}
 
 	window.addEventListener("resize", updateIframeSizes);
+
+	// -------------------------- exports --------------------------------------
+
+	window.houseApp.createYTEmbed = createYTEmbed;
+	window.houseApp.createVideo = createVideo;
+	window.houseApp.createImage = createImage;
+	window.houseApp.preloadImage = preloadImage;
+	window.houseApp.preloadVideo = preloadVideo;
+	window.houseApp.addCollection = addCollection;
 })();

@@ -22,7 +22,8 @@
 			.doc(profile)
 			.set({ links: data }) // Note: can't update individual fields, only the whole doc
 			.then(function () {
-				cb();
+				localStorage.setItem("auto-backup", JSON.stringify(data));
+				if (cb) cb();
 			})
 			.catch(function (error) {
 				alert(
@@ -35,7 +36,7 @@
 
 	// ----------------------- get ------------------------------
 
-	function fetchCollection(profile, cb, errCb) {
+	function fetchCollection(profile, cb) {
 		db.collection("profiles")
 			.doc(profile)
 			.get()
@@ -53,14 +54,9 @@
 						"If the problem persists, show this to Seb:\n\n" +
 						error
 				);
-				errCb();
+				const dataBackup = JSON.parse(localStorage.getItem(key));
+				cb(dataBackup);
 			});
-		// .then((querySnapshot) => {
-		// 	querySnapshot.forEach((doc) => {
-		// 		const media = doc.data().collection;
-		// 		cb(media);
-		// 	});
-		// });
 	}
 	// -------------------------- module exports -----------------------------
 

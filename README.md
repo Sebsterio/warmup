@@ -16,10 +16,14 @@
 #### Current task
 
 - edit-items UI panel (remove, pin, add priority, make/restore backup)
+- set fixed width
+
+- media unique ids
 
 #### Next
 
 - replace HTML entities with SVG to normalize the look across browsers
+- options panel
 
 #### Juice
 

@@ -94,9 +94,11 @@
 
 		<!-- Controls -->
 		<div class="house__controls">
+
+			<!-- Main menu -->
 			<div class="house__menu">
 				<div class="house__btn" data-target="new-link">&#10010;</div>
-				<div class="house__btn house__btn--disabled" data-target="edit">&#9776;</div>
+				<div class="house__btn" data-target="edit">&#9776;</div>
 				<div class="house__btn house__btn--disabled" data-target="options">&#10066;</div>
 				<div class="house__btn" data-target="profile">&#9750;</div>
 				<div class="house__btn" data-target="close">&#10006;</div>
@@ -104,7 +106,7 @@
 
 			<!-- New link panel -->
 			<div class="house__panel house__panel--new-link">
-				<form action="#">
+				<form class="house__form" action="">
 					<!-- Type -->
 					<label for="house__input--type" class="house__label">Type</label>
 					<select id="house__input--type" class="house__input" name="type">
@@ -144,13 +146,21 @@
 					</div>
 
 					<!-- Submit -->
-					<input disabled class="house__input house__input--submit" type="submit" name="submit" value="Add Love">
+					<input disabled class="house__button house__button--submit" type="submit" name="submit" value="Add Love">
 				</form>
 			</div>
 
-			<!-- Remove links panel -->
-			<div class="house__panel house__panel--remove-link">
-				Work in progress...
+			<!-- Edit links panel -->
+			<div class="house__panel house__panel--edit house__panel--active">
+
+				<!-- Backup buttons -->
+				<form class="house__form house__backup-form" action="">
+					<input type="submit" class="house__button" data-action="set" value="Backup&nbsp;Collection">
+					<input type="submit" class="house__button" data-action="get" value="Restore&nbsp;Backup">
+				</form>
+
+				<!-- Album -->
+				<div class="house__album"></div>
 			</div>
 
 			<!-- Options panel -->
@@ -161,8 +171,8 @@
 			<!-- Profile panel -->
 			<div class="house__panel house__panel--profile">
 				<!-- Profile form-->
-				<form action="" class="house__profile-form">
-					<fieldset>
+				<form action="" class="house__form house__profile-form">
+					<fieldset class="house__fieldset">
 						<!-- Our house -->
 						<input id="house__input--our-house" class="house__input" type="radio" name="profile" value="common" checked>
 						<label for="house__input--our-house" class="house__label">Our House</label>
@@ -174,13 +184,13 @@
 				</form>
 
 				<!-- Sign-in form-->
-				<form action="" class="house__sign-in-form" style="display: none;">
+				<form action="" class="house__form house__sign-in-form" style="display: none;">
 					<!-- Name -->
 					<label for="house__input--username" class="house__label">Name</label>
 					<input id="house__input--username" class="house__input" name="username" type="text">
 
 					<!-- Submit -->
-					<input disabled class="house__input house__input--enter" type="submit" name="enter" value="Enter">
+					<input disabled class="house__button house__button--enter" type="submit" name="enter" value="Enter">
 				</form>
 
 			</div>
@@ -201,7 +211,9 @@
 	<script src='js/interactions.js'></script>
 	<script src='js/controls.js'></script>
 	<script src='js/new-link.js'></script>
+	<script src='js/album.js'></script>
 	<script src='js/profile.js'></script>
+	<script src="js/index.js"></script>
 	<!-- <script src='js/db_backup.js'></script> -->
 
 	<!-- Production Script -->

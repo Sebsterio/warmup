@@ -20,15 +20,14 @@
 
 #### Next
 
-- options panel
+- settings panel
 
 #### Juice
 
-- add zoom on mobile
-- more animations (with some X axis variation)
-- settings panel -> localStorage (don't save url settings)
-- pin items on click -> localStorage (don't sync pinned props)
 - option to disable interactivity and use CSS animation (better suited for extended use)
+- more animations (with some X axis variation)
+- zoom on mobile
+- pin items on click
 - upload audio
 - change bg
 

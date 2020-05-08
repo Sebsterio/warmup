@@ -1,7 +1,12 @@
 (function () {
-	const { allMedia } = window.houseState;
-	const { createYTEmbed, createVideo, createImage } = window.houseApp;
 	const { profile } = window.houseConfig;
+	const { allMedia } = window.houseState;
+	const {
+		createYTEmbed,
+		createVideo,
+		createImage,
+		authenticateUser,
+	} = window.houseApp;
 
 	const panel = document.querySelector(".house__panel--edit");
 	const album = panel.querySelector(".house__album");
@@ -9,7 +14,29 @@
 
 	// -------------------- Interactions ----------------------
 
-	// Delete allMedia item
+	// Make and restore manual backup
+	function handleBackupButton(e) {
+		e.preventDefault();
+		const action = e.target.dataset.action;
+
+		if (action === "set") {
+			localStorage.setItem("manual-backup", JSON.stringify(allMedia));
+		} else if (action === "get") {
+			const newMedia = JSON.parse(localStorage.getItem("manual-backup"));
+			window.houseApp.loadNewMedia(newMedia); // repopulate the house
+			buildAlbum(); // repopulate this panel
+			houseApp.firestore.update(profile, newMedia); // sync changes
+		}
+
+		// UI feedback
+		const stash = e.target.value;
+		e.target.value = "Done!";
+		setTimeout(() => {
+			e.target.value = stash;
+		}, 1000);
+	}
+
+	// Delete an allMedia item
 	function deleteItem(itemToDelete) {
 		const newMedia = allMedia.filter((item) => item !== itemToDelete);
 		allMedia.length = 0;
@@ -35,8 +62,8 @@
 
 		// Delete button
 		if (e.target.classList.contains("house__media-info--delete")) {
+			this.parentElement.removeChild(this); // remove element from the panel list
 			deleteItem(mediaItem);
-			this.parentElement.removeChild(this); // remove item from the panel list
 			houseApp.firestore.update(profile, allMedia);
 		}
 
@@ -45,28 +72,6 @@
 			updateItemProp(e, mediaItem);
 			houseApp.firestore.update(profile, allMedia);
 		}
-	}
-
-	// Make and restore manual backup
-	function handleBackupButton(e) {
-		e.preventDefault();
-		const action = e.target.dataset.action;
-
-		if (action === "set") {
-			localStorage.setItem("manual-backup", JSON.stringify(allMedia));
-		} else if (action === "get") {
-			const newMedia = JSON.parse(localStorage.getItem("manual-backup"));
-			window.houseApp.loadNewMedia(newMedia); // repopulate the house
-			buildAlbum(); // repopulate this panel
-			houseApp.firestore.update(profile, newMedia); // sync changes
-		}
-
-		// UI feedback
-		const stash = e.target.value;
-		e.target.value = "Done!";
-		setTimeout(() => {
-			e.target.value = stash;
-		}, 1000);
 	}
 
 	// -------------------- HTML builders ----------------------
@@ -89,7 +94,9 @@
 `;
 
 	const getLabelHTML = (label, value) =>
-		`<p class="house__media-info-row house__label">${label}: ${value}</p>`;
+		`<p class="house__media-info-row house__label">${
+			label ? label + ": " : ""
+		}${value}</p>`;
 
 	const getCheckboxHTML = (keyword, label, checked, id) =>
 		`<div class="house__media-info-row house__checkbox-container">
@@ -107,10 +114,8 @@
 	</div>`;
 
 	getInfoHTML = ({ id, type, description, ratio, priority, pinned }) => {
-		const typeHTML = getLabelHTML("type", type);
-		const descriptionHTML = description
-			? getLabelHTML("name", description)
-			: "";
+		const descriptionHTML = description ? getLabelHTML(null, description) : "";
+		const typeHTML = getLabelHTML(null, type);
 		const ratioHTML = ratio ? getLabelHTML("ratio", ratio) : "";
 		const checkboxesHTML =
 			getCheckboxHTML("priority", "Priority", priority, id) +
@@ -119,8 +124,8 @@
 
 		return (
 			'<div class="house__media-info">' +
-			typeHTML +
 			descriptionHTML +
+			typeHTML +
 			ratioHTML +
 			checkboxesHTML +
 			buttons +

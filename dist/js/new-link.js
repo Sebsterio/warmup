@@ -1,6 +1,7 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
 (function () {
 	const { profile } = window.houseConfig;
+	const { authenticateUser } = window.houseApp;
 
 	const form = document.querySelector(".house__panel--new-link form");
 	const typeInput = form.querySelector("#house__input--type");
@@ -108,14 +109,6 @@
 		// Add item to local state
 		const newItem = createNewItem();
 		allMedia.push(newItem);
-
-		// Authenticate user on base profile only (i.e. no profile)
-		if (!profile) {
-			if (prompt("Warm up in the ... ?") !== "woods") {
-				alert("Sorry, wrong password. Feel free to create your own profile.");
-				return;
-			}
-		}
 
 		// Save & sync
 		houseApp.firestore.update(profile, allMedia, () => {

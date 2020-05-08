@@ -73,7 +73,8 @@
 		interval: getPreference('interval', INTERVAL),
 		ignorePriority: getPreference('ignorePriority', IGNORE_PRIORITY),
 		ignorePinned: getPreference('ignorePinned', IGNORE_PINNED),
-		profile: getPreference('house', '')
+		profile: getPreference('house', ''),
+		isAuthenticated: getPreference('isAuthenticated', false)
 	};
 	// END Config interface
 

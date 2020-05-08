@@ -19,6 +19,7 @@
 	// ------------------------------- post ------------------------------------
 
 	function updateCollection(profile, data, cb) {
+		if (!window.houseApp.authenticateUser()) return;
 		const profileToLoad = profile ? profile : "wuitw";
 		db.collection("profiles")
 			.doc(profileToLoad)

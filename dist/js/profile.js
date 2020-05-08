@@ -9,24 +9,6 @@
 
 	// -----------------------------------------------------------------------
 
-	// Authenticate user on base profile only (i.e. no profile)
-	function authenticateUser() {
-		if (currentProfile) return true;
-		if (localStorage.getItem("isAuthenticated")) return true;
-
-		const pw = prompt("Warm up in the ... ?").toLowerCase();
-		if (pw === "woods") {
-			localStorage.setItem("isAuthenticated", true);
-			return true;
-		}
-		alert(
-			"Sorry, wrong password. Your changes aren't synced. " +
-				"Feel free to create your own profile. " +
-				"You can copy this album using the backup buttons."
-		);
-		return false;
-	}
-
 	// Change window location to match selected profile & save profile in localStorage
 	function changeProfile(profileName) {
 		// Remove profile query from URL
@@ -90,13 +72,15 @@
 
 	// ------------------------------ Init ---------------------------------------
 
-	profileForm.addEventListener("input", handleProfileInput);
-	signInForm.addEventListener("input", handleSingnInInput);
-	signInForm.addEventListener("submit", handleSignIn);
+	function initProfileUI() {
+		setUpForms();
 
-	setUpForms();
+		profileForm.addEventListener("input", handleProfileInput);
+		signInForm.addEventListener("input", handleSingnInInput);
+		signInForm.addEventListener("submit", handleSignIn);
+	}
 
-	// ------------------------------ Exports ---------------------------------------
+	// ----------------------------- Exports ---------------------------------------
 
-	window.houseApp.authenticateUser = authenticateUser;
+	window.houseApp.initProfileUI = initProfileUI;
 })();

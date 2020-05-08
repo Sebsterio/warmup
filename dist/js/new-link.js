@@ -1,7 +1,7 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
 (function () {
 	const { profile } = window.houseConfig;
-	const { authenticateUser } = window.houseApp;
+	const { firestore } = window.houseApp;
 
 	const form = document.querySelector(".house__panel--new-link form");
 	const typeInput = form.querySelector("#house__input--type");
@@ -111,19 +111,28 @@
 		allMedia.push(newItem);
 
 		// Save & sync
-		houseApp.firestore.update(profile, allMedia, () => {
+		firestore.update(profile, allMedia, () => {
 			alert("Love shared succesfullly");
 			form.reset();
 			preview.innerHTML = "";
 		});
+
+		// Update the edit-album panel
+		houseApp.buildAlbum();
 	}
 
 	// ----------------------- Init ---------------------------
 
-	typeInput.addEventListener("input", handleTypeInput);
-	ratioInput.addEventListener("input", handleRatioInput);
-	urlInput.addEventListener("input", previewMedia);
-	form.addEventListener("submit", handleSubmit);
+	function initNewLinkUI() {
+		typeInput.addEventListener("input", handleTypeInput);
+		ratioInput.addEventListener("input", handleRatioInput);
+		urlInput.addEventListener("input", previewMedia);
+		form.addEventListener("submit", handleSubmit);
 
-	handleTypeInput();
+		handleTypeInput();
+	}
+
+	// ---------------------- Exports ---------------------------
+
+	window.houseApp.initNewLinkUI = initNewLinkUI;
 })();

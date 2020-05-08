@@ -1,5 +1,7 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
 (function () {
+	const { authenticateUser } = window.houseApp;
+
 	const config = {
 		apiKey: "AIzaSyAtzwYGkfDIkBbZf-INRcZTHItg0OeFR9g",
 		authDomain: "warmup-79f01.firebaseapp.com",
@@ -19,7 +21,7 @@
 	// ------------------------------- post ------------------------------------
 
 	function updateCollection(profile, data, cb) {
-		if (!window.houseApp.authenticateUser()) return;
+		if (!authenticateUser()) return;
 		const profileToLoad = profile ? profile : "wuitw";
 		db.collection("profiles")
 			.doc(profileToLoad)

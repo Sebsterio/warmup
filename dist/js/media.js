@@ -8,11 +8,18 @@
 		disableImages,
 		disableYTEmbeds,
 		forceYTEmbeds,
-		YT_PARAMS,
 		interval,
 		ignorePriority,
 		ignorePinned,
 	} = houseConfig;
+
+	const {
+		createYTEmbed,
+		createVideo,
+		createImage,
+		preloadImage,
+		preloadVideo,
+	} = houseApp;
 
 	const { allMedia } = houseState;
 
@@ -44,54 +51,6 @@
 
 	function resetUnusableMedia() {
 		unusableMedia = [];
-	}
-
-	// ---------------------- HTML element creators ----------------------------
-	function createYTEmbed(link, ratio, container) {
-		if (!container) throw new Error("YT embed error: invalid container");
-
-		const height = Math.ceil(container.offsetHeight);
-		if (!ratio) ratio = 1.8;
-
-		const linkMain = link.split("?")[0];
-		const videoId = linkMain // neded for loop to work
-			.replace("https://www.youtube.com/embed/", "")
-			.match(/[^\?\/]+/);
-		const params = YT_PARAMS + "&playlist=" + videoId;
-		const url = linkMain + params;
-
-		return `<div class="embed"><iframe
-			data-ratio="${ratio}"
-			width="${height * ratio}px"
-			height="${height}px"
-			src="${url}"
-			frameborder="0"
-			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-		></iframe></div>`;
-	}
-
-	function createVideo(link) {
-		return `<video class="video" autoplay muted loop src="${link}"></video>`;
-	}
-
-	function createImage(link) {
-		return `<img class="image" src="${link}" alt=":)">`;
-	}
-
-	// -------------------------- Preload Media --------------------------------
-
-	// Download image and run callback when done
-	function preloadImage(url, cb) {
-		var img = new Image();
-		img.src = url;
-		img.onload = cb;
-	}
-
-	// Download video and run callback when done
-	function preloadVideo(url, cb) {
-		const videoEl = document.createElement("video");
-		videoEl.src = url;
-		videoEl.onloadedmetadata = () => cb();
 	}
 
 	// --------------------------- Build Album ---------------------------------
@@ -132,11 +91,11 @@
 	// Create html element from a media item once file downloaded
 	function buildElementAsync({ link, type, ratio }, container) {
 		if (type === "image")
-			window.houseApp.preloadImage(link, () => {
+			preloadImage(link, () => {
 				container.innerHTML = createImage(link);
 			});
 		if (type === "video")
-			window.houseApp.preloadVideo(link, () => {
+			preloadVideo(link, () => {
 				container.innerHTML = createVideo(link);
 			});
 		if (type === "YT embed")
@@ -220,10 +179,5 @@
 
 	// -------------------------- exports --------------------------------------
 
-	window.houseApp.createYTEmbed = createYTEmbed;
-	window.houseApp.createVideo = createVideo;
-	window.houseApp.createImage = createImage;
-	window.houseApp.preloadImage = preloadImage;
-	window.houseApp.preloadVideo = preloadVideo;
 	window.houseApp.addCollection = addCollection;
 })();

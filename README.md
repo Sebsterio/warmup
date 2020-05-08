@@ -21,10 +21,10 @@
 #### Next
 
 - settings panel
+- option to disable interactivity and use CSS animation (better suited for extended use)
 
 #### Juice
 
-- option to disable interactivity and use CSS animation (better suited for extended use)
 - more animations (with some X axis variation)
 - zoom on mobile
 - pin items on click

@@ -163,12 +163,15 @@
 
 	// ------------------------ Init --------------------------
 
-	//  Backup section
-	backupButtons.forEach((button) =>
-		button.addEventListener("click", handleBackupButton)
-	);
+	function initEditAlbumUI() {
+		//  Backup section
+		backupButtons.forEach((button) =>
+			button.addEventListener("click", handleBackupButton)
+		);
+	}
 
-	// -------------------- Module exports ----------------------
+	// ----------------------- Exports -------------------------
 
 	window.houseApp.buildAlbum = buildAlbum;
+	window.houseApp.initEditAlbumUI = initEditAlbumUI;
 })();

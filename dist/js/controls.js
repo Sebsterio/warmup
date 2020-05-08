@@ -1,7 +1,5 @@
 /*! warmup v0.0.1 | (c) 2020 Sebastian Rosloniec | ISC License | git+https://github.com/Sebsterio/warmup.git */
-(function (controlsEnabled) {
-	if (!controlsEnabled) return;
-
+(function () {
 	const controls = document.querySelector(".house__controls");
 	const mainPanel = controls.querySelector(".house__menu");
 	const buttons = controls.querySelectorAll(".house__btn");
@@ -62,6 +60,12 @@
 
 	// ------------------- init -------------------
 
-	toggleControls(true); // Show controls
-	buttons.forEach((btn) => btn.addEventListener("click", handleButtonClick));
-})(houseConfig.controlsEnabled);
+	function initControlsUI() {
+		toggleControls(true); // Show controls
+		buttons.forEach((btn) => btn.addEventListener("click", handleButtonClick));
+	}
+
+	// ------------------- init -------------------
+
+	window.houseApp.initControlsUI = initControlsUI;
+})();

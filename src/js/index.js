@@ -1,19 +1,37 @@
 (function () {
-	const { addCollection, buildAlbum } = houseApp;
-	const { profile } = houseConfig;
+	const {
+		initInteractions,
+		firestore,
+		addCollection,
+		buildAlbum,
+		initControlsUI,
+		initProfileUI,
+		initNewLinkUI,
+		initEditAlbumUI,
+	} = houseApp;
+
+	const { controlsEnabled, profile } = houseConfig;
+
 	const { allMedia } = houseState;
 
 	function loadNewMedia(data) {
 		allMedia.length = 0;
 		allMedia.push(...data);
 		addCollection(); // house walls
-		buildAlbum(); // edit-album panel
+		if (controlsEnabled) buildAlbum(); // edit-album panel
 	}
 
-	// -------------------- init -------------------------
+	// ------------------ Init app ----------------------
 
-	// Load profile media from DB
-	window.houseApp.firestore.fetch(profile, loadNewMedia);
+	initInteractions();
+	firestore.fetch(profile, loadNewMedia);
+
+	if (controlsEnabled) {
+		initControlsUI();
+		initNewLinkUI();
+		initEditAlbumUI();
+		initProfileUI();
+	}
 
 	// ------------------- exports ---------------------
 
